@@ -21,6 +21,7 @@ yarn-error.log*
 # dependencies
 /node_modules
 client/node_modules
+yarn.lock
 
 # IDEs and editors
 /.idea
