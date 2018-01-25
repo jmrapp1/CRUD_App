@@ -1,11 +1,16 @@
 import * as bodyParser from 'body-parser';
 import * as dotenv from 'dotenv';
 import * as cors from 'cors';
-import * as express from 'express';
 import * as morgan from 'morgan';
 import setRoutes from './config/routes';
 
-const app = express();
+import "reflect-metadata"; // required
+import { createExpressServer } from "routing-controllers";
+import TestController from './controllers/TestController';
+
+const app = createExpressServer({
+    controllers: [TestController]
+});
 dotenv.load({ path: '.env' });
 app.set('port', (process.env.PORT || 3000));
 
