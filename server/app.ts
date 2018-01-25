@@ -14,7 +14,10 @@ const express = require('express');
 const app = createExpressServer({
     controllers: [TestController]
 });
-app.use('/', express.static('../client/build'));
+
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('client/build'));
+}
 dotenv.load({ path: '.env' });
 app.set('port', (process.env.PORT || 3000));
 
