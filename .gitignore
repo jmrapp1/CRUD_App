@@ -43,6 +43,7 @@ yarn.lock
 # misc
 /.sass-cache
 /connect.lock
+!client/index.css
 
 # gen
 gen/actions/
