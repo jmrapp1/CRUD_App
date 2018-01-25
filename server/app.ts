@@ -7,8 +7,9 @@ import setRoutes from './config/routes';
 import "reflect-metadata"; // required
 import { createExpressServer } from "routing-controllers";
 import TestController from './controllers/TestController';
-import * as path from 'path';
-import * as express from 'express';
+
+const path = require('path');
+const express = require('express');
 
 const app = createExpressServer({
     controllers: [TestController]
@@ -21,7 +22,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(cors());
 app.use(morgan('dev'));
-app.use(express.static(path.join(__dirname, 'client/public')));
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.listen(app.get('port'), () => {
     setRoutes(app);
