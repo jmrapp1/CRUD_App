@@ -17,6 +17,7 @@ yarn-error.log*
 /dist
 /tmp
 /out-tsc
+/client/build
 
 # dependencies
 /node_modules
