@@ -14,6 +14,7 @@ const express = require('express');
 const app = createExpressServer({
     controllers: [TestController]
 });
+app.use(express.static('./client/build'));
 dotenv.load({ path: '.env' });
 app.set('port', (process.env.PORT || 3000));
 
@@ -22,7 +23,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(cors());
 app.use(morgan('dev'));
-app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.listen(app.get('port'), () => {
     setRoutes(app);
