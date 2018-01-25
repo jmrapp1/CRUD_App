@@ -11,7 +11,7 @@
     "predev": "tsc -p server",
     "dev": "concurrently \"node client/start-client.js\" \"tsc -w -p server\" \"nodemon dist/server/app.js\"",
     "dev:debug": "concurrently \"node client/start-client.js\" \"tsc -w -p server\" \"nodemon --inspect dist/server/app.js\"",
-    "start": "concurrently \"node client/start-client.js\" \"nodemon dist/server/app.js\"",
+    "start": "nodemon dist/server/app.js",
     "postinstall": "tsc -p server",
     "install": "npm run build-react",
     "build-css": "cd client && node-sass-chokidar src/ -o src/",
