@@ -12,7 +12,7 @@
     "dev": "concurrently \"node client/start-client.js\" \"tsc -w -p server\" \"nodemon dist/server/app.js\"",
     "dev:debug": "concurrently \"node client/start-client.js\" \"tsc -w -p server\" \"nodemon --inspect dist/server/app.js\"",
     "start": "concurrently \"node client/start-client.js\" \"nodemon dist/server/app.js\"",
-    "preinstall": "./node_modules/typescript/bin/tsc -p server"
+    "preinstall": "tsc -p server"
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
@@ -42,7 +42,8 @@
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "reflect-metadata": "^0.1.12",
-    "routing-controllers": "^0.7.6"
+    "routing-controllers": "^0.7.6",
+    "typescript": "~2.3.3"
   },
   "devDependencies": {
     "@types/chai": "^4.0.3",
