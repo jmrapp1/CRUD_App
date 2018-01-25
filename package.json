@@ -12,7 +12,7 @@
     "dev": "concurrently \"node client/start-client.js\" \"tsc -w -p server\" \"nodemon dist/server/app.js\"",
     "dev:debug": "concurrently \"node client/start-client.js\" \"tsc -w -p server\" \"nodemon --inspect dist/server/app.js\"",
     "start": "concurrently \"node client/start-client.js\" \"nodemon dist/server/app.js\"",
-    "preinstall": "npm build && tsc -p server"
+    "preinstall": "./node_modules/typescript/bin/tsc -p server"
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
