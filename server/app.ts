@@ -8,7 +8,6 @@ import "reflect-metadata"; // required
 import { createExpressServer } from "routing-controllers";
 import TestController from './controllers/TestController';
 
-const path = require('path');
 const express = require('express');
 
 const app = createExpressServer({
