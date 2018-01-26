@@ -18,7 +18,7 @@ const app = createExpressServer({
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));
 }
-console.log('using build 3');
+
 dotenv.load({ path: '.env' });
 app.set('port', (process.env.PORT || 3000));
 
