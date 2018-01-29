@@ -10,7 +10,7 @@ export const userSchema = new mongoose.Schema({
 });
 
 // Before saving the user, hash the password
-userSchema.pre('save', function (next) {
+userSchema.pre('save', next => {
     const user = this;
     if (!user.isModified('password')) {
         return next();
@@ -25,11 +25,11 @@ userSchema.pre('save', function (next) {
 
 export function hashPassword(password) {
     return new Promise<String>((resolve, reject) => {
-        bcrypt.genSalt(10, function (err, salt) {
+        bcrypt.genSalt(10, (err, salt) => {
             if (err) {
                 return reject(err);
             }
-            bcrypt.hash(password, salt, function (error, hash) {
+            bcrypt.hash(password, salt, (error, hash) => {
                 if (error) {
                     return reject(error);
                 }
@@ -39,13 +39,13 @@ export function hashPassword(password) {
     });
 }
 
-userSchema.methods.comparePassword = async function (candidatePassword) {
+userSchema.methods.comparePassword = async (candidatePassword) => {
     return await bcrypt.compare(candidatePassword, this.password);
 };
 
 // Omit the password when returning a user
 userSchema.set('toJSON', {
-    transform: function (doc, ret, options) {
+    transform: (doc, ret, options) => {
         delete ret.password;
         return ret;
     }
