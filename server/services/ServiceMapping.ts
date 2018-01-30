@@ -2,7 +2,6 @@ let mapping;
 
 function createMapping() {
     mapping = {
-
     };
 }
 

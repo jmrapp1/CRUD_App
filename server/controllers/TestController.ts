@@ -1,31 +1,18 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from "routing-controllers";
+import { BodyParam, Get, JsonController, Post, Res, UseBefore } from "routing-controllers";
+import HeaderMiddleware from './middleware/HeaderMiddleware';
 
-@Controller()
+@JsonController()
+@UseBefore(HeaderMiddleware)
 export default class UserController {
 
-    @Get("/users")
-    getAll() {
-        return "This action returns all users";
+    @Get("/test")
+    getAll(@Res() response: any) {
+        return response.json({ message: "Hello this is a test" });
     }
 
-    @Get("/users/:id")
-    getOne(@Param("id") id: number) {
-        return "This action returns user #" + id;
-    }
-u
-    @Post("/users")
-    post(@Body() user: any) {
-        return "Saving user...";
-    }
-
-    @Put("/users/:id")
-    put(@Param("id") id: number, @Body() user: any) {
-        return "Updating a user...";
-    }
-
-    @Delete("/users/:id")
-    remove(@Param("id") id: number) {
-        return "Removing user...";
+    @Post("/test")
+    post(@BodyParam("message") message: String, @Res() res: any) {
+        return res.json({ message: "You posted '" + message + "'" });
     }
 
 }
