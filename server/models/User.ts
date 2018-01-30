@@ -2,7 +2,7 @@ import * as bcrypt from 'bcryptjs';
 import * as mongoose from 'mongoose';
 
 export const userSchema = new mongoose.Schema({
-    email: { type: String, unique: true, lowercase: true, trim: true, },
+    email: { type: String, unique: true, lowercase: true, trim: true },
     firstName: String,
     lastName: String,
     phone: String,
