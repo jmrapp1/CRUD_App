@@ -7,7 +7,7 @@ class App extends Component {
         return (
             <div className="app container-fluid">
                 <Container>
-                    <h1>Our App Test</h1>
+                    <h1>Our App Testing</h1>
                 </Container>
             </div>
         );
