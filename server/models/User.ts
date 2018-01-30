@@ -6,8 +6,46 @@ export const userSchema = new mongoose.Schema({
     firstName: String,
     lastName: String,
     phone: String,
-    password: String
+    password: String,
+    role: {
+        type: String,
+        enum: ['USER', 'EMPLOYEE', 'MANAGER'],
+        default: 'USER'
+    }
 });
+
+/** Additional data will be appended to user schema based on role **/
+/**
+ * ROLE: USER
+ *      profile: {
+ *      }
+ *
+ * ROLE: EMPLOYEE
+ *      profile: {
+ *          payRate: Number,
+            daysWorking: {
+                monday: Boolean,
+                tuesday: Boolean,
+                wednesday: Boolean,
+                thursday: Boolean,
+                friday: Boolean,
+                saturday: Boolean,
+                sunday: Boolean
+            }
+ *      }
+ * ROLE: MANAGER
+ *      profile: {
+            daysWorking: {
+                monday: Boolean,
+                tuesday: Boolean,
+                wednesday: Boolean,
+                thursday: Boolean,
+                friday: Boolean,
+                saturday: Boolean,
+                sunday: Boolean
+            }
+ *      }
+ */
 
 // Before saving the user, hash the password
 userSchema.pre('save', next => {
