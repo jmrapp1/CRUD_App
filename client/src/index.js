@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
 import './index.css';
-import App from './App';
+import App from './views/App';
 import { BrowserRouter } from 'react-router-dom';
-import configureStore from './store/Store';
+import configureStore from './redux/store/Store';
 import Provider from 'react-redux/es/components/Provider';
 
 const store = configureStore();
