@@ -51,5 +51,8 @@ gen/actions/
 gen/sensors/
 gen/motions/
 
+# secret
+server/config/secret.ts
+
 # css
 client/src/**/*.css

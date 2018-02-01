@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import Container from './common/components/containers/Container';
-import Login from "./pages/login/Login";
 import Header from "./Header";
 import Footer from "./Footer";
 import Content from "./Content";
@@ -20,7 +18,6 @@ class App extends Component {
                     <Footer />
                 </div>
             </div>
-
         );
     }
 }
