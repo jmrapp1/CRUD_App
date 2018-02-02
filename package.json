@@ -6,7 +6,7 @@
   "license": "ISC",
   "scripts": {
     "dev:server": "concurrently \"tsc -w -p server\" \"nodemon dist/server/app.js\"",
-    "test:server": "mocha $NODE_DEBUG_OPTION --opts test/mocha.opts -r ts-node/register server/test/**/*.test.ts",
+    "test:server": "mocha $NODE_DEBUG_OPTION --opts test/mocha.opts -r ts-node/register server/**/*.test.ts",
     "lint": "ng lint",
     "predev": "tsc -p server",
     "dev": "concurrently \"node client/start-client.js\" \"tsc -w -p server\" \"nodemon dist/server/app.js\"",

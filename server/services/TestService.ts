@@ -1,17 +1,13 @@
 import Test from '../models/Test';
+import DatabaseService from './DatabaseService';
+import ServiceResponse from './ServiceResponse';
 
-class TestService {
+class TestService extends DatabaseService {
 
-    createTest(test: String) : Promise<Boolean> {
-        return new Promise<Boolean>(resolve => {
-            Test.create({ test }, (err, model) => {
-                if (err) {
-                    resolve(false);
-                } else {
-                    resolve(true);
-                }
-            });
-        });
+    model = Test;
+
+    createTest(test: String) : Promise<ServiceResponse> {
+        return this.insert({ test });
     }
 
 }

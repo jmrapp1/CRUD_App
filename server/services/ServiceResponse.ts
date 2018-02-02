@@ -1,42 +1,53 @@
-
+/**
+ * Ensures that there is a standard structure for service data return.
+ * Allows us to test if the service failed and present any errors if there
+ * were any. Otherwise we know we can use the data safely
+ */
 export default class ServiceResponse {
 
-    model; // JSON
-    status;
+    /** Whether or not the service method failed */
+    failed;
+
+    /** The data returned */
+    data;
+
+    /** Any errors from the service */
     errors = [];
 
-    constructor(status, model = null) {
-        this.status = status;
-        if (this.isSuccess()) {
-            this.model = model;
+    /**
+     * Handles a service response and sets the data or
+     * error data depending on if it passed or failed
+     *
+     * @param failed If the response failed
+     * @param {any} data The data to pass with it (null by default)
+     */
+    constructor(failed, data = null) {
+        this.failed = failed;
+        if (!failed) {
+            this.data = data;
         } else {
-            if (model) {
-                if (model instanceof Array) {
-                    this.errors = model;
+            if (data) {
+                if (data instanceof Array) {
+                    this.errors = data;
                 } else {
-                    this.errors.push(model);
+                    this.errors.push(data);
                 }
             }
         }
     }
 
-    setResponse(responseObject) {
-        if (this.isSuccess()) {
-            return responseObject.status(this.status).json(this.model);
-        }
-        return responseObject.status(this.status).json(this.errors);
-    }
-
-    isSuccess () {
-        return this.status >= 200 && this.status <= 226;
-    }
-
+    /**
+     * @returns {boolean} If the service call failed
+     */
     isFailed() {
-        return this.status >= 400;
+        return this.failed;
     }
 
+    /**
+     * @returns {boolean} If the service data is empty
+     */
     isEmpty() {
-        return !this.model || (Array.isArray(this.model) && this.model.length === 0);
+        return !this.data || (Array.isArray(this.data) && this.data.length === 0);
     }
 
 }
