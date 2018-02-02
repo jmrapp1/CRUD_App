@@ -3,6 +3,7 @@ import './Content.css';
 import { Route, Switch } from 'react-router-dom';
 import LoginPage from './pages/login/LoginPage';
 import HomePage from './pages/home/HomePage';
+import SignUpPage from "./pages/login/SignUpPage";
 
 
 class Content extends Component {
@@ -12,6 +13,7 @@ class Content extends Component {
                 <h1>Content</h1>
                 <Switch>
                     <Route exact path="/login" component={ LoginPage }/>
+                    <Route exact path="/signup" component={ SignUpPage }/>
                     <Route path="/*" component={ HomePage }/>
                 </Switch>
             </div>

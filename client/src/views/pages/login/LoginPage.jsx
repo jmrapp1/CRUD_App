@@ -48,6 +48,8 @@ class LoginPage extends Component {
                                name="password"
                                placeholder="Password"
                            />
+
+                           <p>Don't have an account? Register <Link to="/signup">here</Link></p>
                        </div>
 
                        <div className="btn-group" id="button">
