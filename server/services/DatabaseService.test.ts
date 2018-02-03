@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import * as mocha from 'mocha';
 import TestService from './TestService';
 import DatabaseSetup from '../util/DatabaseSetup';
 
