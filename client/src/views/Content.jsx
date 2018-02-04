@@ -3,7 +3,7 @@ import './Content.css';
 import { Route, Switch } from 'react-router-dom';
 import LoginPage from './pages/login/LoginPage';
 import HomePage from './pages/home/HomePage';
-import SignUpPage from "./pages/login/SignUpPage";
+import SignUpPage from "./pages/signup/SignUpPage";
 
 
 class Content extends Component {

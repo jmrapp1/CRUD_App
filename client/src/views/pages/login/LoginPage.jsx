@@ -7,6 +7,8 @@ class LoginPage extends Component {
         super(props);
 
         this.state = {
+            firstname: '',
+            lastname: '',
             email: '',
             password: ''
 
@@ -24,22 +26,18 @@ class LoginPage extends Component {
            <div className="container">
                <div className="col-md-4 col-md-offset-4">
 
-                   <form>
-                       <h1>Log in</h1>
+                   <form className="login">
+                       <h1 className="login-title">Log in</h1>
                        <p>Enter your information Here</p>
+
                        <div className="form-group">
                             <input
                                 value={this.state.email}
                                 onChange={this.onChange}
                                 type="text"
                                 name="email"
-                                placeholder="Username"
+                                placeholder="Email"
                                 />
-
-
-                        </div>
-
-                       <div className="form-group">
                            <input
                                value={this.state.password}
                                onChange={this.onChange}
@@ -49,7 +47,9 @@ class LoginPage extends Component {
                            />
 
                            <p>Don't have an account? Register <Link to="/signup">here</Link></p>
+
                        </div>
+
 
                        <div className="btn-group" id="button">
                         <button type="button" className="btn">
