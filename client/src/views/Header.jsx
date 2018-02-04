@@ -9,8 +9,8 @@ class Header extends Component {
         return (
             <div className="container-fluid">
                 <Switch>
-                    <Route exact path="/login" component={ () => <h1>Login Page Header</h1> }/>
-                    <Route path="/*" component={ () => <h1>Home Page Header</h1> }/>
+                    <Route exact path="/login" component={ () => <h1></h1> }/>
+                    <Route path="/*" component={ () => <h1></h1> }/>
                 </Switch>
             </div>
         );

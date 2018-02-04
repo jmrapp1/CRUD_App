@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './LoginPage.css';
-import Container from '../../common/components/containers/Container';
 import { Link } from 'react-router-dom';
 
 class LoginPage extends Component {
@@ -22,13 +21,13 @@ class LoginPage extends Component {
 
     render() {
         return (
-           <div className="row">
+           <div className="container">
                <div className="col-md-4 col-md-offset-4">
+
                    <form>
-                       <h1>Login</h1>
-
-
-                        <div className="form-group">
+                       <h1>Log in</h1>
+                       <p>Enter your information Here</p>
+                       <div className="form-group">
                             <input
                                 value={this.state.email}
                                 onChange={this.onChange}
@@ -53,10 +52,11 @@ class LoginPage extends Component {
                        </div>
 
                        <div className="btn-group" id="button">
-                        <button type="button" className="btn btn-primary">
+                        <button type="button" className="btn">
                             Login
                         </button>
                        </div>
+
                    </form>
                </div>
            </div>

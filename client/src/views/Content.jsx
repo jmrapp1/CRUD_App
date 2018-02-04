@@ -10,7 +10,7 @@ class Content extends Component {
     render() {
         return (
             <div className="container-fluid">
-                <h1>Content</h1>
+                <h1></h1>
                 <Switch>
                     <Route exact path="/login" component={ LoginPage }/>
                     <Route exact path="/signup" component={ SignUpPage }/>
