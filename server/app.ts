@@ -1,7 +1,7 @@
 import * as dotenv from 'dotenv';
 import * as morgan from 'morgan';
-import "reflect-metadata"; // required
-import { createExpressServer } from "routing-controllers";
+import 'reflect-metadata'; // required
+import { createExpressServer } from 'routing-controllers';
 import TestController from './controllers/TestController';
 import DatabaseSetup from './util/DatabaseSetup';
 
@@ -9,7 +9,7 @@ const express = require('express');
 
 const app = createExpressServer({
     cors: true,
-    routePrefix: "/api",
+    routePrefix: '/api',
     controllers: [TestController]
 });
 
