@@ -18,16 +18,7 @@ const express = require('express');
 const app = createExpressServer({
     cors: true,
     routePrefix: '/api',
-    controllers: [ TestController ]/*,
-    authorizationChecker: async (action: Action, args: string[]) => {
-        const res = await new Promise<Boolean>(async resolve => {
-            const res2 = passport.authenticate('jwt', { session: false })(action.request, action.response, action.next);
-            console.log('Response From: ' + JSON.stringify(res2));
-            resolve(true);
-        });
-        console.log('Res: ' + res);
-        return res;
-    }*/
+    controllers: [ TestController ]
 });
 
 if (process.env.NODE_ENV === 'production') {
