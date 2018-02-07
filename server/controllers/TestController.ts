@@ -1,29 +1,50 @@
-import { BodyParam, Get, JsonController, Post, Res, UseBefore } from "routing-controllers";
-import HeaderMiddleware from './middleware/HeaderMiddleware';
+import { Authorized, BodyParam, Get, JsonController, Post, Req, Res, UseBefore } from 'routing-controllers';
 import TestService from '../services/TestService';
+import { Inject } from 'typedi';
+import { encode } from 'jwt-simple';
+import Config from '../config/config';
+import * as passport from 'passport';
+import AuthMiddleware from '../middlewares/AuthMiddleware';
 
 @JsonController()
-@UseBefore(HeaderMiddleware)
 export default class UserController {
 
-    @Get("/test")
-    get(@Res() response: any) {
-        return response.json({ message: "Hello this is a test" });
+    @Inject()
+    testService: TestService;
+
+    constructor() {
     }
 
-    @Post("/test")
-    post(@BodyParam("message") message: String, @Res() res: any) {
-        return res.json({ message: "You posted '" + message + "'" });
+    @UseBefore(AuthMiddleware)
+    @Get('/testauth')
+    testAuth(@Req() request: any, @Res() response: any) {
+        return response.json({
+            header: 'Your JWT data was verified and contains the following',
+            data: {
+                message: request.user
+            }
+        });
     }
 
-    @Post("/create")
-    createTest(@BodyParam("test") test: String, @Res() res: any) {
+    @Get('/getauth')
+    getKey(@Res() response: any) {
+        return response.json({ token: 'JWT ' + encode({ test: 'this is test data' }, Config.secret) });
+    }
+
+    @Post('/test')
+    postTest(@BodyParam('message') message: String, @Res() res: any) {
+        return res.json({ message: 'You posted "' + message + '"' });
+    }
+
+    @Post('/create')
+    createTest(@BodyParam('test') test: String, @Res() res: any) {
         if (test) {
-            return TestService.createTest(test).then(result => {
-                if (result) {
+            console.log('testSerivce: ' + JSON.stringify(this.testService));
+            return this.testService.createTest(test).then(result => {
+                if (!result.isFailed()) {
                     return res.sendStatus(200);
                 } else {
-                    return res.status(404).json({ error: "That test message has already been used" });
+                    return res.status(404).json({ error: 'That test message has already been used' });
                 }
             });
         }

@@ -37,7 +37,7 @@ export default abstract class DatabaseService {
                 if (err) {
                     return resolve(new ServiceResponse(true, err));
                 }
-                if (model instanceof Array && model.length == 1) {
+                if (model instanceof Array && model.length === 1) {
                     return resolve(new ServiceResponse(false, model[0]));
                 }
                 return resolve(new ServiceResponse(false, model));

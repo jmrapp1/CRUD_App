@@ -52,7 +52,8 @@ gen/sensors/
 gen/motions/
 
 # secret
-server/config/secret.ts
+/server/config/secret.ts
+*secret.ts
 
 # css
 client/src/**/*.css

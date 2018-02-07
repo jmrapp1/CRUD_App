@@ -37,6 +37,13 @@ export default class ServiceResponse {
     }
 
     /**
+     * @returns {boolean} If the service call succeeded
+     */
+    isSuccess() {
+        return !this.failed;
+    }
+
+    /**
      * @returns {boolean} If the service call failed
      */
     isFailed() {
