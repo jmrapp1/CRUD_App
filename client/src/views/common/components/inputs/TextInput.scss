@@ -5,5 +5,8 @@
   display: inline-flex;
   border: 2px solid #ccc;
   box-sizing: content-box;
+}
+
+.textInput::placeholder {
   color: #757582;
 }
