@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import './SignUpPage.css';
+import PrimaryButton from '../../common/components/buttons/PrimaryButton';
+import TextInput from '../../common/components/inputs/TextInput';
 
 
 class SignUpPage extends Component {
 
-    constructor(props){
+    constructor( props ) {
         super(props);
 
         this.state = {
-            firstname: '',
-            lastname: '',
+            firstName: '',
+            lastName: '',
             email: '',
             phone: '',
             password: '',
@@ -20,85 +22,78 @@ class SignUpPage extends Component {
         this.onChange = this.onChange.bind(this)
     }
 
-    onChange(e){
-        this.setState({ [e.target.name] : e.target.value})
+    onChange( e ) {
+        this.setState({ [ e.target.name ]: e.target.value })
     }
-
-
-
 
     render() {
         return (
+            <div id="signup-page">
+                <div className="container-border col-md-6">
+                    <div className="col-md-4 col-md-offset-4">
 
-            <div className="container">
-                <div className="col-md-4 col-md-offset-4">
+                        <form className="signup">
+                            <h1 className="signup-title">Sign Up</h1>
 
-                    <form className="signup">
-                        <h1 className="signup-title">Sign Up</h1>
+                            <p>Enter your information Here</p>
 
-                        <p>Enter your information Here</p>
+                            <div className="form-group">
+                                <TextInput
+                                    value={ this.state.firstName }
+                                    onChange={ this.onChange }
+                                    name="firstName"
+                                    placeholder="Enter Your First Name"
+                                />
 
-                        <div className="form-group">
-                            <input
-                                value={this.state.firstname}
-                                onChange={this.onChange}
-                                type="text"
-                                name="firstname"
-                                placeholder="Enter Your First Name"
-                            />
+                                <TextInput
+                                    value={ this.state.lastName }
+                                    onChange={ this.onChange }
+                                    name="lastName"
+                                    placeholder="Enter Last Name"
+                                />
 
-                            <input
-                                value={this.state.lastname}
-                                onChange={this.onChange}
-                                type="text"
-                                name="lastname"
-                                placeholder="Enter Last Name"
-                            />
+                                <TextInput
+                                    value={ this.state.email }
+                                    onChange={ this.onChange }
+                                    name="email"
+                                    placeholder="Enter Your Email"
+                                />
 
-                            <input
-                                value={this.state.email}
-                                onChange={this.onChange}
-                                type="text"
-                                name="email"
-                                placeholder="Enter Your Email"
-                            />
+                                <TextInput
+                                    value={ this.state.phone }
+                                    onChange={ this.onChange }
+                                    type="number"
+                                    name="phone"
+                                    className="phone"
+                                    placeholder="Enter Your Phone Number"
+                                />
 
-                            <input
-                                value={this.state.phone}
-                                onChange={this.onChange}
-                                type="text"
-                                name="phone"
-                                className="phone"
-                                placeholder="Enter Your Phone Number"
-                            />
+                                <TextInput
+                                    value={ this.state.password }
+                                    onChange={ this.onChange }
+                                    type="password"
+                                    name="password"
+                                    placeholder="Enter Your Password"
+                                />
 
-                            <input
-                                value={this.state.password}
-                                onChange={this.onChange}
-                                type="password"
-                                name="password"
-                                placeholder="Enter Your Password"
-                            />
+                                <TextInput
+                                    value={ this.state.confirm }
+                                    onChange={ this.onChange }
+                                    type="password"
+                                    name="confirm"
+                                    placeholder="Confirm Password"
+                                />
 
-                            <input
-                                value={this.state.confirm}
-                                onChange={this.onChange}
-                                type="password"
-                                name="confirm"
-                                placeholder="Confirm Password"
-                            />
+                            </div>
 
-                        </div>
+                            <div className="btn-group" id="button">
+                                <PrimaryButton text="Register"/>
+                            </div>
 
-
-                        <div className="btn-group" id="button">
-                            <button type="button" className="btn">Register</button>
-                        </div>
-
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
-
         );
     }
 }

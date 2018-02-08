@@ -4,7 +4,7 @@ import * as passport from 'passport';
 import * as bodyParser from 'body-parser';
 import 'reflect-metadata'; // required
 
-import { Action, createExpressServer, useContainer } from 'routing-controllers';
+import { createExpressServer, useContainer } from 'routing-controllers';
 import { Container } from 'typedi';
 
 import TestController from './controllers/TestController';

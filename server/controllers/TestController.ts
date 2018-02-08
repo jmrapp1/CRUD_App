@@ -1,9 +1,8 @@
-import { Authorized, BodyParam, Get, JsonController, Post, Req, Res, UseBefore } from 'routing-controllers';
+import { BodyParam, Get, JsonController, Post, Req, Res, UseBefore } from 'routing-controllers';
 import TestService from '../services/TestService';
 import { Inject } from 'typedi';
 import { encode } from 'jwt-simple';
 import Config from '../config/config';
-import * as passport from 'passport';
 import AuthMiddleware from '../middlewares/AuthMiddleware';
 
 @JsonController()

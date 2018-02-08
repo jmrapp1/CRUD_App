@@ -1,11 +1,13 @@
-body{
-  
-}
+#signup-page {
 
-form.signup{
-  margin-top: 13%;
-}
+  form{
+    margin: 13% 0 13% 0;
+  }
 
-h1.signup-title{
+  .container-border {
+    margin: auto;
+    border: 3px solid #cccccc;
+    text-align: center;
 
+  }
 }

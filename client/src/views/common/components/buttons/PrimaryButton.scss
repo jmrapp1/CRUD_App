@@ -1,12 +1,15 @@
 .button-primary {
-  background: #2d3445;
-  box-shadow: inset 0px 0px 16px 0px #3b445a, inset 0px 0px 0px 1px #48536e;
-  color: #8a9ece;
+  // background: #4CAF50;
+  // box-shadow: inset 0px 0px 16px 0px #3b445a, inset 0px 0px 0px 1px #48536e;
+  // color: #8a9ece;
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  cursor: pointer;
 }
 
 .button-primary:hover {
-  background: #2d3445;
-  box-shadow: inset 0px 0px 16px 0px #4a5973, inset 0px 0px 0px 1px #596483;
+  background: #5fd763;
   color: white;
 }
 
