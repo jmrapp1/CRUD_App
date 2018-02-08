@@ -26,8 +26,8 @@ class LoginPage extends Component {
     render() {
         return (
             <div id="login-page">
-                <div className="container-border col-md-6">
-                    <div className="col-sm-12 col-md-4 col-md-offset-4">
+                <div className="col-sm-12 col-md-4 col-md-offset-4">
+                    <div className="container-border">
 
                         <form className="login">
                             <h1 className="login-title">Log in</h1>
@@ -47,7 +47,7 @@ class LoginPage extends Component {
                                     placeholder="Password"
                                 />
 
-                                <p>Don't have an account? Register <Link to="/signup">here</Link></p>
+                                <p>Don't have an account? <Link to="/signup">Register.</Link></p>
 
                             </div>
 

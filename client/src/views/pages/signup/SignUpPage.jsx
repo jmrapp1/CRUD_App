@@ -29,8 +29,8 @@ class SignUpPage extends Component {
     render() {
         return (
             <div id="signup-page">
-                <div className="container-border col-md-6">
-                    <div className="col-md-4 col-md-offset-4">
+                <div className="col-sm-12 col-md-4 col-md-offset-4">
+                    <div className="container-border">
 
                         <form className="signup">
                             <h1 className="signup-title">Sign Up</h1>
