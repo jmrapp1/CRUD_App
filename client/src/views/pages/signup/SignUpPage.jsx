@@ -35,8 +35,6 @@ class SignUpPage extends Component {
                         <form className="signup">
                             <h1 className="signup-title">Sign Up</h1>
 
-                            <p>Enter your information Here</p>
-
                             <div className="form-group">
                                 <TextInput
                                     value={ this.state.firstName }
