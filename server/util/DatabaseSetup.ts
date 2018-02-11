@@ -8,7 +8,16 @@ export default class DatabaseSetup {
 
     setupDb(callback) {
         dotenv.load({ path: '.env' });
-        mongoose.connect(process.env.MONGODB_URI);
+        this.connectToDb(callback, process.env.MONGODB_URI);
+    }
+
+    setupTestDb(callback) {
+        dotenv.load({ path: '.env' });
+        this.connectToDb(callback, process.env.MONGODB_TEST_URI);
+    }
+
+    connectToDb(callback, uri) {
+        mongoose.connect(uri);
         const db = mongoose.connection;
         (<any>mongoose).Promise = global.Promise;
 
@@ -16,7 +25,7 @@ export default class DatabaseSetup {
         db.once('open', () => {
             this.db = db;
             ServiceMapping.createMapping();
-            console.log("Connected to MongoDB");
+            console.log('Connected to MongoDB');
             callback(db);
         });
     }

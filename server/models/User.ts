@@ -14,6 +14,8 @@ export const userSchema = new mongoose.Schema({
     }
 });
 
+export const UserRoles = { USER: 'USER', EMPLOYEE: 'EMPLOYEE', MANAGER: 'MANAGER' };
+
 /** Additional data will be appended to user schema based on role **/
 /**
  * ROLE: USER
@@ -47,8 +49,7 @@ export const userSchema = new mongoose.Schema({
  *      }
  */
 
-// Before saving the user, hash the password
-userSchema.pre('save', next => {
+userSchema.pre('save', function (next) {
     const user = this;
     if (!user.isModified('password')) {
         return next();
@@ -63,11 +64,11 @@ userSchema.pre('save', next => {
 
 export function hashPassword(password) {
     return new Promise<String>((resolve, reject) => {
-        bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.genSalt(10, function (err, salt) {
             if (err) {
                 return reject(err);
             }
-            bcrypt.hash(password, salt, (error, hash) => {
+            bcrypt.hash(password, salt, function (error, hash) {
                 if (error) {
                     return reject(error);
                 }
@@ -77,18 +78,17 @@ export function hashPassword(password) {
     });
 }
 
-userSchema.methods.comparePassword = async (candidatePassword) => {
-    return await bcrypt.compare(candidatePassword, this.password);
+userSchema.methods.comparePassword = function (candidatePassword) {
+    return bcrypt.compare(candidatePassword, this.password);
 };
 
 // Omit the password when returning a user
 userSchema.set('toJSON', {
-    transform: (doc, ret, options) => {
+    transform: function (doc, ret, options) {
         delete ret.password;
         return ret;
     }
 });
-
 const User = mongoose.model('User', userSchema, 'User');
 
 export default User;

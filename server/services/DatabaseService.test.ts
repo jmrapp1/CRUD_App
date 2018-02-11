@@ -9,8 +9,9 @@ const testService = Container.get(TestService);
 
 describe('BaseService', () => {
 
-    before(done => {
-        dbSetup.setupDb(db => {
+    before(function(done) {
+        this.timeout(10000);
+        dbSetup.setupTestDb(db => {
             testService.delete({}).then(res => {
                 expect(res.isFailed()).to.equal(false);
                 done();
@@ -30,6 +31,7 @@ describe('BaseService', () => {
             const test = 'this is a unit test test';
             testService.insert({ test }).then(res => {
                 expect(res.isFailed()).to.equal(false);
+                console.log('Res: ' + JSON.stringify(res));
                 expect(res.data.test).to.equal(test);
                 done();
             });
