@@ -19,10 +19,10 @@ export const logout = (
 );
 
 export default {
-    user: ( state = initialState, { type, data } ) => {
-        switch (type) {
+    user: ( state = initialState, action ) => {
+        switch (action.type) {
             case LOGIN: {
-                const user = jwtDecode(data.token);
+                const user = jwtDecode(action.data.token);
                 return {
                     user,
                     loggedIn: true

@@ -21,7 +21,7 @@ export default class UserController {
                 return response.status(201).json({});
             }
             return response.status(400).json(res.errors);
-        })
+        });
     }
 
     @Post('/login')
@@ -29,6 +29,16 @@ export default class UserController {
         return this.userService.login(email, password).then(res => {
             if (res.isSuccess()) {
                 return response.status(202).json(res.data);
+            }
+            return response.status(400).json(res.errors);
+        });
+    }
+
+    @Get('/users')
+    getAllUsers(@Res() response: any) {
+        return this.userService.findAll().then(res => {
+            if (res.isSuccess()) {
+                return response.status(200).json(res.data);
             }
             return response.status(400).json(res.errors);
         });

@@ -93,9 +93,8 @@ LoginPage.propTypes = {
 };
 
 export default connect(
-    state => ( {
-        userData: state.user.userData,
-        alert: state.alert
+    store => ( {
+        alert: store.alert
     } ),
     dispatch => ( {
         login: bindActionCreators(UserActions.login, dispatch),
