@@ -14,11 +14,11 @@ export default class UserController {
     }
 
     @Post('/register')
-    register(@BodyParam('email') email: string, @BodyParam('firstName') firstName: string, @BodyParam('lastName') lastName: string,
+    register(@Req() request, @BodyParam('email') email: string, @BodyParam('firstName') firstName: string, @BodyParam('lastName') lastName: string,
              @BodyParam('phone') phone: string, @BodyParam('password') password: string, @BodyParam('confirmPassword') confirmPassword: string, @Res() response: any) {
         return this.userService.register(email, firstName, lastName, phone, password, confirmPassword).then(res => {
             if (res.isSuccess()) {
-                return response.status(201).json(res.data);
+                return response.status(201).json({});
             }
             return response.status(400).json(res.errors);
         })
