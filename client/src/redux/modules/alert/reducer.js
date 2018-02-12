@@ -10,7 +10,7 @@ export const error = message => (
     { type: ERROR, message }
 );
 
-export const clear = (
+export const clear = () => (
     { type: CLEAR }
 );
 

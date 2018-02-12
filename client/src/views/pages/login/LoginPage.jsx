@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import PrimaryButton from '../../common/components/buttons/PrimaryButton';
 import TextInput from '../../common/components/inputs/TextInput';
 import { Actions as UserActions } from '../../../redux/modules/user';
+import { Actions as AlertActions } from '../../../redux/modules/alert';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -35,6 +36,10 @@ class LoginPage extends Component {
         return (
             <p className={ this.props.alert.type }>{ this.props.alert.message }</p>
         )
+    }
+
+    componentWillUnmount() {
+        this.props.clearAlert();
     }
 
     render() {
@@ -83,6 +88,7 @@ class LoginPage extends Component {
 
 LoginPage.propTypes = {
     login: PropTypes.func,
+    clearAlert: PropTypes.func,
     alert: PropTypes.object
 };
 
@@ -92,6 +98,7 @@ export default connect(
         alert: state.alert
     } ),
     dispatch => ( {
-        login: bindActionCreators(UserActions.login, dispatch)
+        login: bindActionCreators(UserActions.login, dispatch),
+        clearAlert: bindActionCreators(AlertActions.clear, dispatch)
     } )
 )(LoginPage);

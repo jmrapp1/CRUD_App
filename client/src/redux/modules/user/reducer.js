@@ -1,7 +1,8 @@
-import { LOGIN, REGISTER } from './constants';
+import { LOGIN, REGISTER, LOGOUT } from './constants';
+const jwtDecode = require('jwt-decode');
 
 const initialState = {
-    userData: {},
+    user: {},
     loggedIn: false
 };
 
@@ -13,14 +14,25 @@ export const login = data => (
     { type: LOGIN, data }
 );
 
+export const logout = (
+    { type: LOGOUT }
+);
+
 export default {
     user: ( state = initialState, { type, data } ) => {
         switch (type) {
             case LOGIN: {
+                const user = jwtDecode(data.token);
                 return {
-                    userData: data,
+                    user,
                     loggedIn: true
                 }
+            }
+            case LOGOUT: {
+                return {
+                    user: {},
+                    loggedIn: false
+                };
             }
             case REGISTER: {
                 return state; // Keep same state

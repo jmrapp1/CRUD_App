@@ -25,7 +25,23 @@ export function login(email, password) {
             password
         }, data => {
             dispatch(AlertReducer.success('You have logged in successfully.'));
+            localStorage.setItem('id_token', data.token);
             dispatch(Reducer.login(data));
         }, err => dispatch(AlertReducer.error(err['errors'][0])));
     }
+}
+
+function destroyLocalSession() {
+    const subdomain = localStorage.subdomain;
+    localStorage.clear();
+    if (subdomain) {
+        localStorage.subdomain = subdomain;
+    }
+}
+
+export function logout() {
+    return dispatch => {
+        destroyLocalSession();
+        dispatch(Reducer.logout());
+    };
 }

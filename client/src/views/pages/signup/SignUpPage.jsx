@@ -7,6 +7,7 @@ import { Actions as UserActions } from '../../../redux/modules/user/';
 import './SignUpPage.css';
 import PrimaryButton from '../../common/components/buttons/PrimaryButton';
 import TextInput from '../../common/components/inputs/TextInput';
+import { Actions as AlertActions } from '../../../redux/modules/alert';
 
 
 class SignUpPage extends Component {
@@ -41,6 +42,10 @@ class SignUpPage extends Component {
         return (
             <p className={ this.props.alert.type }>{ this.props.alert.message }</p>
         )
+    }
+
+    componentWillUnmount() {
+        this.props.clearAlert();
     }
 
     render() {
@@ -118,6 +123,7 @@ class SignUpPage extends Component {
 
 SignUpPage.propTypes = {
     register: PropTypes.func,
+    clearAlert: PropTypes.func,
     alert: PropTypes.object
 };
 
@@ -127,6 +133,7 @@ export default connect(
         alert: state.alert
     } ),
     dispatch => ( {
-        register: bindActionCreators(UserActions.register, dispatch)
+        register: bindActionCreators(UserActions.register, dispatch),
+        clearAlert: bindActionCreators(AlertActions.clear, dispatch)
     } )
 )(SignUpPage);
