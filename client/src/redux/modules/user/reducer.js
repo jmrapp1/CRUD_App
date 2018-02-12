@@ -10,8 +10,8 @@ export const register = data => (
     { type: REGISTER, data }
 );
 
-export const login = data => (
-    { type: LOGIN, data }
+export const login = user => (
+    { type: LOGIN, user }
 );
 
 export const logout = (
@@ -22,9 +22,8 @@ export default {
     user: ( state = initialState, action ) => {
         switch (action.type) {
             case LOGIN: {
-                const user = jwtDecode(action.data.token);
                 return {
-                    user,
+                    user: action.user,
                     loggedIn: true
                 }
             }

@@ -1,6 +1,7 @@
 import { dispatchRequest } from '../../utils/fetchUtils';
 import * as Reducer from './reducer';
 import { Reducers as AlertReducer } from '../alert';
+const jwtDecode = require('jwt-decode');
 
 export function register(email, password, confirmPassword, firstName, lastName, phone) {
     return dispatch => {
@@ -14,11 +15,11 @@ export function register(email, password, confirmPassword, firstName, lastName, 
         }, data => {
             dispatch(AlertReducer.success('You have registered successfully.'));
             dispatch(Reducer.register(data));
-        }, err => dispatch(AlertReducer.error(err['errors'][0])));
+        });
     }
 }
 
-export function login(email, password) {
+export function login(email, password, successCallback = () => {}, failCallback = () => {}) {
     return dispatch => {
         dispatchRequest('api/login', 'POST', {
             email,
@@ -26,9 +27,21 @@ export function login(email, password) {
         }, data => {
             dispatch(AlertReducer.success('You have logged in successfully.'));
             localStorage.setItem('id_token', data.token);
-            dispatch(Reducer.login(data));
-        }, err => dispatch(AlertReducer.error(err['errors'][0])));
+
+            const user = jwtDecode(data.token);
+            dispatch(Reducer.login(user));
+            successCallback(user);
+        }, err => {
+            dispatch(AlertReducer.error(err['errors'][0]));
+            failCallback(err['errors'][0]);
+        });
     }
+}
+
+export function navigateToRoleIndex(userRole, history) {
+    if (userRole === 'USER') history.push('/customer');
+    if (userRole === 'EMPLOYEE') history.push('/employee');
+    if (userRole === 'MANAGER') history.push('/manager');
 }
 
 function destroyLocalSession() {

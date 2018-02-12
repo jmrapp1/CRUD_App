@@ -21,6 +21,7 @@ class LoginPage extends Component {
 
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.onSuccess = this.onSuccess.bind(this);
     }
 
     onChange( e ) {
@@ -29,7 +30,11 @@ class LoginPage extends Component {
 
     onSubmit( e ) {
         e.preventDefault();
-        this.props.login(this.state.email, this.state.password);
+        this.props.login(this.state.email, this.state.password, this.onSuccess);
+    }
+
+    onSuccess(data) {
+        UserActions.navigateToRoleIndex(data.role, this.props.history);
     }
 
     renderError() {
@@ -89,7 +94,8 @@ class LoginPage extends Component {
 LoginPage.propTypes = {
     login: PropTypes.func,
     clearAlert: PropTypes.func,
-    alert: PropTypes.object
+    alert: PropTypes.object,
+    history: PropTypes.node
 };
 
 export default connect(

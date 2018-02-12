@@ -13,7 +13,7 @@ export function dispatchRequest(route, method, body, successCallback, errorCallb
         .then(res => res.json())
         .then(data => successCallback(data))
         .catch(e => {
-            if (e['response'].json) {
+            if (e['response'] && e['response'].json) {
                 e['response'].json().then(json => {
                     e['errors'] = json;
                     errorCallback(e);
