@@ -12,17 +12,19 @@ import Manager from "./pages/index/manager/Manager";
 class Content extends Component {
     render() {
         return (
-            <div className="container-fluid">
-                <h1></h1>
-                <Switch>
-                    <Route exact path="/login" component={ LoginPage }/>
-                    <Route exact path="/signup" component={ SignUpPage }/>
-                    <Route exact path="/customer" component={ Customer }/>
-                    <Route exact path="/employee" component={ Employee }/>
-                    <Route exact path="/manager" component={ Manager }/>
+            <div id="content">
+                <div className="container-fluid">
+                    <h1></h1>
+                    <Switch>
+                        <Route exact path="/login" component={ LoginPage }/>
+                        <Route exact path="/signup" component={ SignUpPage }/>
+                        <Route exact path="/customer" component={ Customer }/>
+                        <Route exact path="/employee" component={ Employee }/>
+                        <Route exact path="/manager" component={ Manager }/>
 
-                    <Route path="/*" component={ HomePage }/>
-                </Switch>
+                        <Route path="/*" component={ HomePage }/>
+                    </Switch>
+                </div>
             </div>
         );
     }
