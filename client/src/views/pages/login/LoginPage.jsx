@@ -3,24 +3,38 @@ import './LoginPage.css';
 import { Link } from 'react-router-dom';
 import PrimaryButton from '../../common/components/buttons/PrimaryButton';
 import TextInput from '../../common/components/inputs/TextInput';
+import { Actions as UserActions } from '../../../redux/modules/user';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import * as _ from 'lodash';
 
 class LoginPage extends Component {
     constructor( props ) {
         super(props);
 
         this.state = {
-            firstname: '',
-            lastname: '',
             email: '',
             password: ''
-
         };
 
-        this.onChange = this.onChange.bind(this)
+        this.onChange = this.onChange.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
     }
 
     onChange( e ) {
         this.setState({ [ e.target.name ]: e.target.value })
+    }
+
+    onSubmit( e ) {
+        e.preventDefault();
+        this.props.login(this.state.email, this.state.password);
+    }
+
+    renderError() {
+        return (
+            <p className={ this.props.alert.type }>{ this.props.alert.message }</p>
+        )
     }
 
     render() {
@@ -29,9 +43,12 @@ class LoginPage extends Component {
                 <div className="col-sm-12 col-md-4 col-md-offset-4">
                     <div className="container-border">
 
-                        <form className="login">
+                        <form className="login" onSubmit={ this.onSubmit }>
                             <h1 className="login-title">Log in</h1>
 
+                            {
+                                !_.isEmpty(this.props.alert) && this.renderError()
+                            }
                             <div id="login-form" className="form-group">
                                 <TextInput
                                     value={ this.state.email }
@@ -64,4 +81,17 @@ class LoginPage extends Component {
     }
 }
 
-export default LoginPage;
+LoginPage.propTypes = {
+    login: PropTypes.func,
+    alert: PropTypes.object
+};
+
+export default connect(
+    state => ( {
+        userData: state.user.userData,
+        alert: state.alert
+    } ),
+    dispatch => ( {
+        login: bindActionCreators(UserActions.login, dispatch)
+    } )
+)(LoginPage);

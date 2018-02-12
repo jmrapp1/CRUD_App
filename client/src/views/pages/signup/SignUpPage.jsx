@@ -38,7 +38,6 @@ class SignUpPage extends Component {
     }
 
     renderError() {
-        console.log('rendering error: ' + JSON.stringify(this.state.alert));
         return (
             <p className={ this.props.alert.type }>{ this.props.alert.message }</p>
         )

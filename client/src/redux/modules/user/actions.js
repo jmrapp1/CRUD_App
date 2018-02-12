@@ -1,5 +1,5 @@
 import { dispatchRequest } from '../../utils/fetchUtils';
-import { register as registerReducer } from './reducer';
+import * as Reducer from './reducer';
 import { Reducers as AlertReducer } from '../alert';
 
 export function register(email, password, confirmPassword, firstName, lastName, phone) {
@@ -13,7 +13,19 @@ export function register(email, password, confirmPassword, firstName, lastName, 
             phone
         }, data => {
             dispatch(AlertReducer.success('You have registered successfully.'));
-            dispatch(registerReducer(data));
+            dispatch(Reducer.register(data));
+        }, err => dispatch(AlertReducer.error(err['errors'][0])));
+    }
+}
+
+export function login(email, password) {
+    return dispatch => {
+        dispatchRequest('api/login', 'POST', {
+            email,
+            password
+        }, data => {
+            dispatch(AlertReducer.success('You have logged in successfully.'));
+            dispatch(Reducer.login(data));
         }, err => dispatch(AlertReducer.error(err['errors'][0])));
     }
 }
