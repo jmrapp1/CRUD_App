@@ -20,6 +20,10 @@
     z-index: 0;
   }
 
+  #clouds {
+    position: relative;
+  }
+
   .cloud-left {
     margin-top: 12%;
     margin-left: -200px;
@@ -65,6 +69,16 @@
     100% {
       // box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
       transform: translate(0px, 0px);
+    }
+  }
+
+  #clouds {
+    display:none;
+  }
+
+  @media only screen and (min-width: 768px) {
+    #clouds {
+      display:block;
     }
   }
 
