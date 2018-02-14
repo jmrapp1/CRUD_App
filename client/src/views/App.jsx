@@ -1,22 +1,16 @@
 import React, { Component } from 'react';
 import './App.css';
-import Header from "./Header";
-import Footer from "./Footer";
-import Content from "./Content";
+import Header from "./layout/Header";
+import Footer from "./layout/Footer";
+import Content from "./layout/Content";
 
 class App extends Component {
     render() {
         return (
-            <div className="app container-fluid">
-               <div className="row">
-                   <Header />
-               </div>
-                <div className="row">
-                    <Content />
-                </div>
-                <div className="row">
-                    <Footer />
-                </div>
+            <div id="app" className="container-fluid">
+                <Header/>
+                <Content/>
+                <Footer/>
             </div>
         );
     }

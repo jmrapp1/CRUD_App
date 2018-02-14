@@ -95,7 +95,7 @@ LoginPage.propTypes = {
     login: PropTypes.func,
     clearAlert: PropTypes.func,
     alert: PropTypes.object,
-    history: PropTypes.node
+    history: PropTypes.any
 };
 
 export default connect(

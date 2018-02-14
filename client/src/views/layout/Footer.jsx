@@ -5,7 +5,7 @@ import './Footer.css';
 class Footer extends Component {
     render() {
         return (
-            <div className="container-fluid">
+            <div id="footer" className="row">
                 <h1></h1>
             </div>
 
