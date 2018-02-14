@@ -18,7 +18,8 @@ class Header extends Component {
                 <Navbar collapseOnSelect>
                     <Navbar.Header>
                         <Navbar.Brand>
-                            <Link to="/">UManage</Link>
+
+                            <Link to="/"><img className ="img" src={image} /></Link>
                         </Navbar.Brand>
                         <Navbar.Toggle/>
                     </Navbar.Header>
@@ -27,10 +28,13 @@ class Header extends Component {
                             <LinkNavItem eventKey={ 2 } href="#">
                                 About
                             </LinkNavItem>
-                            <NavDropdown eventKey={ 3 } title="Dropdown" id="basic-nav-dropdown">
+                            <NavDropdown eventKey={ 3 } title="Employee" id="basic-nav-dropdown">
                                 <MenuItem eventKey={ 3.1 } href="#">Manage</MenuItem>
                                 <MenuItem eventKey={ 3.2 } href="#">New</MenuItem>
                             </NavDropdown>
+                            <LinkNavItem eventKey={ 4 } href="#">
+                                Store
+                            </LinkNavItem>
                         </Nav>
                         <Nav pullRight>
                             <LinkNavItem eventKey={ 1 } href="/login">
