@@ -11,8 +11,7 @@ const Container = ({ children, padding = 30, className = '' }) => (
 Container.propTypes = {
     children: PropTypes.node,
     padding: PropTypes.number,
-    className: PropTypes.string,
-    background: PropTypes.string
+    className: PropTypes.string
 };
 
 export default Container;

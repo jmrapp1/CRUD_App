@@ -15,6 +15,8 @@ export function register(email, password, confirmPassword, firstName, lastName, 
         }, data => {
             dispatch(AlertReducer.success('You have registered successfully.'));
             dispatch(Reducer.register(data));
+        }, err => {
+            dispatch(AlertReducer.error(err['errors'][0]));
         });
     }
 }

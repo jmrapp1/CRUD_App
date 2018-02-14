@@ -9,6 +9,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as _ from 'lodash';
+import Container from '../../common/components/containers/Container';
 
 class LoginPage extends Component {
     constructor( props ) {
@@ -39,7 +40,7 @@ class LoginPage extends Component {
 
     renderError() {
         return (
-            <p className={ this.props.alert.type }>{ this.props.alert.message }</p>
+            <p className={ "message " + this.props.alert.type }>{ this.props.alert.message }</p>
         )
     }
 
@@ -50,8 +51,8 @@ class LoginPage extends Component {
     render() {
         return (
             <div id="login-page">
-                <div className="col-sm-12 col-md-4 col-md-offset-4">
-                    <div className="container-border">
+                <div className="col-sm-12 col-md-4 col-md-offset-4 vertical-center">
+                    <Container className="login-container">
 
                         <form className="login" onSubmit={ this.onSubmit }>
                             <h1 className="login-title">Log in</h1>
@@ -84,7 +85,7 @@ class LoginPage extends Component {
                             </div>
 
                         </form>
-                    </div>
+                    </Container>
                 </div>
             </div>
         );

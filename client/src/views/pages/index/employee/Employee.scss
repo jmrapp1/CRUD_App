@@ -1,0 +1,12 @@
+@import '../../../common/styles/colors.scss';
+
+#employee-home {
+  width: 100%;
+  height: calc(100vh - 52px);
+  background: $color-background;
+
+  .container {
+    width: 100%;
+  }
+
+}

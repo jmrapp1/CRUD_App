@@ -25,22 +25,22 @@ class Header extends Component {
                     </Navbar.Header>
                     <Navbar.Collapse>
                         <Nav>
-                            <LinkNavItem eventKey={ 2 } href="#">
+                            <LinkNavItem href="#">
                                 About
                             </LinkNavItem>
-                            <NavDropdown eventKey={ 3 } title="Employee" id="basic-nav-dropdown">
-                                <MenuItem eventKey={ 3.1 } href="#">Manage</MenuItem>
-                                <MenuItem eventKey={ 3.2 } href="#">New</MenuItem>
+                            <NavDropdown title="Employee" id="basic-nav-dropdown">
+                                <MenuItem href="#">Manage</MenuItem>
+                                <MenuItem href="#">New</MenuItem>
                             </NavDropdown>
-                            <LinkNavItem eventKey={ 4 } href="#">
+                            <LinkNavItem href="#">
                                 Store
                             </LinkNavItem>
                         </Nav>
                         <Nav pullRight>
-                            <LinkNavItem eventKey={ 1 } href="/login">
+                            <LinkNavItem href="/login">
                                 Login
                             </LinkNavItem>
-                            <LinkNavItem eventKey={ 2 } href="/signup">
+                            <LinkNavItem href="/signup">
                                 Register
                             </LinkNavItem>
                         </Nav>

@@ -1,16 +1,24 @@
+@import '../../common/variables.scss';
+@import '../../common/styles/colors.scss';
+
 #brand {
   width: 100%;
-  height: calc(100vh - 72px);
+  height: calc(100vh - 52px);
 
-  background-size: cover;
-  background: url("../../common/images/bg.jpg") no-repeat bottom;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  background-size: contain;
+  background: $color-background url("../../common/images/bg.png") repeat-x bottom;
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  background-size: contain;
 
   h1 {
+    color: white;
     font-size: 48px;
+  }
+
+  h2 {
+    color: white;
   }
 
   .cloud {

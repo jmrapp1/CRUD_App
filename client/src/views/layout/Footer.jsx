@@ -5,8 +5,8 @@ import './Footer.css';
 class Footer extends Component {
     render() {
         return (
-            <div id="footer" className="row">
-                <h1></h1>
+            <div id="footer" className="">
+
             </div>
 
         );

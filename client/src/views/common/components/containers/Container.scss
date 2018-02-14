@@ -1,13 +1,13 @@
 @import '../../styles/colors.scss';
 
 .Container {
-  background: $color-font-light-gray;
+  background: white;
   border: $color-gray-border solid 1px;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  -khtml-border-radius: 4px;
-  border-radius: 4px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px; /* future proofing */
+  -khtml-border-radius: 10px; /* for old Konqueror browsers */
 
-  //box-shadow: inset 0px 0px 16px 0px #101319, inset 0px 0px 0px 1px #0c0e13;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.3);
   //box-sizing: border-box;
 }

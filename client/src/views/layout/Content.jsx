@@ -12,8 +12,7 @@ import Manager from "../pages/index/manager/Manager";
 class Content extends Component {
     render() {
         return (
-            <div id="content" className="row">
-                <h1></h1>
+            <div id="content">
                 <Switch>
                     <Route exact path="/login" component={ LoginPage }/>
                     <Route exact path="/signup" component={ SignUpPage }/>

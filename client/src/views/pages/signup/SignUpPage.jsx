@@ -8,6 +8,7 @@ import './SignUpPage.css';
 import PrimaryButton from '../../common/components/buttons/PrimaryButton';
 import TextInput from '../../common/components/inputs/TextInput';
 import { Actions as AlertActions } from '../../../redux/modules/alert';
+import Container from '../../common/components/containers/Container';
 
 
 class SignUpPage extends Component {
@@ -40,7 +41,7 @@ class SignUpPage extends Component {
 
     renderError() {
         return (
-            <p className={ this.props.alert.type }>{ this.props.alert.message }</p>
+            <p className={ "message " + this.props.alert.type }>{ this.props.alert.message }</p>
         )
     }
 
@@ -51,8 +52,8 @@ class SignUpPage extends Component {
     render() {
         return (
             <div id="signup-page">
-                <div className="col-sm-12 col-md-4 col-md-offset-4">
-                    <div className="container-border">
+                <div className="col-sm-12 col-md-4 col-md-offset-4 vertical-center">
+                    <Container className="signup-container">
 
                         <form className="signup" onSubmit={ this.onSubmit }>
                             <h1 className="signup-title">Sign Up</h1>
@@ -66,21 +67,21 @@ class SignUpPage extends Component {
                                     value={ this.state.firstName }
                                     onChange={ this.onChange }
                                     name="firstName"
-                                    placeholder="Enter Your First Name"
+                                    placeholder="First Name"
                                 />
 
                                 <TextInput
                                     value={ this.state.lastName }
                                     onChange={ this.onChange }
                                     name="lastName"
-                                    placeholder="Enter Last Name"
+                                    placeholder="Last Name"
                                 />
 
                                 <TextInput
                                     value={ this.state.email }
                                     onChange={ this.onChange }
                                     name="email"
-                                    placeholder="Enter Your Email"
+                                    placeholder="Email"
                                 />
 
                                 <TextInput
@@ -89,7 +90,7 @@ class SignUpPage extends Component {
                                     type="number"
                                     name="phone"
                                     className="phone"
-                                    placeholder="Enter Your Phone Number"
+                                    placeholder="Phone Number"
                                 />
 
                                 <TextInput
@@ -97,7 +98,7 @@ class SignUpPage extends Component {
                                     onChange={ this.onChange }
                                     type="password"
                                     name="password"
-                                    placeholder="Enter Your Password"
+                                    placeholder="Password"
                                 />
 
                                 <TextInput
@@ -114,7 +115,7 @@ class SignUpPage extends Component {
                             </div>
 
                         </form>
-                    </div>
+                    </Container>
                 </div>
             </div>
         );

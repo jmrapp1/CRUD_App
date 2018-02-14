@@ -1,20 +1,29 @@
 import React, { Component } from 'react';
 import './Employee.css';
 import Container from '../../../common/components/containers/Container';
-import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 class Employee extends Component {
     render() {
         return (
-            <div className="app container-fluid">
-                <Container>
-                    <h1>You Have Signed In As A Employee</h1>
-                    <h1><Link to="/login">Return to Login</Link></h1>
-                </Container>
+            <div id="employee-home">
+                <div className="col-sm-12 col-md-8 col-md-offset-2 vertical-center">
+                    <Container className="container">
+                        <h1>Welcome { this.props.user.firstName } { this.props.user.lastName }. You're an employee!</h1>
+                    </Container>
+                </div>
             </div>
-
         );
     }
 }
 
-export default Employee;
+Employee.propTypes = {
+    user: PropTypes.object,
+};
+
+export default connect(
+    store => ( {
+        user: store.user.user
+    } )
+)(Employee);

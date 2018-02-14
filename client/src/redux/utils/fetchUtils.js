@@ -16,8 +16,10 @@ export function dispatchRequest(route, method, body, successCallback, errorCallb
             if (e['response'] && e['response'].json) {
                 e['response'].json().then(json => {
                     e['errors'] = json;
-                    errorCallback(e);
-                })
+                    if (errorCallback) {
+                        errorCallback(e);
+                    }
+                });
             } else {
                 console.error(e);
                 errorCallback(e);

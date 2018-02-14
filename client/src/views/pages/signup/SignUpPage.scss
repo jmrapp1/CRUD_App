@@ -1,9 +1,23 @@
+@import '../../common/styles/colors.scss';
+
 #signup-page {
-  text-align: center;
+
   width: 100%;
-  height: 100%;
+  height: calc(100vh - 52px);
+  background: $color-background;
 
+  .signup-container {
+    text-align: center;
+    width: 100%;
+  }
 
+  .message {
+    margin-top: 10px;
+  }
+
+  input {
+    margin-bottom: 10px;
+  }
 
   form {
     margin: 15% 10% 15% 10%;
@@ -13,12 +27,4 @@
     margin: 20px 0 20px 0;
   }
 
-  .container-border {
-    margin: auto;
-    border: 3px solid #cccccc;
-    text-align: center;
-    background-color: white;
-
-
-  }
 }

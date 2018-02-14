@@ -18,10 +18,10 @@ export default {
     alert: ( state = initialState, action ) => {
         switch (action.type) {
             case SUCCESS: {
-                return { type: 'alert-success', message: action.message };
+                return { type: 'success', message: action.message };
             }
             case ERROR: {
-                return { type: 'alert-danger', message: action.message };
+                return { type: 'error', message: action.message };
             }
             case CLEAR: {
                 return { };
