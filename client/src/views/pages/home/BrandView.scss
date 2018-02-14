@@ -13,8 +13,59 @@
     font-size: 48px;
   }
 
+  .cloud {
+    max-width: 200px;
+    max-height: 100px;
+    position: absolute;
+    z-index: 0;
+  }
+
+  .cloud-left {
+    margin-top: 12%;
+    margin-left: -200px;
+    animation: float1 4s ease-in-out infinite;
+  }
+
+  .cloud-right {
+    margin-top: 6%;
+    margin-left: calc(100% + 200px);
+    animation: float2 6s ease-in-out infinite;
+  }
+
   .logo-header {
+    opacity: 0;
     padding-top: 10%;
+    z-index: 1011;
+  }
+
+  @keyframes float1 {
+    0% {
+      // box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+      transform: translate(0px, 0px);
+    }
+    50% {
+      // box-shadow: 0 25px 15px 0px rgba(0,0,0,0.2);
+      transform: translate(-5px, -20px);
+    }
+    100% {
+      // box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+      transform: translate(0px, 0px);
+    }
+  }
+
+  @keyframes float2 {
+    0% {
+      // box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+      transform: translate(0px, 0px);
+    }
+    50% {
+      // box-shadow: 0 25px 15px 0px rgba(0,0,0,0.2);
+      transform: translate(9px, 20px);
+    }
+    100% {
+      // box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+      transform: translate(0px, 0px);
+    }
   }
 
 }
