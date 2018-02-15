@@ -5,12 +5,12 @@
   width: 100%;
   height: calc(100vh - 52px);
 
-  background-size: contain;
-  background: $color-background url("../../common/images/bg.png") repeat-x bottom;
-  -webkit-background-size: contain;
-  -moz-background-size: contain;
-  -o-background-size: contain;
-  background-size: contain;
+  background-size: cover;
+  background: $color-background url("../../common/images/bg.png") no-repeat bottom;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 
   h1 {
     color: white;
@@ -25,10 +25,6 @@
     max-width: 200px;
     max-height: 100px;
     position: absolute;
-  }
-
-  #clouds {
-    position: relative;
   }
 
   .cloud-left {

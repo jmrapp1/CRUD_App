@@ -8,7 +8,6 @@ import Customer from "../pages/index/customer/Customer";
 import Employee from "../pages/index/employee/Employee";
 import Manager from "../pages/index/manager/Manager";
 
-
 class Content extends Component {
     render() {
         return (

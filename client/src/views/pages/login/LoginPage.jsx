@@ -40,7 +40,7 @@ class LoginPage extends Component {
 
     renderError() {
         return (
-            <p className={ "message " + this.props.alert.type }>{ this.props.alert.message }</p>
+            <p className={ "alert " + this.props.alert.type }>{ this.props.alert.message }</p>
         )
     }
 
