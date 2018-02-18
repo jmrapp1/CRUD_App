@@ -2,9 +2,9 @@
 
 #employee-home {
   height: calc(100vh - 52px);
-  background: $color-background;
+  background: $color-gold;
 
-  .info{
+  .right{
     margin-top: 15px;
   }
 
@@ -16,8 +16,7 @@
     margin-top: 15px;
   }
 
-  .right{
-    margin-top: 15px;
+  h1{
+    text-align: center;
   }
-
 }
