@@ -9,16 +9,17 @@ class Employee extends Component {
         return (
             <div id="employee-home">
                 <div className="row">
-                    <div className="info col-sm-12 col-md-4 col-md-offset-6 text-right">
-                        <Container className="container col-md-4 .ml-auto">
-                            <u1>
-                                    <p>Fist Name: {this.props.user.firstName}</p>
-                                    <p>Last Name: {this.props.user.lastName}</p>
-                                    <p>Email: {this.props.user.email}</p>
-                                    <p>Rate: $24.25</p>
+                    <div className="col-md-6">
+                        <div className="row">
+                            <Container className="top" shadow={false} round={false}>Top</Container>
+                        </div>
 
-                            </u1>
-                        </Container>
+                        <div className="row">
+                            <Container className="bottom" shadow={false} round={false}>Bottom</Container>
+                        </div>
+                    </div>
+                    <div className="col-md-6">
+                        <Container className="right col-md-12" shadow={false} round={false}>Right</Container>
                     </div>
                 </div>
             </div>
