@@ -7,6 +7,7 @@ import SignUpPage from "../pages/signup/SignUpPage";
 import Customer from "../pages/index/customer/Customer";
 import Employee from "../pages/index/employee/Employee";
 import Manager from "../pages/index/manager/Manager";
+import AddEmployee from '../pages/index/manager/AddEmployee';
 
 class Content extends Component {
     render() {
@@ -18,6 +19,7 @@ class Content extends Component {
                     <Route exact path="/customer" component={ Customer }/>
                     <Route exact path="/employee" component={ Employee }/>
                     <Route exact path="/manager" component={ Manager }/>
+                    <Route exact path="/addemployee" component={ AddEmployee}/>
 
                     <Route path="/*" component={ HomePage }/>
                 </Switch>
