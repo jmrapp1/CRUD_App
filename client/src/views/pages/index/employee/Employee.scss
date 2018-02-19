@@ -1,22 +1,44 @@
 @import '../../../common/styles/colors.scss';
 
 #employee-home {
-  height: calc(100vh - 52px);
+  min-height: calc(100vh - 52px);
   background: $color-gold;
 
-  .right{
+  img {
+    max-height: 300px;
+  }
+
+  .employee-schedule {
     margin-top: 15px;
   }
 
-  .top {
-    margin-top: 15px;
+  .content {
+    height: 100%;
   }
 
-  .bottom{
-    margin-top: 15px;
+  .Container {
+    height: 100%;
+  }
+
+  .img-responsive {
+    margin: 0 auto;
+  }
+
+  @media only screen and (max-width: 768px) {
+    .employee-info {
+      margin-top: 15px;
+    }
+  }
+
+  .containers {
+    height: 100%;
+    padding-top: 15px;
+    padding-bottom: 15px;
   }
 
   h1{
     text-align: center;
+    margin-bottom: 20px;
   }
+
 }

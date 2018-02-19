@@ -3,43 +3,70 @@ import './Employee.css';
 import Container from '../../../common/components/containers/Container';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import 'jquery-match-height';
+import * as $ from 'jquery';
+
 
 const image = require('../../../common/images/pfp.jpg');
+
 class Employee extends Component {
+
+    componentDidMount() {
+        $('.content').matchHeight(false);
+    }
+
+    renderResponseInfo(content) {
+        return (
+            <div>
+                <div className="content col-md-4 hidden-sm-down">
+                    { content }
+                </div>
+                { /*<div className="col-md-4 hidden-md-up">
+                    { content }
+                </div>*/ }
+            </div>
+        );
+    }
+
     render() {
         return (
             <div id="employee-home">
-                <div className="row">
-                    <div className="col-md-4 col-md-offset-2">
+                <div className="containers row">
+                    <div className="content col-md-4 col-md-offset-2">
                         <div className="row">
-                            <Container className="top col-md-6 col-md-offset-4" shadow={false} round={false}>
-                                <img src={image} height="175px" width="240px"/>
+                            <Container className="employee-image text-center" shadow={ false } round={ false }>
+                                <img src={ image } className="img-responsive text-center"/>
 
                             </Container>
                         </div>
+                        <div className="row">
+                            <Container className="employee-schedule" shadow={ false } round={ false }>
+                                <h1>Schedule</h1>
+                                <ul>
+                                    <li><b>Monday:</b></li>
+                                    <li><b>Tuesday:</b></li>
+                                    <li><b>Wednesday:</b></li>
+                                    <li><b>Thursday:</b></li>
+                                    <li><b>Friday:</b></li>
+                                    <li><b>Saturday:</b></li>
+                                    <li><b>Sunday:</b></li>
+                                </ul>
+                            </Container>
+                        </div>
                     </div>
-                    <div className="col-md-4">
-                        <Container className="right col-md-12" shadow={false} round={false}>
-                            <h1><ins>Employee Information</ins></h1>
-                            <u1 className="employee">
-                                <p>Fist Name: {this.props.user.firstName}</p>
-                                <p>Last Name: {this.props.user.lastName}</p>
-                                <p>Email: {this.props.user.email}</p>
-                                <p>Phone Number: {this.props.user.phone}</p>
-                                <p>Rate: $24.25</p>
-                            </u1>
-                        </Container>
-                    </div>
-
-                    <div className="col-md-8">
-                        <Container className="bottom col-md-12 col-md-offset-4" shadow={false} round={false}>
-                            <h1><ins>Schedule</ins></h1>
-                            <u1 className="schedule">
-                                <p><b>Monday: </b> <b>Tuesday: </b> <b>Wednesday: </b> <b>Thursday: </b><b>Friday: </b>
-                                <b>Saturday: </b><b>Sunday: </b></p>
-                            </u1>
-                        </Container>
-                    </div>
+                    { this.renderResponseInfo((
+                            <Container className="employee-info" shadow={ false } round={ false }>
+                                <h1>Employee Information</h1>
+                                <ul className="employee">
+                                    <li>Fist Name: { this.props.user.firstName }</li>
+                                    <li>Last Name: { this.props.user.lastName }</li>
+                                    <li>Email: { this.props.user.email }</li>
+                                    <li>Phone Number: { this.props.user.phone }</li>
+                                    <li>Rate: $24.25</li>
+                                </ul>
+                            </Container>
+                        )
+                    ) }
                 </div>
             </div>
         );
