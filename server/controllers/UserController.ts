@@ -4,7 +4,7 @@ import { encode } from 'jwt-simple';
 import AuthMiddleware from '../middlewares/AuthMiddleware';
 import UserService from '../services/UserService';
 
-@JsonController()
+@JsonController('/user')
 export default class UserController {
 
     @Inject()
@@ -34,7 +34,7 @@ export default class UserController {
         });
     }
 
-    @Get('/users')
+    @Get('/')
     getAllUsers(@Res() response: any) {
         return this.userService.findAll().then(res => {
             if (res.isSuccess()) {

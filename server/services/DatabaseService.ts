@@ -80,7 +80,7 @@ export default abstract class DatabaseService {
         );
     }
 
-    private handleStandardResponse(err, model): ServiceResponse {
+    handleStandardResponse(err, model): ServiceResponse {
         if (err && !_.isEmpty(err)) {
             return new ServiceResponse(true, err);
         }

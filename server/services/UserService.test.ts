@@ -148,7 +148,7 @@ describe('UserService', () => {
         });
     });
 
-    describe.only('Login', () => {
+    describe('Login', () => {
         it('Should not validate when email is not valid', done => {
             userService.register('testemail', 'bob', 'joe', 'phone', 'password', 'password').then(res => {
                 expect(res.isFailed()).to.equal(true);

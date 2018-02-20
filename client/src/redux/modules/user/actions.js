@@ -5,7 +5,7 @@ const jwtDecode = require('jwt-decode');
 
 export function register(email, password, confirmPassword, firstName, lastName, phone) {
     return dispatch => {
-        dispatchRequest('api/register', 'POST', {
+        dispatchRequest('api/user/register', 'POST', {
             email,
             password,
             confirmPassword,
@@ -23,7 +23,7 @@ export function register(email, password, confirmPassword, firstName, lastName, 
 
 export function login(email, password, successCallback = () => {}, failCallback = () => {}) {
     return dispatch => {
-        dispatchRequest('api/login', 'POST', {
+        dispatchRequest('api/user/login', 'POST', {
             email,
             password
         }, data => {

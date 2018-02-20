@@ -11,6 +11,8 @@ export const userSchema = new mongoose.Schema({
         type: String,
         enum: ['USER', 'EMPLOYEE', 'MANAGER'],
         default: 'USER'
+    },
+    profile: {
     }
 });
 
