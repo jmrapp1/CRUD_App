@@ -6,8 +6,6 @@ import { Actions as AlertActions } from '../../../../redux/modules/alert';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Actions as EmployeeActions } from '../../../../redux/modules/employee';
-import { TablePagination, TableSimple } from 'react-pagination-table';
-import ReactTable from 'react-table';
 import { PaginatedTable } from '../../../common/components/table/PaginatedTable';
 
 const columns = ['First Name', 'Last Name', 'Email', 'Phone'];
