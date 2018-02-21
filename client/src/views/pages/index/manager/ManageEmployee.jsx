@@ -10,17 +10,23 @@ import { TablePagination, TableSimple } from 'react-pagination-table';
 import ReactTable from 'react-table';
 import { PaginatedTable } from '../../../common/components/table/PaginatedTable';
 
-const columns = ['Email', 'First Name', 'Last Name', 'Phone'];
-const map = ['email', 'firstName', 'lastName', 'phone'];
+const columns = ['First Name', 'Last Name', 'Email', 'Phone'];
+const map = ['firstName', 'lastName', 'email', 'phone'];
+const pageSize = 10;
 
 class ManageEmployee extends Component {
 
     constructor(props) {
         super(props);
+        this.fetchEmployees = this.fetchEmployees.bind(this);
     }
 
     componentDidMount() {
-        this.props.getEmployees(10, 0);
+        this.props.getEmployees(pageSize, 0);
+    }
+
+    fetchEmployees(page) {
+        this.props.getEmployees(pageSize, pageSize * (page - 1));
     }
 
     render() {
@@ -28,7 +34,9 @@ class ManageEmployee extends Component {
             <div id="manage-employees">
                 <Container className="container col-md-8 col-md-offset-2">
                     <h4><b>Employee List</b></h4>
-                    <PaginatedTable columns={ columns } data={ this.props.employees } mapData={ (index, data) => data[map[index]] } />
+                    <PaginatedTable columns={ columns } data={ this.props.employees }
+                                    mapData={ (index, data) => data[map[index]] } currentPage={ 5 }
+                                    total={ 300 } pageSize onPageClick={ this.fetchEmployees } />
                 </Container>
             </div>
         );

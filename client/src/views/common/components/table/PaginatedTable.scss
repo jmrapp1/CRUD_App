@@ -1,3 +1,55 @@
+@import '../../styles/colors.scss';
+
+$color-table-gray: #c2c2c2;
+$color-table-hr: #aeaeae;
+
+$table-hover-speed: .25s;
+
 .paginated-table {
 
+  .button-page {
+    margin-right: 5px;
+  }
+
+  .current-page {
+    background: $color-light-gray;
+    box-shadow: inset 0px 0px 16px 0px $color-gray-border, inset 0px 0px 0px 1px $color-gray-border;
+  }
+
+  .table-striped > thead {
+    background-color: white;
+    box-shadow: inset 0px 0px 16px 0px white, inset 0px 0px 0px 1px white;
+    box-sizing: border-box;
+  }
+
+  td, th {
+    padding: 15px !important;
+  }
+
+  .table-striped > tbody > tr:nth-child(1n), .table-striped > tbody > tr:nth-child(1n) {
+    background-color: $color-light-gray;
+  }
+
+  .table-striped > tbody > tr:nth-child(2n), .table-striped > tbody > tr:nth-child(2n) {
+    background-color: white;
+  }
+
+  .table-striped > tbody > tr:hover {
+    background-color: $color-background-light;
+    -o-transition: $table-hover-speed;
+    -ms-transition: $table-hover-speed;
+    -moz-transition: $table-hover-speed;
+    -webkit-transition: $table-hover-speed;
+    transition: $table-hover-speed;
+  }
+
+  table {
+    table-layout: fixed;
+    word-wrap: break-word;
+
+  }
+
+  .table td, .table th, .panel {
+    border-color: $color-table-hr !important;
+  }
 }

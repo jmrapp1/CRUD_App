@@ -1,0 +1,17 @@
+@import '../../styles/colors.scss';
+
+.button-page {
+  padding: 10px 15px;
+  background: white;
+  box-shadow: inset 0px 0px 16px 0px $color-light-gray, inset 0px 0px 0px 1px $color-light-gray;
+  color: black;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px; /* future proofing */
+  -khtml-border-radius: 5px; /* for old Konqueror browsers */
+}
+
+.button-page:hover {
+  box-shadow: inset 0px 0px 16px 0px $color-gray-border, inset 0px 0px 0px 1px $color-gray-border;
+  color: black;
+}
