@@ -47,7 +47,6 @@ class Header extends Component {
                             </NavDropdown>
                             <NavDropdown title="Customer" id="basic-nav-dropdown">
                                 <MenuItem href="#/manageCustomers">Manage</MenuItem>
-                                <MenuItem href="#">New</MenuItem>
                             </NavDropdown>
                             <LinkNavItem href="#">
                                 Store

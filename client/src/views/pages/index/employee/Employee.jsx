@@ -40,7 +40,6 @@ class Employee extends Component {
                         <div className="row">
                             <Container className="employee-image text-center" shadow={ false } round={ false }>
                                 <img src={ image } className="img-responsive text-center"/>
-
                             </Container>
                         </div>
                         <div className="row">
