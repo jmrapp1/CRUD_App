@@ -28,6 +28,10 @@ class Employee extends Component {
         );
     }
 
+    renderWorking(working) {
+        return working ? 'Working' : 'Off';
+    }
+
     render() {
         return (
             <div id="employee-home">
@@ -43,13 +47,13 @@ class Employee extends Component {
                             <Container className="employee-schedule" shadow={ false } round={ false }>
                                 <h1>Schedule</h1>
                                 <ul>
-                                    <li><b>Monday:</b></li>
-                                    <li><b>Tuesday:</b></li>
-                                    <li><b>Wednesday:</b></li>
-                                    <li><b>Thursday:</b></li>
-                                    <li><b>Friday:</b></li>
-                                    <li><b>Saturday:</b></li>
-                                    <li><b>Sunday:</b></li>
+                                    <li><b>Monday:</b> { this.renderWorking(this.props.user.profile.daysWorking.monday) }</li>
+                                    <li><b>Tuesday:</b> { this.renderWorking(this.props.user.profile.daysWorking.tuesday) }</li>
+                                    <li><b>Wednesday:</b> { this.renderWorking(this.props.user.profile.daysWorking.wednesday) }</li>
+                                    <li><b>Thursday:</b> { this.renderWorking(this.props.user.profile.daysWorking.thursday) }</li>
+                                    <li><b>Friday:</b> { this.renderWorking(this.props.user.profile.daysWorking.friday) }</li>
+                                    <li><b>Saturday:</b> { this.renderWorking(this.props.user.profile.daysWorking.saturday) }</li>
+                                    <li><b>Sunday:</b> { this.renderWorking(this.props.user.profile.daysWorking.sunday) }</li>
                                 </ul>
                             </Container>
                         </div>
