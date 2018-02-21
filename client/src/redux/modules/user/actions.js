@@ -1,8 +1,8 @@
 import { dispatchRequest } from '../../utils/fetchUtils';
 import * as Reducer from './reducer';
 import { Reducers as AlertReducer } from '../alert';
+import { UserRoles } from '../../UserRoles';
 const jwtDecode = require('jwt-decode');
-import UserRoles from '../../UserRoles';
 
 export function register(email, password, confirmPassword, firstName, lastName, phone) {
     return dispatch => {
@@ -39,6 +39,10 @@ export function login(email, password, successCallback = () => {}, failCallback 
             failCallback(err['errors'][0]);
         });
     }
+}
+
+export function verifyRole(userData) {
+
 }
 
 export function navigateToRoleIndex(userRole, history) {

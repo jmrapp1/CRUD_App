@@ -1,1 +1,1 @@
-export default UserRoles = { CUSTOMER: 'CUSTOMER', EMPLOYEE: 'EMPLOYEE', MANAGER: 'MANAGER' };
+export const UserRoles = { CUSTOMER: 'CUSTOMER', EMPLOYEE: 'EMPLOYEE', MANAGER: 'MANAGER' };

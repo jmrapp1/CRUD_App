@@ -1,3 +1,5 @@
+import * as _ from 'lodash';
+
 export function verifyStatus(response) {
     if (response.ok) {
         return response;
@@ -8,7 +10,7 @@ export function verifyStatus(response) {
 }
 
 export function dispatchRequest(route, method, body, successCallback, errorCallback) {
-    return fetch(route, { method, body: JSON.stringify(body), ...headerOptions() })
+    return fetch(route, { ...getBodyByMethod(method, body), ...headerOptions() })
         .then(verifyStatus)
         .then(res => res.json())
         .then(data => successCallback(data))
@@ -22,9 +24,18 @@ export function dispatchRequest(route, method, body, successCallback, errorCallb
                 });
             } else {
                 console.error(e);
-                errorCallback(e);
+                if (errorCallback) {
+                    errorCallback(e);
+                }
             }
         });
+}
+
+export function stringifyObject(obj) {
+    let str = '';
+    const keys = Object.keys(obj);
+    keys.forEach(key => str += key + '=' + obj[key] + '&');
+    return str;
 }
 
 const headers = {
@@ -32,6 +43,13 @@ const headers = {
     'charset': 'UTF-8',
     'Accept': 'application/json'
 };
+
+function getBodyByMethod(method, body) {
+    if (_.lowerCase(method) === 'get') {
+        return { method };
+    }
+    return { method, body: JSON.stringify(body) };
+}
 
 function headerOptions() {
     const auth = localStorage.getItem('id_token');
