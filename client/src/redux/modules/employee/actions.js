@@ -31,7 +31,7 @@ export function getEmployees(size, offset) {
         }), 'GET', {}, data => {
             dispatch(Reducer.getEmployees(data));
         }, err => {
-            dispatch(AlertReducer.error(err['errors'][0]));
+            console.error(err['errors'][0]);
         });
     }
 }
@@ -41,7 +41,7 @@ export function getTotalEmployees() {
         dispatchRequest('api/employee/count', 'GET', {}, data => {
             dispatch(Reducer.getTotalEmployees(data));
         }, err => {
-            dispatch(AlertReducer.error(err['errors'][0]));
+            console.error(err['errors'][0]);
         });
     }
 }

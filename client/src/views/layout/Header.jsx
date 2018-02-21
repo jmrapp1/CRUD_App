@@ -22,7 +22,7 @@ class Header extends Component {
 
     doLogout() {
         this.props.logout();
-        this.props.history.push('/');
+        // this.props.history.push('/');
     }
 
     render() {

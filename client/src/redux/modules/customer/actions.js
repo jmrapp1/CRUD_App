@@ -10,7 +10,7 @@ export function getCustomers(size, offset) {
         }), 'GET', {}, data => {
             dispatch(Reducer.getCustomers(data));
         }, err => {
-            dispatch(AlertReducer.error(err['errors'][0]));
+            console.error(err['errors'][0]);
         });
     }
 }
@@ -20,7 +20,7 @@ export function getTotalCustomers() {
         dispatchRequest('api/customer/count', 'GET', {}, data => {
             dispatch(Reducer.getTotalCustomers(data));
         }, err => {
-            dispatch(AlertReducer.error(err['errors'][0]));
+            console.error(err['errors'][0]);
         });
     }
 }
