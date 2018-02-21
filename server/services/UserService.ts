@@ -40,7 +40,7 @@ export default class UserService extends DatabaseService {
         });
     }
 
-    register(email: string, firstName: string, lastName: string, phone: string, password: string, confirmPassword: string, role: string = UserRoles.USER, profile = {}): Promise<ServiceResponse> {
+    register(email: string, firstName: string, lastName: string, phone: string, password: string, confirmPassword: string, role: string, profile): Promise<ServiceResponse> {
         return new Promise<ServiceResponse>(resolve => {
             if (email && firstName && lastName && phone && password && role) {
                 if (EmailValidator.validate(email)) {

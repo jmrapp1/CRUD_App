@@ -31,7 +31,6 @@ describe('BaseService', () => {
             const test = 'this is a unit test test';
             testService.insert({ test }).then(res => {
                 expect(res.isFailed()).to.equal(false);
-                console.log('Res: ' + JSON.stringify(res));
                 expect(res.data.test).to.equal(test);
                 done();
             });
@@ -116,6 +115,22 @@ describe('BaseService', () => {
                     expect(res2.isFailed()).to.equal(false);
                     expect(res2.data.length).to.equal(2);
                     done();
+                });
+            });
+        });
+        it('Should find a limited number of documents with an offset', done => {
+            const test = 'find this with offset';
+            testService.insert({ test }).then(inRes => {
+                expect(inRes.isSuccess()).to.equal(true);
+                testService.count().then(res => {
+                    expect(res.isFailed()).to.equal(false);
+                    expect(res.data).to.equal(5);
+                    testService.findWithLimit({}, 1, 4).then(res2 => {
+                        expect(res2.isFailed()).to.equal(false);
+                        expect(res2.data.length).to.equal(1);
+                        expect(res2.data[0].test).to.equal(test);
+                        done();
+                    });
                 });
             });
         });

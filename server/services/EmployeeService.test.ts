@@ -8,7 +8,7 @@ import EmployeeService from './EmployeeService';
 const dbSetup = new DatabaseSetup();
 const employeeService = Container.get(EmployeeService);
 
-describe.only('EmployeeService', () => {
+describe('EmployeeService', () => {
 
     before(function (done) {
         this.timeout(10000);
@@ -70,6 +70,7 @@ describe.only('EmployeeService', () => {
                     expect(findRes.isSuccess() && !findRes.isEmpty()).to.equal(true);
                     const user = findRes.data[ 0 ];
                     expect(user.profile.payRate).to.equal(12.50);
+                    expect(user.role).to.equal(UserRoles.EMPLOYEE);
                     done();
                 });
             });

@@ -1,6 +1,8 @@
 import * as bcrypt from 'bcryptjs';
 import * as mongoose from 'mongoose';
 
+export const UserRoles = { CUSTOMER: 'CUSTOMER', EMPLOYEE: 'EMPLOYEE', MANAGER: 'MANAGER' };
+
 export const userSchema = new mongoose.Schema({
     email: { type: String, unique: true, lowercase: true, trim: true },
     firstName: String,
@@ -9,18 +11,15 @@ export const userSchema = new mongoose.Schema({
     password: String,
     role: {
         type: String,
-        enum: ['USER', 'EMPLOYEE', 'MANAGER'],
-        default: 'USER'
+        enum: [ UserRoles.CUSTOMER, UserRoles.EMPLOYEE, UserRoles.MANAGER ],
+        default: UserRoles.CUSTOMER
     },
-    profile: {
-    }
+    profile: {}
 });
-
-export const UserRoles = { USER: 'USER', EMPLOYEE: 'EMPLOYEE', MANAGER: 'MANAGER' };
 
 /** Additional data will be appended to user schema based on role **/
 /**
- * ROLE: USER
+ * ROLE: CUSTOMER
  *      profile: {
  *      }
  *

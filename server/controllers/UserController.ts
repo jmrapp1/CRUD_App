@@ -3,6 +3,7 @@ import { Inject } from 'typedi';
 import { encode } from 'jwt-simple';
 import AuthMiddleware from '../middlewares/AuthMiddleware';
 import UserService from '../services/UserService';
+import CustomerService from '../services/CustomerService';
 
 @JsonController('/user')
 export default class UserController {
@@ -10,13 +11,16 @@ export default class UserController {
     @Inject()
     userService: UserService;
 
+    @Inject()
+    customerService: CustomerService;
+
     constructor() {
     }
 
     @Post('/register')
     register(@Req() request, @BodyParam('email') email: string, @BodyParam('firstName') firstName: string, @BodyParam('lastName') lastName: string,
              @BodyParam('phone') phone: string, @BodyParam('password') password: string, @BodyParam('confirmPassword') confirmPassword: string, @Res() response: any) {
-        return this.userService.register(email, firstName, lastName, phone, password, confirmPassword).then(res => {
+        return this.customerService.register(email, firstName, lastName, phone, password, confirmPassword).then(res => {
             if (res.isSuccess()) {
                 return response.status(201).json({});
             }

@@ -29,7 +29,7 @@ describe('UserService', () => {
 
     describe('UserRoleValid', () => {
         it('Should validate a correct user role', () => {
-            expect(userService.userRoleValid(UserRoles.USER)).to.equal(true);
+            expect(userService.userRoleValid(UserRoles.CUSTOMER)).to.equal(true);
         });
         it('Should not validate an incorrect user role', () => {
             expect(userService.userRoleValid('FakeRole')).to.equal(false);
@@ -39,14 +39,14 @@ describe('UserService', () => {
     describe('Register', () => {
         describe('Email', () => {
             it('Should not validate when email is not valid', done => {
-                userService.register('testemail', 'bob', 'joe', 'phone', 'password', 'password').then(res => {
+                userService.register('testemail', 'bob', 'joe', 'phone', 'password', 'password', UserRoles.CUSTOMER, {}).then(res => {
                     expect(res.isFailed()).to.equal(true);
                     expect(res.errors[ 0 ]).to.equal('Please enter a valid email.');
                     done();
                 });
             });
             it('Should validate when email is valid', done => {
-                userService.register('testemail@google.com', 'bob', 'joe', 'phone', 'password', 'password').then(res => {
+                userService.register('testemail@google.com', 'bob', 'joe', 'phone', 'password', 'password', UserRoles.CUSTOMER, {}).then(res => {
                     expect(res.errors[ 0 ]).to.not.equal('Please enter a valid email.');
                     done();
                 });
@@ -59,10 +59,10 @@ describe('UserService', () => {
                     lastName: 'Test',
                     phone: '1112223333',
                     password: 'password',
-                    role: UserRoles.USER
+                    role: UserRoles.CUSTOMER
                 }).then(res => {
                     expect(res.isSuccess()).to.equal(true);
-                    userService.register(email, 'bob', 'joe', '1112223333', 'password', 'password').then(res2 => {
+                    userService.register(email, 'bob', 'joe', '1112223333', 'password', 'password', UserRoles.CUSTOMER, {}).then(res2 => {
                         expect(res2.errors[ 0 ]).to.equal('That email has already been used.');
                         done();
                     });
@@ -71,27 +71,27 @@ describe('UserService', () => {
         });
         describe('Password', () => {
             it('Should not validate when password is less than 6 characters', done => {
-                userService.register('testemail@google.com', 'bob', 'joe', 'phone', 'test', 'test').then(res => {
+                userService.register('testemail@google.com', 'bob', 'joe', 'phone', 'test', 'test', UserRoles.CUSTOMER, {}).then(res => {
                     expect(res.isFailed()).to.equal(true);
                     expect(res.errors[ 0 ]).to.equal('Please enter a password at least 6 characters long.');
                     done();
                 });
             });
             it('Should validate when password is at least 6 characters', done => {
-                userService.register('testemail@google.com', 'bob', 'joe', '1112223333', 'password', 'password').then(res => {
+                userService.register('testemail@google.com', 'bob', 'joe', '1112223333', 'password', 'password', UserRoles.CUSTOMER, {}).then(res => {
                     expect(res.errors[ 0 ]).to.not.equal('Please enter a password at least 6 characters long.');
                     done();
                 });
             });
             it('Should not validate when password does not match confirm password', done => {
-                userService.register('testemail@google.com', 'bob', 'joe', 'phone', 'teasdasda', 'asdasdsv').then(res => {
+                userService.register('testemail@google.com', 'bob', 'joe', 'phone', 'teasdasda', 'asdasdsv', UserRoles.CUSTOMER, {}).then(res => {
                     expect(res.isFailed()).to.equal(true);
                     expect(res.errors[ 0 ]).to.equal('Please make sure the passwords match.');
                     done();
                 });
             });
             it('Should validate when password matches confirm password', done => {
-                userService.register('testemail@google.com', 'bob', 'joe', '1112223333', 'password', 'password').then(res => {
+                userService.register('testemail@google.com', 'bob', 'joe', '1112223333', 'password', 'password', UserRoles.CUSTOMER, {}).then(res => {
                     expect(res.errors[ 0 ]).to.not.equal('Please make sure that passwords match.');
                     done();
                 });
@@ -99,27 +99,27 @@ describe('UserService', () => {
         });
         describe('Phone', () => {
             it('Should not validate when phone is not valid', done => {
-                userService.register('testemail@google.com', 'bob', 'joe', 'phone', 'password', 'password').then(res => {
+                userService.register('testemail@google.com', 'bob', 'joe', 'phone', 'password', 'password', UserRoles.CUSTOMER, {}).then(res => {
                     expect(res.isFailed()).to.equal(true);
                     expect(res.errors[ 0 ]).to.equal('Please enter a valid phone number.');
                     done();
                 });
             });
             it('Should validate when phone is valid', done => {
-                userService.register('testemail@google.com', 'bob', 'joe', '1112223333', 'password', 'password').then(res => {
+                userService.register('testemail@google.com', 'bob', 'joe', '1112223333', 'password', 'password', UserRoles.CUSTOMER, {}).then(res => {
                     expect(res.errors[ 0 ]).to.not.equal('Please enter a valid phone number.');
                     done();
                 });
             });
             it('Should not validate when phone contains non-numeric characters', done => {
-                userService.register('testemail@google.com', 'bob', 'joe', '111222333a', 'password', 'password').then(res => {
+                userService.register('testemail@google.com', 'bob', 'joe', '111222333a', 'password', 'password', UserRoles.CUSTOMER, {}).then(res => {
                     expect(res.isFailed()).to.equal(true);
                     expect(res.errors[ 0 ]).to.equal('Please enter a valid phone number.');
                     done();
                 });
             });
             it('Should validate when phone contains only non-numeric numbers', done => {
-                userService.register('testemail@google.com', 'bob', 'joe', '1112223333', 'password', 'password').then(res => {
+                userService.register('testemail@google.com', 'bob', 'joe', '1112223333', 'password', 'password', UserRoles.CUSTOMER, {}).then(res => {
                     expect(res.errors[ 0 ]).to.not.equal('Please enter a valid phone number.');
                     done();
                 });
@@ -127,21 +127,21 @@ describe('UserService', () => {
         });
         describe('Role', () => {
             it('Should not validate when role is not valid', done => {
-                userService.register('testemail@google.com', 'bob', 'joe', '1112223333', 'password', 'password', 'fakerole').then(res => {
+                userService.register('testemail@google.com', 'bob', 'joe', '1112223333', 'password', 'password', 'fakerole', {}).then(res => {
                     expect(res.isFailed()).to.equal(true);
                     expect(res.errors[ 0 ]).to.equal('Please select a valid role.');
                     done();
                 });
             });
             it('Should validate when phone is valid', done => {
-                userService.register('testemail@google.com', 'bob', 'joe', '1112223333', 'password', 'password', UserRoles.EMPLOYEE).then(res => {
+                userService.register('testemail@google.com', 'bob', 'joe', '1112223333', 'password', 'password', UserRoles.EMPLOYEE, {}).then(res => {
                     expect(res.errors[ 0 ]).to.not.equal('Please select a valid role.');
                     done();
                 });
             });
         });
         it('Should register a user', done => {
-            userService.register('test123@test.com', 'bob', 'joe', '1112223333', 'password', 'password').then(res => {
+            userService.register('test123@test.com', 'bob', 'joe', '1112223333', 'password', 'password', UserRoles.CUSTOMER, {}).then(res => {
                 expect(res.isSuccess()).to.equal(true);
                 done();
             });
@@ -150,14 +150,14 @@ describe('UserService', () => {
 
     describe('Login', () => {
         it('Should not validate when email is not valid', done => {
-            userService.register('testemail', 'bob', 'joe', 'phone', 'password', 'password').then(res => {
+            userService.register('testemail', 'bob', 'joe', 'phone', 'password', 'password', UserRoles.CUSTOMER, {}).then(res => {
                 expect(res.isFailed()).to.equal(true);
                 expect(res.errors[ 0 ]).to.equal('Please enter a valid email.');
                 done();
             });
         });
         it('Should validate when email is valid', done => {
-            userService.register('testemail@google.com', 'bob', 'joe', 'phone', 'password', 'password').then(res => {
+            userService.register('testemail@google.com', 'bob', 'joe', 'phone', 'password', 'password', UserRoles.CUSTOMER, {}).then(res => {
                 expect(res.errors[ 0 ]).to.not.equal('Please enter a valid email.');
                 done();
             });
@@ -178,7 +178,7 @@ describe('UserService', () => {
                 lastName: 'Test',
                 phone: '1112223333',
                 password,
-                role: UserRoles.USER
+                role: UserRoles.CUSTOMER
             }).then(res => {
                 expect(res.isSuccess()).to.equal(true);
                 userService.login(email, password).then(loginRes => {

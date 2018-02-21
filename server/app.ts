@@ -12,6 +12,7 @@ import registerPassport from './config/passport';
 import DatabaseSetup from './util/DatabaseSetup';
 import UserController from './controllers/UserController';
 import EmployeeController from './controllers/EmployeeController';
+import CustomerController from './controllers/CustomerController';
 
 useContainer(Container);
 
@@ -20,7 +21,7 @@ const express = require('express');
 const app = createExpressServer({
     cors: true,
     routePrefix: '/api',
-    controllers: [ TestController, UserController, EmployeeController ]
+    controllers: [ TestController, UserController, EmployeeController, CustomerController ]
 });
 
 if (process.env.NODE_ENV === 'production') {

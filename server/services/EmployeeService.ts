@@ -65,8 +65,8 @@ export default class EmployeeService extends DatabaseService {
     }
 
     /** Override */
-    findWithLimit(findParams, limit): Promise<ServiceResponse> {
-        return super.findWithLimit(this.checkBodyForRole(findParams), limit);
+    findWithLimit(findParams, limit, offset = 0): Promise<ServiceResponse> {
+        return super.findWithLimit(this.checkBodyForRole(findParams), limit, offset);
     }
 
     /** Override */

@@ -54,9 +54,9 @@ export default abstract class DatabaseService {
         );
     };
 
-    findWithLimit(findParams, limit): Promise<ServiceResponse> {
+    findWithLimit(findParams, limit, offset = 0): Promise<ServiceResponse> {
         return new Promise<ServiceResponse>(resolve =>
-            this.model.find(findParams).limit(limit).exec((err, models) => resolve(this.handleStandardResponse(err, models)))
+            this.model.find(findParams).skip(offset).limit(limit).exec((err, models) => resolve(this.handleStandardResponse(err, models)))
         );
     }
 

@@ -41,7 +41,7 @@ export function login(email, password, successCallback = () => {}, failCallback 
 }
 
 export function navigateToRoleIndex(userRole, history) {
-    if (userRole === 'USER') history.push('/customer');
+    if (userRole === 'CUSTOMER') history.push('/customer');
     if (userRole === 'EMPLOYEE') history.push('/employee');
     if (userRole === 'MANAGER') history.push('/manager');
 }
