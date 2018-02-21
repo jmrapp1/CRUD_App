@@ -34,8 +34,19 @@ export default class EmployeeController {
 
     @UseBefore(AuthMiddleware, EmployeeRoleMiddleware)
     @Get('/')
-    getAllUsers(@QueryParam('size') size: number, @QueryParam('offset') offset: number, @Res() response: any) {
+    getEmployees(@QueryParam('size') size: number, @QueryParam('offset') offset: number, @Res() response: any) {
         return this.employeeService.findWithLimit({}, size, offset).then(res => {
+            if (res.isSuccess()) {
+                return response.status(200).json(res.data);
+            }
+            return response.status(400).json(res.errors);
+        });
+    }
+
+    @UseBefore(AuthMiddleware, EmployeeRoleMiddleware)
+    @Get('/count')
+    getTotalEmployees(@Res() response: any) {
+        return this.employeeService.count().then(res => {
             if (res.isSuccess()) {
                 return response.status(200).json(res.data);
             }

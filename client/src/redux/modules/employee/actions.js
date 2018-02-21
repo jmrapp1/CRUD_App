@@ -35,3 +35,13 @@ export function getEmployees(size, offset) {
         });
     }
 }
+
+export function getTotalEmployees() {
+    return dispatch => {
+        dispatchRequest('api/employee/count', 'GET', {}, data => {
+            dispatch(Reducer.getTotalEmployees(data));
+        }, err => {
+            dispatch(AlertReducer.error(err['errors'][0]));
+        });
+    }
+}

@@ -12,21 +12,23 @@ import { PaginatedTable } from '../../../common/components/table/PaginatedTable'
 
 const columns = ['First Name', 'Last Name', 'Email', 'Phone'];
 const map = ['firstName', 'lastName', 'email', 'phone'];
-const pageSize = 10;
 
 class ManageEmployee extends Component {
 
     constructor(props) {
         super(props);
+        console.log(this.props.pageSize);
+        this.props.getTotalEmployees();
+        this.props.getEmployees(this.props.pageSize, 0);
+
         this.fetchEmployees = this.fetchEmployees.bind(this);
     }
 
     componentDidMount() {
-        this.props.getEmployees(pageSize, 0);
     }
 
     fetchEmployees(page) {
-        this.props.getEmployees(pageSize, pageSize * (page - 1));
+        this.props.getEmployees(this.props.pageSize, this.props.pageSize * ( page - 1 ));
     }
 
     render() {
@@ -35,8 +37,8 @@ class ManageEmployee extends Component {
                 <Container className="container col-md-8 col-md-offset-2">
                     <h4><b>Employee List</b></h4>
                     <PaginatedTable columns={ columns } data={ this.props.employees }
-                                    mapData={ (index, data) => data[map[index]] } currentPage={ 5 }
-                                    total={ 300 } pageSize onPageClick={ this.fetchEmployees } />
+                                    mapData={ (index, data) => data[map[index]] } currentPage={ 1 }
+                                    total={ this.props.totalEmployees } pageSize={ this.props.pageSize } onPageClick={ this.fetchEmployees }/>
                 </Container>
             </div>
         );
@@ -45,14 +47,20 @@ class ManageEmployee extends Component {
 
 ManageEmployee.propTypes = {
     employees: PropTypes.array,
-    getEmployees: PropTypes.func
+    totalEmployees: PropTypes.number,
+    getEmployees: PropTypes.func,
+    getTotalEmployees: PropTypes.func,
+    pageSize: PropTypes.number
 };
 
 export default connect(
     state => ( {
-        employees: state.employee.employees
+        employees: state.employee.employees,
+        totalEmployees: state.employee.total,
+        pageSize: 5
     } ),
     dispatch => ( {
-        getEmployees: bindActionCreators(EmployeeActions.getEmployees, dispatch)
+        getEmployees: bindActionCreators(EmployeeActions.getEmployees, dispatch),
+        getTotalEmployees: bindActionCreators(EmployeeActions.getTotalEmployees, dispatch)
     } )
 )(ManageEmployee);

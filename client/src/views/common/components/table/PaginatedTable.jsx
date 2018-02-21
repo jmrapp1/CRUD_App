@@ -17,7 +17,7 @@ export class PaginatedTable extends Component {
 
     renderPageButtons() {
         const buttons = [];
-        const totalButtons = Math.ceil(this.props.total / this.props.pageSize);
+        let totalButtons = Math.ceil(this.props.total / this.props.pageSize);
 
         let start = this.state.currentPage - maxButtons;
         let end = 0;
