@@ -1,0 +1,1 @@
+export default UserRoles = { CUSTOMER: 'CUSTOMER', EMPLOYEE: 'EMPLOYEE', MANAGER: 'MANAGER' };

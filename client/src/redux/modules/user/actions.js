@@ -2,6 +2,7 @@ import { dispatchRequest } from '../../utils/fetchUtils';
 import * as Reducer from './reducer';
 import { Reducers as AlertReducer } from '../alert';
 const jwtDecode = require('jwt-decode');
+import UserRoles from '../../UserRoles';
 
 export function register(email, password, confirmPassword, firstName, lastName, phone) {
     return dispatch => {
@@ -41,9 +42,9 @@ export function login(email, password, successCallback = () => {}, failCallback 
 }
 
 export function navigateToRoleIndex(userRole, history) {
-    if (userRole === 'CUSTOMER') history.push('/customer');
-    if (userRole === 'EMPLOYEE') history.push('/employee');
-    if (userRole === 'MANAGER') history.push('/manager');
+    if (userRole === UserRoles.CUSTOMER) history.push('/customer');
+    if (userRole === UserRoles.EMPLOYEE) history.push('/employee');
+    if (userRole === UserRoles.MANAGER) history.push('/manager');
 }
 
 function destroyLocalSession() {
