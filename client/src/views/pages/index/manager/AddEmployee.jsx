@@ -67,140 +67,141 @@ class AddEmployee extends Component {
     render() {
         return (
             <div id="addemp-page">
-                <div className="col-sm-12 col-md-4 col-md-offset-2 vertical-center">
-                    <Container className="addemp-container">
+                <div className="vertical-center">
+                    <div className="col-sm-2 col-md-4 col-md-offset-2">
+                        <Container className="addemp-container">
+                            <form className="addemp" onSubmit={ this.onSubmit }>
+                                <h1 className="addemp-title">Add Employee</h1>
 
-                        <form className="addemp" onSubmit={ this.onSubmit }>
-                            <h1 className="addemp-title">Add Employee</h1>
+                                {
+                                    !_.isEmpty(this.props.alert) && this.renderError()
+                                }
 
-                            {
-                                !_.isEmpty(this.props.alert) && this.renderError()
-                            }
+                                <div className="form-group">
+                                    <TextInput
+                                        value={ this.state.firstName }
+                                        onChange={ this.onChange }
+                                        name="firstName"
+                                        placeholder="First Name"
+                                    />
 
-                            <div className="form-group">
-                                <TextInput
-                                    value={ this.state.firstName }
-                                    onChange={ this.onChange }
-                                    name="firstName"
-                                    placeholder="First Name"
-                                />
+                                    <TextInput
+                                        value={ this.state.lastName }
+                                        onChange={ this.onChange }
+                                        name="lastName"
+                                        placeholder="Last Name"
+                                    />
 
-                                <TextInput
-                                    value={ this.state.lastName }
-                                    onChange={ this.onChange }
-                                    name="lastName"
-                                    placeholder="Last Name"
-                                />
+                                    <TextInput
+                                        value={ this.state.email }
+                                        onChange={ this.onChange }
+                                        name="email"
+                                        placeholder="Email"
+                                    />
 
-                                <TextInput
-                                    value={ this.state.email }
-                                    onChange={ this.onChange }
-                                    name="email"
-                                    placeholder="Email"
-                                />
+                                    <TextInput
+                                        value={ this.state.phone }
+                                        onChange={ this.onChange }
+                                        type="number"
+                                        name="phone"
+                                        className="phone"
+                                        placeholder="Phone Number"
+                                    />
+                                    <TextInput
+                                        value={ this.state.rate }
+                                        onChange={ this.onChange }
+                                        type="number"
+                                        name="rate"
+                                        className="rate"
+                                        placeholder="Rate"
+                                    />
 
-                                <TextInput
-                                    value={ this.state.phone }
-                                    onChange={ this.onChange }
-                                    type="number"
-                                    name="phone"
-                                    className="phone"
-                                    placeholder="Phone Number"
-                                />
-                                <TextInput
-                                    value={ this.state.rate }
-                                    onChange={ this.onChange }
-                                    type="number"
-                                    name="rate"
-                                    className="rate"
-                                    placeholder="Rate"
-                                />
+                                    <TextInput
+                                        value={ this.state.password }
+                                        onChange={ this.onChange }
+                                        type="password"
+                                        name="password"
+                                        placeholder="Password"
+                                    />
 
-                                <TextInput
-                                    value={ this.state.password }
-                                    onChange={ this.onChange }
-                                    type="password"
-                                    name="password"
-                                    placeholder="Password"
-                                />
+                                    <TextInput
+                                        value={ this.state.confirmPassword }
+                                        onChange={ this.onChange }
+                                        type="password"
+                                        name="confirmPassword"
+                                        placeholder="Confirm Password"
+                                    />
+                                </div>
 
-                                <TextInput
-                                    value={ this.state.confirmPassword }
-                                    onChange={ this.onChange }
-                                    type="password"
-                                    name="confirmPassword"
-                                    placeholder="Confirm Password"
-                                />
-                            </div>
+                                <div className="btn-group" id="button">
+                                    <PrimaryButton text="Register"/>
+                                </div>
 
-                            <div className="btn-group" id="button">
-                                <PrimaryButton text="Register"/>
-                            </div>
+                            </form>
+                        </Container>
 
-                        </form>
-                    </Container>
+                    </div>
 
-                </div>
+                    <div className="col-sm-2 col-md-4">
+                        <Container className="schedule-container">
 
-                <div className="col-sm-12 col-md-4  vertical-center">
-                    <Container className="schedule-container">
+                            <form className="addemp">
+                                <h1 className="addemp-title">Schedule</h1>
 
-                        <form className="addemp">
-                            <h1 className="addemp-title">Schedule</h1>
-
-                            <div className="form-group">
-                                <p>
-                                    <ins>Monday</ins>
-                                </p>
-                                <select className="select" onChange={ this.onChangeSchedule } name="mon">
-                                    <option value="Working">Working</option>
-                                    <option value="Off">Off</option>
-                                </select>
-                                <p>
-                                    <ins>Tuesday</ins>
-                                </p>
-                                <select className="select" onChange={ this.onChangeSchedule } name="tue">
-                                    <option value="Working">Working</option>
-                                    <option value="Off">Off</option>
-                                </select>
-                                <p>
-                                    <ins>Wednesday</ins>
-                                </p>
-                                <select className="select" onChange={ this.onChangeSchedule } name="wed">
-                                    <option value="Working">Working</option>
-                                    <option value="Off">Off</option>
-                                </select>
-                                <p>
-                                    <ins>Thursday</ins>
-                                </p>
-                                <select className="select" onChange={ this.onChangeSchedule } name="thur">
-                                    <option value="Working">Working</option>
-                                    <option value="Off">Off</option>
-                                </select>
-                                <p>
-                                    <ins>Friday</ins>
-                                </p>
-                                <select className="select" onChange={ this.onChangeSchedule } name="fri">
-                                    <option value="Working">Working</option>
-                                    <option value="Off">Off</option>
-                                </select>
-                                <p>
-                                    <ins>Saturday</ins>
-                                </p>
-                                <select className="select" onChange={ this.onChangeSchedule } name="sat">
-                                    <option value="Working">Working</option>
-                                    <option value="Off">Off</option>
-                                </select>
-                                <p>
-                                    <ins>Sunday</ins>
-                                </p>
-                                <select className="select" onChange={ this.onChangeSchedule } name="sun">
-                                    <option value="Working">Working</option>
-                                    <option value="Off">Off</option>
-                                </select>
-                            </div>
-                        </form>
-                    </Container>
+                                <div className="form-group">
+                                    <p>
+                                        <ins>Monday</ins>
+                                    </p>
+                                    <select className="select" onChange={ this.onChangeSchedule } name="mon">
+                                        <option value="Working">Working</option>
+                                        <option value="Off">Off</option>
+                                    </select>
+                                    <p>
+                                        <ins>Tuesday</ins>
+                                    </p>
+                                    <select className="select" onChange={ this.onChangeSchedule } name="tue">
+                                        <option value="Working">Working</option>
+                                        <option value="Off">Off</option>
+                                    </select>
+                                    <p>
+                                        <ins>Wednesday</ins>
+                                    </p>
+                                    <select className="select" onChange={ this.onChangeSchedule } name="wed">
+                                        <option value="Working">Working</option>
+                                        <option value="Off">Off</option>
+                                    </select>
+                                    <p>
+                                        <ins>Thursday</ins>
+                                    </p>
+                                    <select className="select" onChange={ this.onChangeSchedule } name="thur">
+                                        <option value="Working">Working</option>
+                                        <option value="Off">Off</option>
+                                    </select>
+                                    <p>
+                                        <ins>Friday</ins>
+                                    </p>
+                                    <select className="select" onChange={ this.onChangeSchedule } name="fri">
+                                        <option value="Working">Working</option>
+                                        <option value="Off">Off</option>
+                                    </select>
+                                    <p>
+                                        <ins>Saturday</ins>
+                                    </p>
+                                    <select className="select" onChange={ this.onChangeSchedule } name="sat">
+                                        <option value="Working">Working</option>
+                                        <option value="Off">Off</option>
+                                    </select>
+                                    <p>
+                                        <ins>Sunday</ins>
+                                    </p>
+                                    <select className="select" onChange={ this.onChangeSchedule } name="sun">
+                                        <option value="Working">Working</option>
+                                        <option value="Off">Off</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </Container>
+                    </div>
                 </div>
             </div>
         );
