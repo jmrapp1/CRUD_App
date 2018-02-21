@@ -1,0 +1,17 @@
+@import '../../../common/styles/colors.scss';
+
+#manage-customers {
+  min-height: calc(100vh - 52px);
+  background: $color-background;
+
+  .container{
+    margin-top: 50px;
+  }
+
+  table {
+    td {
+      padding: 20px;
+    }
+  }
+
+}

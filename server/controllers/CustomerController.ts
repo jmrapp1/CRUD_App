@@ -20,8 +20,19 @@ export default class CustomerController {
 
     @UseBefore(AuthMiddleware, EmployeeRoleMiddleware)
     @Get('/')
-    getAllUsers(@QueryParam('size') size: number, @QueryParam('offset') offset: number, @Res() response: any) {
+    getCustomers(@QueryParam('size') size: number, @QueryParam('offset') offset: number, @Res() response: any) {
         return this.customerService.findWithLimit({}, size, offset).then(res => {
+            if (res.isSuccess()) {
+                return response.status(200).json(res.data);
+            }
+            return response.status(400).json(res.errors);
+        });
+    }
+
+    @UseBefore(AuthMiddleware, EmployeeRoleMiddleware)
+    @Get('/count')
+    getTotalCustomers(@Res() response: any) {
+        return this.customerService.count().then(res => {
             if (res.isSuccess()) {
                 return response.status(200).json(res.data);
             }

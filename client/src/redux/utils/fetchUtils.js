@@ -16,12 +16,19 @@ export function dispatchRequest(route, method, body, successCallback, errorCallb
         .then(data => successCallback(data))
         .catch(e => {
             if (e['response'] && e['response'].json) {
-                e['response'].json().then(json => {
-                    e['errors'] = json;
+                if (e.response.status === 401) {
+                    e['errors'] = 'You are not authorized to access this page.';
                     if (errorCallback) {
                         errorCallback(e);
                     }
-                });
+                } else {
+                    e['response'].json().then(json => {
+                        e['errors'] = json;
+                        if (errorCallback) {
+                            errorCallback(e);
+                        }
+                    });
+                }
             } else {
                 console.error(e);
                 if (errorCallback) {

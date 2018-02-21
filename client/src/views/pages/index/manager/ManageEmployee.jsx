@@ -55,7 +55,7 @@ export default connect(
     state => ( {
         employees: state.employee.employees,
         totalEmployees: state.employee.total,
-        pageSize: 5
+        pageSize: 3
     } ),
     dispatch => ( {
         getEmployees: bindActionCreators(EmployeeActions.getEmployees, dispatch),

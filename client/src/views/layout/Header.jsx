@@ -45,6 +45,10 @@ class Header extends Component {
                                 <MenuItem href="#/manage">Manage</MenuItem>
                                 <MenuItem href="#/addemployee">New</MenuItem>
                             </NavDropdown>
+                            <NavDropdown title="Customer" id="basic-nav-dropdown">
+                                <MenuItem href="#/manageCustomers">Manage</MenuItem>
+                                <MenuItem href="#">New</MenuItem>
+                            </NavDropdown>
                             <LinkNavItem href="#">
                                 Store
                             </LinkNavItem>

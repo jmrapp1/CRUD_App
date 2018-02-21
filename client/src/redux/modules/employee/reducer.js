@@ -1,5 +1,4 @@
 import { REGISTER, GET_LIST, GET_TOTAL } from './constants';
-const jwtDecode = require('jwt-decode');
 
 const initialState = {
     employees: [],

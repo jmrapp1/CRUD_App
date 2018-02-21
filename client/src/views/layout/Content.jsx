@@ -9,6 +9,7 @@ import Employee from "../pages/index/employee/Employee";
 import Manager from "../pages/index/manager/Manager";
 import AddEmployee from '../pages/index/manager/AddEmployee';
 import ManageEmployee from "../pages/index/manager/ManageEmployee";
+import ManageCustomer from '../pages/index/employee/ManageCustomer';
 
 class Content extends Component {
     render() {
@@ -22,6 +23,7 @@ class Content extends Component {
                     <Route exact path="/manager" component={ Manager }/>
                     <Route exact path="/addemployee" component={ AddEmployee }/>
                     <Route exact path="/manage" component={ ManageEmployee }/>
+                    <Route exact path="/manageCustomers" component={ ManageCustomer }/>
 
                     <Route path="/*" component={ HomePage }/>
                 </Switch>
