@@ -65,7 +65,7 @@ class Employee extends Component {
                                     <li>Last Name: { this.props.user.lastName }</li>
                                     <li>Email: { this.props.user.email }</li>
                                     <li>Phone Number: { this.props.user.phone }</li>
-                                    <li>Rate: $24.25</li>
+                                    <li>Rate: { this.props.user.profile.payRate }</li>
                                 </ul>
                             </Container>
                         )
