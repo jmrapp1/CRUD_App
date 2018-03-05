@@ -14,6 +14,7 @@ const userService = Container.get(UserService);
 export default class EmployeeService extends DatabaseService {
 
     model = User;
+    populate = ['business'];
 
     register(email: string, firstName: string, lastName: string, phone: string, password: string, confirmPassword: string,
              payRate: number, monday: boolean, tuesday: boolean, wednesday: boolean, thursday: boolean, friday: boolean,

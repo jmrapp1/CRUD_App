@@ -14,6 +14,7 @@ const userService = Container.get(UserService);
 export default class ManagerService extends DatabaseService {
 
     model = User;
+    populate = ['business'];
 
     validateManagerRegister(email: string, firstName: string, lastName: string, phone: string, password: string, confirmPassword: string,
                             monday: boolean, tuesday: boolean, wednesday: boolean, thursday: boolean, friday: boolean,
@@ -34,7 +35,7 @@ export default class ManagerService extends DatabaseService {
                 };
                 return resolve(userService.validateUserRegister(email, firstName, lastName, phone, password, confirmPassword, UserRoles.MANAGER, profile));
             } else {
-                return resolve(new ServiceResponse(true, 'Please enter the days the employee works.'));
+                return resolve(new ServiceResponse(true, 'Please enter the days the manager works.'));
             }
         });
     }

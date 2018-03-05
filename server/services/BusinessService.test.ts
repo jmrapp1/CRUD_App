@@ -10,7 +10,7 @@ const dbSetup = new DatabaseSetup();
 const businessService = Container.get(BusinessService);
 const userService = Container.get(UserService);
 
-describe.only('BusinessService', () => {
+describe('BusinessService', () => {
 
     before(function (done) {
         this.timeout(10000);

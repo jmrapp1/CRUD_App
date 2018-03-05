@@ -8,7 +8,7 @@ import { UserRoles } from '../models/User';
 const dbSetup = new DatabaseSetup();
 const userService = Container.get(UserService);
 
-describe.only('UserService', () => {
+describe('UserService', () => {
 
     before(function (done) {
         this.timeout(10000);
