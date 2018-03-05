@@ -40,7 +40,7 @@ class ManageCustomer extends Component {
                     <PaginatedTable columns={ columns } data={ this.props.customers }
                                     mapData={ (index, data) => data[map[index]] } currentPage={ 1 }
                                     total={ this.props.totalCustomers } pageSize={ this.props.pageSize } onPageClick={ this.fetchCustomers }
-                    onRowClick={  }/>
+                    />
                 </Container>
             </div>
         );
