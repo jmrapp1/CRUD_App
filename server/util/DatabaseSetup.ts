@@ -1,6 +1,13 @@
 import * as mongoose from 'mongoose';
 import * as dotenv from 'dotenv';
 import ServiceMapping from '../services/ServiceMapping';
+import Appointment from '../models/Appointment';
+import Business from '../models/Business';
+import Product from '../models/Product';
+import Sale from '../models/Sale';
+import Service from '../models/Service';
+import Test from '../models/Test';
+import User from '../models/User';
 
 export default class DatabaseSetup {
 
@@ -13,13 +20,33 @@ export default class DatabaseSetup {
 
     setupTestDb(callback) {
         dotenv.load({ path: '.env' });
-        this.connectToDb(callback, process.env.MONGODB_TEST_URI);
+        this.connectToDb(() => {
+            this.removeTestData(callback);
+        }, process.env.MONGODB_TEST_URI);
+    }
+
+    removeTestData(callback) {
+        Appointment.remove({}).exec(() =>
+            Business.remove({}).exec(() =>
+                Product.remove({}).exec(() =>
+                    Sale.remove({}).exec(() =>
+                        Service.remove({}).exec(() =>
+                            Test.remove({}).exec(() =>
+                                User.remove({}).exec(() =>
+                                    callback()
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        );
     }
 
     connectToDb(callback, uri) {
         mongoose.connect(uri);
         const db = mongoose.connection;
-        (<any>mongoose).Promise = global.Promise;
+        ( <any>mongoose ).Promise = global.Promise;
 
         db.on('error', console.error.bind(console, 'connection error:'));
         db.once('open', () => {

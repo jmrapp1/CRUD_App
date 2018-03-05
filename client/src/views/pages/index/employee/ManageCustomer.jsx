@@ -18,6 +18,7 @@ class ManageCustomer extends Component {
         this.props.getCustomers(this.props.pageSize, 0);
 
         this.fetchCustomers = this.fetchCustomers.bind(this);
+        this.onRowClick = this.onRowClick.bind(this);
     }
 
     componentDidMount() {
@@ -27,6 +28,10 @@ class ManageCustomer extends Component {
         this.props.getCustomers(this.props.pageSize, this.props.pageSize * ( page - 1 ));
     }
 
+    onRowClick(data) {
+
+    }
+
     render() {
         return (
             <div id="manage-customers">
@@ -34,7 +39,8 @@ class ManageCustomer extends Component {
                     <h4><b>Customer List</b></h4>
                     <PaginatedTable columns={ columns } data={ this.props.customers }
                                     mapData={ (index, data) => data[map[index]] } currentPage={ 1 }
-                                    total={ this.props.totalCustomers } pageSize={ this.props.pageSize } onPageClick={ this.fetchCustomers }/>
+                                    total={ this.props.totalCustomers } pageSize={ this.props.pageSize } onPageClick={ this.fetchCustomers }
+                    onRowClick={  }/>
                 </Container>
             </div>
         );

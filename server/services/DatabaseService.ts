@@ -6,6 +6,7 @@ export default abstract class DatabaseService {
     /**
      * Represents the database model to be used
      */
+    populate = [];
     abstract model: any;
 
     // Insert
@@ -27,9 +28,9 @@ export default abstract class DatabaseService {
         });
     }
 
-    findById(id): Promise<ServiceResponse> {
+    findById(id, populate = this.populate): Promise<ServiceResponse> {
         return new Promise<ServiceResponse>(resolve => {
-            this.model.find({ _id: id }).limit(1).exec((err, model) => {
+            this.populateQuery(this.model.find({ _id: id }).limit(1), populate).exec((err, model) => {
                 if (err && !_.isEmpty(err)) {
                     return resolve(new ServiceResponse(true, err));
                 }
@@ -41,9 +42,20 @@ export default abstract class DatabaseService {
         });
     }
 
-    findAll(): Promise<ServiceResponse> {
+    private populateQuery(query, populate) {
+        if (populate instanceof Array) {
+            for (let i = 0; i < populate.length; i++) {
+                query.populate(populate[i]);
+            }
+        } else if (populate && populate != null) {
+            query.populate(populate);
+        }
+        return query;
+    }
+
+    findAll(populate = this.populate): Promise<ServiceResponse> {
         return new Promise<ServiceResponse>(resolve =>
-            this.model.find({}).exec((err, models) => resolve(this.handleStandardResponse(err, models)))
+            this.populateQuery(this.model.find({}), populate).exec((err, models) => resolve(this.handleStandardResponse(err, models)))
         );
     }
 
@@ -54,15 +66,15 @@ export default abstract class DatabaseService {
         );
     };
 
-    findWithLimit(findParams, limit, offset = 0): Promise<ServiceResponse> {
+    findWithLimit(findParams, limit, offset = 0, populate = this.populate): Promise<ServiceResponse> {
         return new Promise<ServiceResponse>(resolve =>
-            this.model.find(findParams).skip(offset).limit(limit).exec((err, models) => resolve(this.handleStandardResponse(err, models)))
+            this.populateQuery(this.model.find(findParams).skip(offset).limit(limit), populate).exec((err, models) => resolve(this.handleStandardResponse(err, models)))
         );
     }
 
-    find(findParams): Promise<ServiceResponse> {
+    find(findParams, populate = this.populate): Promise<ServiceResponse> {
         return new Promise<ServiceResponse>(resolve =>
-            this.model.find(findParams).exec((err, models) => resolve(this.handleStandardResponse(err, models)))
+            this.populateQuery(this.model.find(findParams), populate).exec((err, models) => resolve(this.handleStandardResponse(err, models)))
         );
     }
 

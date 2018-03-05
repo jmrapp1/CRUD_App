@@ -9,7 +9,7 @@ import CustomerService from './CustomerService';
 const dbSetup = new DatabaseSetup();
 const customerService = Container.get(CustomerService);
 
-describe.only('CustomerService', () => {
+describe('CustomerService', () => {
 
     before(function (done) {
         this.timeout(10000);

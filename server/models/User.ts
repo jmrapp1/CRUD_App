@@ -14,6 +14,7 @@ export const userSchema = new mongoose.Schema({
         enum: [ UserRoles.CUSTOMER, UserRoles.EMPLOYEE, UserRoles.MANAGER ],
         default: UserRoles.CUSTOMER
     },
+    business: { type: mongoose.Schema.Types.ObjectId, ref: 'Business' },
     profile: {}
 });
 

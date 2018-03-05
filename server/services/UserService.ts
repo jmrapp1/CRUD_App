@@ -12,6 +12,7 @@ const userRolesArray = Object.keys(UserRoles);
 export default class UserService extends DatabaseService {
 
     model = User;
+    populate = ['business'];
 
     login(email: string, password: string): Promise<ServiceResponse> {
         return new Promise<ServiceResponse>(resolve => {
@@ -40,7 +41,7 @@ export default class UserService extends DatabaseService {
         });
     }
 
-    register(email: string, firstName: string, lastName: string, phone: string, password: string, confirmPassword: string, role: string, profile): Promise<ServiceResponse> {
+    validateUserRegister(email: string, firstName: string, lastName: string, phone: string, password: string, confirmPassword: string, role: string, profile): Promise<ServiceResponse> {
         return new Promise<ServiceResponse>(resolve => {
             if (email && firstName && lastName && phone && password && role) {
                 if (EmailValidator.validate(email)) {
@@ -51,17 +52,7 @@ export default class UserService extends DatabaseService {
                                     if (this.userRoleValid(role)) {
                                         this.find({ email }).then(res => {
                                             if (res.isSuccess() && res.isEmpty()) {
-                                                this.insert({
-                                                    email,
-                                                    firstName,
-                                                    lastName,
-                                                    phone,
-                                                    password,
-                                                    role,
-                                                    profile
-                                                }).then(insertRes => {
-                                                    return resolve(insertRes);
-                                                });
+                                                return resolve(new ServiceResponse(false));
                                             } else {
                                                 return resolve(new ServiceResponse(true, 'That email has already been used.'));
                                             }
@@ -87,6 +78,28 @@ export default class UserService extends DatabaseService {
             } else {
                 return resolve(new ServiceResponse(true, 'Please enter information into all forms.'));
             }
+        });
+    }
+
+    register(email: string, firstName: string, lastName: string, phone: string, password: string, confirmPassword: string, role: string, profile): Promise<ServiceResponse> {
+        return new Promise<ServiceResponse>(resolve => {
+            this.validateUserRegister(email, firstName, lastName, phone, password, confirmPassword, role, profile).then(valRes => {
+                if (valRes.isSuccess()) {
+                    this.insert({
+                        email,
+                        firstName,
+                        lastName,
+                        phone,
+                        password,
+                        role,
+                        profile
+                    }).then(insertRes => {
+                        return resolve(insertRes);
+                    });
+                } else {
+                    return resolve(valRes);
+                }
+            })
         });
     }
 
