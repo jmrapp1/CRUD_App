@@ -8,6 +8,7 @@ import AuthMiddleware from '../middlewares/AuthMiddleware';
 import EmployeeService from '../services/EmployeeService';
 import { EmployeeRoleMiddleware } from '../middlewares/EmployeeRoleMiddleware';
 import BusinessService from '../services/BusinessService';
+import { ManagerRoleMiddleware } from '../middlewares/ManagerRoleMiddleware';
 
 @JsonController('/employee')
 export default class EmployeeController {
@@ -21,14 +22,16 @@ export default class EmployeeController {
     constructor() {
     }
 
+
+    @UseBefore(AuthMiddleware, ManagerRoleMiddleware)
     @Post('/register')
     register(@Req() request, @BodyParam('email') email: string, @BodyParam('firstName') firstName: string, @BodyParam('lastName') lastName: string,
              @BodyParam('phone') phone: string, @BodyParam('password') password: string, @BodyParam('confirmPassword') confirmPassword: string,
-             @BodyParam('payRate') payRate: number, @BodyParam('businessId') businessId: string, @BodyParam('monday') monday: boolean, @BodyParam('tuesday') tuesday: boolean,
+             @BodyParam('payRate') payRate: number, @BodyParam('monday') monday: boolean, @BodyParam('tuesday') tuesday: boolean,
              @BodyParam('wednesday') wednesday: boolean, @BodyParam('thursday') thursday: boolean, @BodyParam('friday') friday: boolean,
              @BodyParam('saturday') saturday: boolean, @BodyParam('sunday') sunday: boolean, @Res() response: any) {
         return new Promise(resolve => {
-            console.log('BUSINESS ID: ' + businessId);
+            const businessId = request.user.business;
             this.businessService.findById(businessId).then(busRes => {
                 if (busRes.isSuccess() && !busRes.isEmpty()) {
                     const business = busRes.data;
