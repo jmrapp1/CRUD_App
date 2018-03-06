@@ -7,6 +7,7 @@ import CustomerService from '../services/CustomerService';
 import BusinessService from '../services/BusinessService';
 import ManagerService from '../services/ManagerService';
 import ServiceResponse from '../services/ServiceResponse';
+import { AdminRoleMiddleware } from '../middlewares/AdminRoleMiddleware';
 
 @JsonController('/business')
 export default class BusinessController {
@@ -68,6 +69,7 @@ export default class BusinessController {
         });
     }
 
+    @UseBefore(AuthMiddleware, AdminRoleMiddleware)
     @Get('/')
     getAllUsers(@Res() response: any) {
         return this.businessService.findAll().then(res => {

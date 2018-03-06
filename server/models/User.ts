@@ -1,7 +1,7 @@
 import * as bcrypt from 'bcryptjs';
 import * as mongoose from 'mongoose';
 
-export const UserRoles = { CUSTOMER: 'CUSTOMER', EMPLOYEE: 'EMPLOYEE', MANAGER: 'MANAGER' };
+export const UserRoles = { CUSTOMER: 'CUSTOMER', EMPLOYEE: 'EMPLOYEE', MANAGER: 'MANAGER', ADMIN: 'ADMIN' };
 
 export const userSchema = new mongoose.Schema({
     email: { type: String, unique: true, lowercase: true, trim: true },
