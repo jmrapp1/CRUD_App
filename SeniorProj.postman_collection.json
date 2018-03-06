@@ -1,0 +1,401 @@
+{
+	"info": {
+		"name": "SeniorProj",
+		"_postman_id": "643d6e58-8d68-58f6-90c9-948bf2333302",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"description": "",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"test1234@test.com\",\n\t\"firstName\": \"Jon\",\n\t\"lastName\": \"R\",\n\t\"password\": \"test123\",\n\t\"confirmPassword\": \"test123\",\n\t\"phone\": \"1112223333\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/user/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"user",
+								"register"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0ZXN0IjoidGhpcyBpcyB0ZXN0IGRhdGEifQ.8j_hMeQIlIHSaSy8DlTmNBW0NN9Z8D7-5G9DlMF3vad"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"jmrapp1270@gmail.com\",\n\t\"password\": \"test123\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/user/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"user",
+								"login"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Find All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:3000/api/user/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"user",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Count",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiRU1QTE9ZRUUiLCJfaWQiOiI1YTg0ZGI2ZGE4M2YzMDRlMjQwZDAwZWQiLCJlbWFpbCI6ImptcmFwcDEyNzBAZ21haWwuY29tIiwiZmlyc3ROYW1lIjoiSm9uYXRoYW4iLCJsYXN0TmFtZSI6IlJhcHAiLCJwaG9uZSI6IjI2NzM3MzgxMDQiLCJfX3YiOjB9.pYdLOWZEbBhcN2TY4k-r4PzUTK0NIHJePw51MzDFRcM"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:3000/api/customer?size=3&offset=0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"customer"
+							],
+							"query": [
+								{
+									"key": "size",
+									"value": "3",
+									"equals": true
+								},
+								{
+									"key": "offset",
+									"value": "0",
+									"equals": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Find (Paginate)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiRU1QTE9ZRUUiLCJfaWQiOiI1YTg0ZGI2ZGE4M2YzMDRlMjQwZDAwZWQiLCJlbWFpbCI6ImptcmFwcDEyNzBAZ21haWwuY29tIiwiZmlyc3ROYW1lIjoiSm9uYXRoYW4iLCJsYXN0TmFtZSI6IlJhcHAiLCJwaG9uZSI6IjI2NzM3MzgxMDQiLCJfX3YiOjB9.pYdLOWZEbBhcN2TY4k-r4PzUTK0NIHJePw51MzDFRcM"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:3000/api/customer/count",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"customer",
+								"count"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Count",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiRU1QTE9ZRUUiLCJfaWQiOiI1YTg0ZGI2ZGE4M2YzMDRlMjQwZDAwZWQiLCJlbWFpbCI6ImptcmFwcDEyNzBAZ21haWwuY29tIiwiZmlyc3ROYW1lIjoiSm9uYXRoYW4iLCJsYXN0TmFtZSI6IlJhcHAiLCJwaG9uZSI6IjI2NzM3MzgxMDQiLCJfX3YiOjB9.pYdLOWZEbBhcN2TY4k-r4PzUTK0NIHJePw51MzDFRcM"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:3000/api/employee/count",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"employee",
+								"count"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Employee",
+			"description": "",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiRU1QTE9ZRUUiLCJfaWQiOiI1YTllYWI4MzM0YmQ0ZTBiNGUxN2MwZjkiLCJlbWFpbCI6ImVtcGxveWVlNkBnbWFpbC5jb20iLCJmaXJzdE5hbWUiOiJCb2IiLCJsYXN0TmFtZSI6IkpvZSIsInBob25lIjoiMTExMjIyMzMzMyIsInByb2ZpbGUiOnsicGF5UmF0ZSI6MTAuNSwiZGF5c1dvcmtpbmciOnsibW9uZGF5Ijp0cnVlLCJ0dWVzZGF5Ijp0cnVlLCJ3ZWRuZXNkYXkiOnRydWUsInRodXJzZGF5IjpmYWxzZSwiZnJpZGF5IjpmYWxzZSwic2F0dXJkYXkiOnRydWUsInN1bmRheSI6dHJ1ZX19LCJfX3YiOjAsImJ1c2luZXNzIjp7Il9pZCI6IjVhOWRjOTc4MWY5MzRkNzQ3MWI3NTU0NSIsIm5hbWUiOiJNeUJ1c2luZXNzVGVzdDUiLCJzdHJlZXQiOiIxMjMgTWFpbiBTdCIsImNpdHkiOiJQaGlsYWRlbHBoaWEiLCJzdGF0ZSI6IlBBIiwiemlwIjoiMTkxMzEiLCJfX3YiOjB9fQ.A2XItrOF6ZGzS__jf_iNDR36ksO_autGc_-o_GMh-zE"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"employee6@gmail.com\",\n\t\"firstName\": \"Bob\",\n\t\"lastName\": \"Joe\",\n\t\"password\": \"test123\",\n\t\"confirmPassword\": \"test123\",\n\t\"phone\": \"1112223333\",\n\t\"payRate\": \"10.50\",\n\t\"monday\": true,\n\t\"tuesday\": true,\n\t\"wednesday\": true,\n\t\"thursday\": false,\n\t\"friday\": false,\n\t\"saturday\": true,\n\t\"sunday\": true\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/employee/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"employee",
+								"register"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Find (Paginate)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiRU1QTE9ZRUUiLCJfaWQiOiI1YTg0ZGI2ZGE4M2YzMDRlMjQwZDAwZWQiLCJlbWFpbCI6ImptcmFwcDEyNzBAZ21haWwuY29tIiwiZmlyc3ROYW1lIjoiSm9uYXRoYW4iLCJsYXN0TmFtZSI6IlJhcHAiLCJwaG9uZSI6IjI2NzM3MzgxMDQiLCJfX3YiOjB9.pYdLOWZEbBhcN2TY4k-r4PzUTK0NIHJePw51MzDFRcM"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:3000/api/employee?size=300&offset=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"employee"
+							],
+							"query": [
+								{
+									"key": "size",
+									"value": "300",
+									"equals": true
+								},
+								{
+									"key": "offset",
+									"value": "1",
+									"equals": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customer",
+			"description": "",
+			"item": [
+				{
+					"name": "Find (Paginate) copy",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiVVNFUiIsIl9pZCI6IjVhOGQ5M2FhN2FmNWU2MTgyM2Y0NzMwMCIsImVtYWlsIjoidGVzdDEyM0B0ZXN0LmNvbSIsImZpcnN0TmFtZSI6IkpvbiIsImxhc3ROYW1lIjoiUiIsInBob25lIjoiMTExMjIyMzMzMyIsIl9fdiI6MH0.9NeF1SY6eWTzfYWEOh6phnmKv9-JgKsaZ_MwxogfwYM"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:3000/api/customer?size=3&offset=0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"customer"
+							],
+							"query": [
+								{
+									"key": "size",
+									"value": "3",
+									"equals": true
+								},
+								{
+									"key": "offset",
+									"value": "0",
+									"equals": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Business",
+			"description": "",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"businessmanager3@gmail.com\",\n\t\"firstName\": \"Bob\",\n\t\"lastName\": \"Joe\",\n\t\"password\": \"test123\",\n\t\"confirmPassword\": \"test123\",\n\t\"phone\": \"1112223333\",\n\t\"payRate\": \"10.50\",\n\t\"monday\": true,\n\t\"tuesday\": true,\n\t\"wednesday\": true,\n\t\"thursday\": false,\n\t\"friday\": false,\n\t\"saturday\": true,\n\t\"sunday\": true,\n\t\"name\": \"MyBusinessTest6\",\n\t\"street\": \"123 Main St\",\n\t\"city\": \"Philadelphia\",\n\t\"state\": \"PA\",\n\t\"zipcode\": \"19131\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/business/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"business",
+								"register"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Find All",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiRU1QTE9ZRUUiLCJfaWQiOiI1YTg0ZGI2ZGE4M2YzMDRlMjQwZDAwZWQiLCJlbWFpbCI6ImptcmFwcDEyNzBAZ21haWwuY29tIiwiZmlyc3ROYW1lIjoiSm9uYXRoYW4iLCJsYXN0TmFtZSI6IlJhcHAiLCJwaG9uZSI6IjI2NzM3MzgxMDQiLCJwcm9maWxlIjp7InBheVJhdGUiOjEyLjUsImRheXNXb3JraW5nIjp7Im1vbmRheSI6dHJ1ZSwidHVlc2RheSI6ZmFsc2UsIndlZG5lc2RheSI6ZmFsc2UsInRodXJzZGF5IjpmYWxzZSwiZnJpZGF5Ijp0cnVlLCJzYXR1cmRheSI6dHJ1ZSwic3VuZGF5Ijp0cnVlfX0sIl9fdiI6MH0.RmFrvJRHcphiwqTmokoJ9kNAPlgfhUb0Pfr9PZlV70Y"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:3000/api/business/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"business",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer"
+	},
+	"variable": [
+		{
+			"id": "bdb7e36b-a920-46ee-8390-fec6b18b3157",
+			"key": "Authorization",
+			"value": "",
+			"type": "text"
+		}
+	]
+}
