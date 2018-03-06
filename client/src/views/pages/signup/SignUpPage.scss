@@ -6,15 +6,38 @@
   height: calc(100vh - 52px);
   background: $color-background;
 
+  .business-container{
+    margin-left: 30%;
+    text-align: center;
+    padding: 10px;
+    width: 70%;
+    height: calc(70vh - 30px);
+
+  }
   .signup-container {
     text-align: center;
     width: 100%;
+    height: calc(70vh - 30px);
+
   }
 
+  .schedule-container{
+    text-align: center;
+    width: 40%;
+    height: calc(70vh - 30px);
+
+  }
+  .business-title{
+    padding: 10px;
+
+  }
   .message {
     margin-top: 10px;
   }
 
+  .address{
+    padding: 20px;
+  }
   input {
     margin-bottom: 10px;
   }
@@ -25,6 +48,26 @@
 
   .form-group {
     margin: 20px 0 20px 0;
+    padding: 5px;
   }
 
+  .business-form{
+    padding: 3px;
+  }
+
+  .select {
+    width: 80%;
+    padding: 10px 10px;
+    margin: 0 0;
+    display: inline-flex;
+    border: 1px solid $color-gray-border;
+    box-sizing: content-box;
+
+    background: $color-light-gray;
+
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px; /* future proofing */
+    -khtml-border-radius: 2px; /* for old Konqueror browsers */
+  }
 }
