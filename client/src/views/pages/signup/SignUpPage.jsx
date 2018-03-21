@@ -53,10 +53,10 @@ class SignUpPage extends Component {
 
     onSubmit( e ) {
         e.preventDefault();
-        this.props.register(this.state.name, this.state.street, this.state.city, parseFloat(this.state.zip), this.state.zip,
-        this.state.email, this.state.password, this.state.confirmPassword, this.state.firstName, this.state.lastName, this.state.phone,
-        this.state.mon, this.state.tue, this.state.wed, this.state.thur, this.state.fri, this.state.sat, this.state.sun);
-    }
+        this.props.register(this.state.email, this.state.password,
+                            this.state.confirmPassword, this.state.firstName,
+                            this.state.lastName, this.state.phone);
+        }
 
     renderError() {
         return (
@@ -73,7 +73,7 @@ class SignUpPage extends Component {
             <div id="signup-page">
                 <div className="vertical-center">
 
-                    <div className="col-sm-12 col-md-4 ">
+                    <div className="busi col-sm-12 col-md-4 ">
                         <Container className="business-container">
                             <form className="business-form">
                                 <h1 className="business-title">Business</h1>
@@ -118,10 +118,10 @@ class SignUpPage extends Component {
                             </form>
                         </Container>
                     </div>
-                    <div className="col-sm-12 col-md-4">
+                    <div className="col-sm-12 col-md-4 col-md-offset-4">
                         <Container className="signup-container">
                             <form className="signup" onSubmit={ this.onSubmit }>
-                                <h1 className="signup-title">Manager Register</h1>
+                                <h1 className="signup-title">Register</h1>
 
                                 {
                                     !_.isEmpty(this.props.alert) && this.renderError()
@@ -183,7 +183,7 @@ class SignUpPage extends Component {
                         </Container>
                     </div>
 
-                    <div className="col-sm-2 col-md-4">
+                    <div className="sche col-sm-2 col-md-4">
                         <Container className="schedule-container">
 
                             <form className="schedule">
