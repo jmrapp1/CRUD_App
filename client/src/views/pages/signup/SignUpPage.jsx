@@ -56,7 +56,7 @@ class SignUpPage extends Component {
         e.preventDefault();
         this.props.register(this.state.email, this.state.password, this.state.confirmPassword, this.state.firstName, this.state.lastName, this.state.phone,
             parseFloat(this.state.rate), this.state.mon, this.state.tue, this.state.wed, this.state.thur, this.state.fri, this.state.sat, this.state.sun,
-            this.state.name, this.state.city, this.state.state, this.state.zipcode);
+            this.state.name, this.state.street, this.state.city, this.state.state, this.state.zipcode);
     }
 
     renderError() {
