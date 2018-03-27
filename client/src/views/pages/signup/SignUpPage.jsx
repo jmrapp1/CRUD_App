@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as _ from 'lodash';
-import { Actions as UserActions } from '../../../redux/modules/user/';
+import { Actions as BusinessActions } from '../../../redux/modules/business/';
 import './SignUpPage.css';
 import PrimaryButton from '../../common/components/buttons/PrimaryButton';
 import TextInput from '../../common/components/inputs/TextInput';
@@ -20,12 +20,13 @@ class SignUpPage extends Component {
             name: '',
             street: '',
             city: '',
-            zip: '',
+            zipcode: '',
             state: '',
             firstName: '',
             lastName: '',
             email: '',
             phone: '',
+            rate: '0.00',
             password: '',
             confirmPassword: '',
             mon: true,
@@ -53,10 +54,10 @@ class SignUpPage extends Component {
 
     onSubmit( e ) {
         e.preventDefault();
-        this.props.register(this.state.email, this.state.password,
-                            this.state.confirmPassword, this.state.firstName,
-                            this.state.lastName, this.state.phone);
-        }
+        this.props.register(this.state.email, this.state.password, this.state.confirmPassword, this.state.firstName, this.state.lastName, this.state.phone,
+            parseFloat(this.state.rate), this.state.mon, this.state.tue, this.state.wed, this.state.thur, this.state.fri, this.state.sat, this.state.sun,
+            this.state.name, this.state.city, this.state.state, this.state.zipcode);
+    }
 
     renderError() {
         return (
@@ -72,8 +73,7 @@ class SignUpPage extends Component {
         return (
             <div id="signup-page">
                 <div className="vertical-center">
-
-                    <div className="busi col-sm-12 col-md-4 ">
+                    <div className="col-sm-12 col-md-4 ">
                         <Container className="business-container">
                             <form className="business-form">
                                 <h1 className="business-title">Business</h1>
@@ -85,7 +85,7 @@ class SignUpPage extends Component {
                                         name= "name"
                                         placeholder = "Business Name"
                                     />
-                                <h2 className="address"><b><ins>Address</ins></b></h2>
+                                    <h2 className="address"><b><ins>Address</ins></b></h2>
                                     <TextInput
                                         value={ this.state.street }
                                         onChange = { this.onChange }
@@ -101,15 +101,14 @@ class SignUpPage extends Component {
                                     />
 
                                     <TextInput
-                                        value={ this.state.zip }
+                                        value={ this.state.zipcode }
                                         onChange = { this.onChange }
-                                        type = "number"
-                                        name= "zip"
+                                        name= "zipcode"
                                         placeholder = "Zip Code"
                                     />
 
                                     <TextInput
-                                        value={ this.state.zip}
+                                        value={ this.state.state}
                                         onChange = { this.onChange }
                                         name= "state"
                                         placeholder = "State"
@@ -118,10 +117,10 @@ class SignUpPage extends Component {
                             </form>
                         </Container>
                     </div>
-                    <div className="col-sm-12 col-md-4 col-md-offset-4">
+                    <div className="col-sm-12 col-md-4">
                         <Container className="signup-container">
                             <form className="signup" onSubmit={ this.onSubmit }>
-                                <h1 className="signup-title">Register</h1>
+                                <h1 className="signup-title">Manager Register</h1>
 
                                 {
                                     !_.isEmpty(this.props.alert) && this.renderError()
@@ -154,8 +153,15 @@ class SignUpPage extends Component {
                                         onChange={ this.onChange }
                                         type="number"
                                         name="phone"
-                                        className="phone"
                                         placeholder="Phone Number"
+                                    />
+
+                                    <TextInput
+                                        value={ this.state.rate }
+                                        onChange={ this.onChange }
+                                        type="number"
+                                        name="rate"
+                                        placeholder="Rate"
                                     />
 
                                     <TextInput
@@ -183,7 +189,7 @@ class SignUpPage extends Component {
                         </Container>
                     </div>
 
-                    <div className="sche col-sm-2 col-md-4">
+                    <div className="col-sm-2 col-md-4">
                         <Container className="schedule-container">
 
                             <form className="schedule">
@@ -261,7 +267,7 @@ export default connect(
         alert: state.alert
     } ),
     dispatch => ( {
-        register: bindActionCreators(UserActions.register, dispatch),
+        register: bindActionCreators(BusinessActions.register, dispatch),
         clearAlert: bindActionCreators(AlertActions.clear, dispatch)
     } )
 )(SignUpPage);
