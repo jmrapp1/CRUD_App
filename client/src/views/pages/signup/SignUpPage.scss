@@ -11,20 +11,20 @@
     text-align: center;
     padding: 10px;
     width: 70%;
-    height: calc(70vh - 30px);
+    height: calc(90vh - 30px);
 
   }
   .signup-container {
     text-align: center;
     width: 100%;
-    height: calc(70vh - 30px);
+    height: calc(90vh - 30px);
 
   }
 
   .schedule-container{
     text-align: center;
-    width: 40%;
-    height: calc(70vh - 30px);
+    width: 50%;
+    height: calc(90vh - 30px);
 
   }
   .business-title{
@@ -52,6 +52,10 @@
   }
 
   .business-form{
+    padding: 3px;
+  }
+
+  .signup{
     padding: 3px;
   }
 
