@@ -8,6 +8,7 @@ import AuthMiddleware from '../middlewares/AuthMiddleware';
 import EmployeeService from '../services/EmployeeService';
 import { EmployeeRoleMiddleware } from '../middlewares/EmployeeRoleMiddleware';
 import CustomerService from '../services/CustomerService';
+import { ManagerOrEmployeeRoleMiddleware } from '../middlewares/ManagerOrEmployeeRoleMiddleware';
 
 @JsonController('/customer')
 export default class CustomerController {
@@ -18,10 +19,12 @@ export default class CustomerController {
     constructor() {
     }
 
-    @UseBefore(AuthMiddleware, EmployeeRoleMiddleware)
+    @UseBefore(AuthMiddleware, ManagerOrEmployeeRoleMiddleware)
     @Get('/')
-    getCustomers(@QueryParam('size') size: number, @QueryParam('offset') offset: number, @Res() response: any) {
-        return this.customerService.findWithLimit({}, size, offset).then(res => {
+    getCustomers(@Req() req, @QueryParam('size') size: number, @QueryParam('offset') offset: number, @Res() response: any) {
+        return this.customerService.findWithLimit({
+            business: req.user.business
+        }, size, offset).then(res => {
             if (res.isSuccess()) {
                 return response.status(200).json(res.data);
             }
@@ -29,10 +32,12 @@ export default class CustomerController {
         });
     }
 
-    @UseBefore(AuthMiddleware, EmployeeRoleMiddleware)
+    @UseBefore(AuthMiddleware, ManagerOrEmployeeRoleMiddleware)
     @Get('/count')
-    getTotalCustomers(@Res() response: any) {
-        return this.customerService.count().then(res => {
+    getTotalCustomers(@Req() req, @Res() response: any) {
+        return this.customerService.count({
+            business: req.user.business
+        }).then(res => {
             if (res.isSuccess()) {
                 return response.status(200).json(res.data);
             }

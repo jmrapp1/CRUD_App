@@ -14,6 +14,7 @@ export default class BusinessService extends DatabaseService {
             if (name && street && city && state && zip) {
                 if (zip.length === 5 && zip.match(/^[0-9]+$/)) {
                     this.find({ name }).then(findRes => {
+                        console.log('Find: ' + JSON.stringify(findRes));
                         if (findRes.isEmpty()) {
                             return resolve(new ServiceResponse(false));
                         } else {

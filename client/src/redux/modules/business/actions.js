@@ -19,12 +19,14 @@ export function register(email, password, confirmPassword, firstName, lastName, 
             city,
             state,
             zipcode
-
         }, data => {
-            dispatch(AlertReducer.success('You Have Registered The Manager Sucessfully.'));
+            dispatch(AlertReducer.success('You have registered the business and its manager sucessfully.'));
             dispatch(Reducer.register(data));
         },err => {
-            dispatch(AlertReducer.error(err['errors'][0]));
+            console.error(JSON.stringify(err));
+            if (err['errors'][0]) {
+                dispatch(AlertReducer.error(err['errors'][0]));
+            }
         });
     }
 

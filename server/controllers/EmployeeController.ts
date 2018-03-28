@@ -56,10 +56,12 @@ export default class EmployeeController {
         });
     }
 
-    @UseBefore(AuthMiddleware, EmployeeRoleMiddleware)
+    @UseBefore(AuthMiddleware, ManagerRoleMiddleware)
     @Get('/')
-    getEmployees(@QueryParam('size') size: number, @QueryParam('offset') offset: number, @Res() response: any) {
-        return this.employeeService.findWithLimit({}, size, offset).then(res => {
+    getEmployees(@Req() req, @QueryParam('size') size: number, @QueryParam('offset') offset: number, @Res() response: any) {
+        return this.employeeService.findWithLimit({
+            business: req.user.business
+        }, size, offset).then(res => {
             if (res.isSuccess()) {
                 return response.status(200).json(res.data);
             }
@@ -67,10 +69,13 @@ export default class EmployeeController {
         });
     }
 
-    @UseBefore(AuthMiddleware, EmployeeRoleMiddleware)
+    @UseBefore(AuthMiddleware, ManagerRoleMiddleware)
     @Get('/count')
-    getTotalEmployees(@Res() response: any) {
-        return this.employeeService.count().then(res => {
+    getTotalEmployees(@Req() req, @Res() response: any) {
+        return this.employeeService.count({
+            business: req.user.business
+        }).then(res => {
+            console.log('Count REs: ' + JSON.stringify(res));
             if (res.isSuccess()) {
                 return response.status(200).json(res.data);
             }

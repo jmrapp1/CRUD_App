@@ -15,9 +15,10 @@ export function dispatchRequest(route, method, body, successCallback, errorCallb
         .then(res => res.json())
         .then(data => successCallback(data))
         .catch(e => {
+            console.error('Dispatch Error: ' + e);
             if (e['response'] && e['response'].json) {
                 if (e.response.status === 401) {
-                    e['errors'] = 'You are not authorized to access this page.';
+                    e['errors'][0] = 'You are not authorized to access this page.';
                     if (errorCallback) {
                         errorCallback(e);
                     }
@@ -27,12 +28,16 @@ export function dispatchRequest(route, method, body, successCallback, errorCallb
                         if (errorCallback) {
                             errorCallback(e);
                         }
+                    }).catch(ex => {
+                        console.error('Dispatch JSON Error: Object=' + JSON.stringify(ex));
+                        if (errorCallback) {
+                            errorCallback({ errors: e });
+                        }
                     });
                 }
             } else {
-                console.error(e);
                 if (errorCallback) {
-                    errorCallback(e);
+                    errorCallback({ errors: e });
                 }
             }
         });
