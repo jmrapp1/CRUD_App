@@ -30,14 +30,21 @@ export function login(email, password, successCallback = () => {}, failCallback 
         }, data => {
             dispatch(AlertReducer.success('You have logged in successfully.'));
             localStorage.setItem('id_token', data.token);
-
-            const user = jwtDecode(data.token);
-            dispatch(Reducer.login(user));
+            const user = decodeUserDataToStoreFromLocal(dispatch);
             successCallback(user);
         }, err => {
             dispatch(AlertReducer.error(err['errors'][0]));
             failCallback(err['errors'][0]);
         });
+    }
+}
+
+export function decodeUserDataToStoreFromLocal(dispatch) {
+    const token = localStorage.getItem('id_token');
+    if (token) {
+        const user = jwtDecode(token);
+        dispatch(Reducer.login(user));
+        return user;
     }
 }
 

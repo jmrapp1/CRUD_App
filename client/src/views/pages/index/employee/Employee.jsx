@@ -57,9 +57,9 @@ class Employee extends Component {
     }
 
     onClick(e) {
-        var info = document.getElementById("info");
-        var edit = document.getElementById("edit");
-        if (count == 0) {
+        const info = document.getElementById("info");
+        const edit = document.getElementById("edit");
+        if (count === 0) {
             info.style.display = 'none';
             edit.style.display = 'block';
             count = 1;
@@ -210,8 +210,7 @@ class Employee extends Component {
 
 Employee.propTypes = {
     employee: PropTypes.object.isRequired,
-    location: PropTypes.object,
-    alert: PropTypes.object
+    location: PropTypes.object
 };
 
 export default connect(
