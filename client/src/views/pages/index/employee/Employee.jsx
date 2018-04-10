@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import 'jquery-match-height';
 import * as $ from 'jquery';
-import * as _ from 'lodash';
 import PrimaryButton from "../../../common/components/buttons/PrimaryButton";
 import TextInput from "../../../common/components/inputs/TextInput";
 
@@ -71,7 +70,6 @@ class Employee extends Component {
             <div id="employee-home">
 
 
-                //Info
                 <div className="info" id="info" >
 
                 <div className="row">
@@ -115,7 +113,6 @@ class Employee extends Component {
                                         <li><b>Email:</b> { this.props.user.email }</li>
                                         <li><b>Phone Number:</b> { this.props.user.phone }</li>
                                         <li><b>Rate:</b> { this.props.user.profile.payRate }</li>
-                                        <li><b>Business:</b> { this.props.user.business.name }</li>
                                     </ul>
                                 </Container>
                             )
@@ -193,8 +190,6 @@ class Employee extends Component {
 
 Employee.propTypes = {
     user: PropTypes.object,
-    alert: PropTypes.object
-
 };
 
 export default connect(
