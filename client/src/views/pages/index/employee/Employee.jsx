@@ -13,20 +13,24 @@ import TextInput from "../../../common/components/inputs/TextInput";
 const image = require('../../../common/images/pfp2.jpg');
 
 var count = 0;
+
 class Employee extends Component {
-    constructor( props ) {
+    constructor(props) {
         super(props);
-
+        this.employee = this.props.employee;
+        if (this.props.location && this.props.location.employee) {
+            this.employee = this.props.location.employee;
+        }
         this.state = {
-            firstName: '',
-            lastName: '',
-            email: '',
-            phone: '',
-            rate: 'Salary ($0.00)'
+            firstName: this.employee.firstName,
+            lastName: this.employee.lastName,
+            email: this.employee.email,
+            phone: this.employee.phone,
+            rate: 'Salary ($' + this.employee.profile.payRate + ')'
         };
-
         this.onChange = this.onChange.bind(this);
     }
+
     componentDidMount() {
         $('.content').matchHeight(false);
     }
@@ -48,58 +52,71 @@ class Employee extends Component {
         return working ? 'Working' : 'Off';
     }
 
-    onChange( e ) {
-        this.setState({ [ e.target.name ]: e.target.value })
+    onChange(e) {
+        this.setState({ [e.target.name]: e.target.value })
     }
 
-    onClick(e){
+    onClick(e) {
         var info = document.getElementById("info");
         var edit = document.getElementById("edit");
-        if(count == 0){
+        if (count == 0) {
             info.style.display = 'none';
             edit.style.display = 'block';
             count = 1;
         }
-        else{
+        else {
             info.style.display = 'block';
             edit.style.display = 'none';
             count = 0;
         }
     }
+
     render() {
         return (
             <div id="employee-home">
 
+                <div className="info" id="info">
 
-                //Info
-                <div className="info" id="info" >
-
-                <div className="row">
-                    <div className="business-container col-md-4 col-md-offset-4">
-                        <Container className="busi-cont">
-                            <h1>{ this.props.user.business.name }</h1>
-                        </Container>
+                    <div className="row">
+                        <div className="business-container col-md-4 col-md-offset-4">
+                            <Container className="busi-cont">
+                                <h1>{ this.employee.business.name }</h1>
+                            </Container>
+                        </div>
                     </div>
-                </div>
 
-                <div className="row">
-                    <div className="image-pfp col-md-4 col-md-offset-4">
-                        <img src={ image } className="img-pfp img-responsive text-center"/>
+                    <div className="row">
+                        <div className="image-pfp col-md-4 col-md-offset-4">
+                            <img src={ image } className="img-pfp img-responsive text-center"/>
+                        </div>
                     </div>
-                </div>
-                <div className="containers row">
+                    <div className="containers row">
                         <div className="content col-md-4 col-md-offset-2">
                             <div className="row">
                                 <Container className="employee-schedule" shadow={ false } round={ false }>
                                     <h1>Schedule</h1>
                                     <ul className="schedule">
-                                        <li><b>Monday:</b> { this.renderWorking(this.props.user.profile.daysWorking.monday) }</li>
-                                        <li><b>Tuesday:</b> { this.renderWorking(this.props.user.profile.daysWorking.tuesday) }</li>
-                                        <li><b>Wednesday:</b> { this.renderWorking(this.props.user.profile.daysWorking.wednesday) }</li>
-                                        <li><b>Thursday:</b> { this.renderWorking(this.props.user.profile.daysWorking.thursday) }</li>
-                                        <li><b>Friday:</b> { this.renderWorking(this.props.user.profile.daysWorking.friday) }</li>
-                                        <li><b>Saturday:</b> { this.renderWorking(this.props.user.profile.daysWorking.saturday) }</li>
-                                        <li><b>Sunday:</b> { this.renderWorking(this.props.user.profile.daysWorking.sunday) }</li>
+                                        <li>
+                                            <b>Monday:</b> { this.renderWorking(this.employee.profile.daysWorking.monday) }
+                                        </li>
+                                        <li>
+                                            <b>Tuesday:</b> { this.renderWorking(this.employee.profile.daysWorking.tuesday) }
+                                        </li>
+                                        <li>
+                                            <b>Wednesday:</b> { this.renderWorking(this.employee.profile.daysWorking.wednesday) }
+                                        </li>
+                                        <li>
+                                            <b>Thursday:</b> { this.renderWorking(this.employee.profile.daysWorking.thursday) }
+                                        </li>
+                                        <li>
+                                            <b>Friday:</b> { this.renderWorking(this.employee.profile.daysWorking.friday) }
+                                        </li>
+                                        <li>
+                                            <b>Saturday:</b> { this.renderWorking(this.employee.profile.daysWorking.saturday) }
+                                        </li>
+                                        <li>
+                                            <b>Sunday:</b> { this.renderWorking(this.employee.profile.daysWorking.sunday) }
+                                        </li>
                                     </ul>
                                 </Container>
                             </div>
@@ -110,12 +127,12 @@ class Employee extends Component {
                                 <Container className="employee-info" shadow={ false } round={ false }>
                                     <h1>Employee Information</h1>
                                     <ul className="employee">
-                                        <li><b>Fist Name:</b> { this.props.user.firstName }</li>
-                                        <li><b>Last Name:</b> { this.props.user.lastName }</li>
-                                        <li><b>Email:</b> { this.props.user.email }</li>
-                                        <li><b>Phone Number:</b> { this.props.user.phone }</li>
-                                        <li><b>Rate:</b> { this.props.user.profile.payRate }</li>
-                                        <li><b>Business:</b> { this.props.user.business.name }</li>
+                                        <li><b>Fist Name:</b> { this.employee.firstName }</li>
+                                        <li><b>Last Name:</b> { this.employee.lastName }</li>
+                                        <li><b>Email:</b> { this.employee.email }</li>
+                                        <li><b>Phone Number:</b> { this.employee.phone }</li>
+                                        <li><b>Rate:</b> { this.employee.profile.payRate }</li>
+                                        <li><b>Business:</b> { this.employee.business.name }</li>
                                     </ul>
                                 </Container>
                             )
@@ -124,7 +141,8 @@ class Employee extends Component {
                 </div>
 
                 <div className="row">
-                    <div className="edit col-sm-4 col-md-4 col-md-offset-4 text-center" id="edit" style={{display: 'none'}}>
+                    <div className="edit col-sm-4 col-md-4 col-md-offset-4 text-center" id="edit"
+                         style={ { display: 'none' } }>
                         <Container className="edit-container">
                             <form className="edit-form" onSubmit={ this.onSubmit }>
                                 <h1 className="edit-title">Edit Employee</h1>
@@ -178,10 +196,9 @@ class Employee extends Component {
                     </div>
                 </div>
 
-
                 <div className="row">
                     <div className="col-md-4 col-md-offset-4 text-center">
-                        <div className="btn-group" id="button" onClick={this.onClick}>
+                        <div className="btn-group" id="button" onClick={ this.onClick }>
                             <PrimaryButton text="Edit Information"/>
                         </div>
                     </div>
@@ -192,15 +209,14 @@ class Employee extends Component {
 }
 
 Employee.propTypes = {
-    user: PropTypes.object,
+    employee: PropTypes.object.isRequired,
+    location: PropTypes.object,
     alert: PropTypes.object
-
 };
 
 export default connect(
     store => ( {
-        user: store.user.user,
+        employee: store.user.user,
         alert: store.alert
-
     } )
 )(Employee);

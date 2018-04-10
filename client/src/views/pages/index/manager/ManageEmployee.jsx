@@ -20,9 +20,18 @@ class ManageEmployee extends Component {
         this.props.getEmployees(this.props.pageSize, 0);
 
         this.fetchEmployees = this.fetchEmployees.bind(this);
+        this.manageEmployee = this.manageEmployee.bind(this);
     }
 
     componentDidMount() {
+    }
+
+    manageEmployee(employee) {
+        console.log(JSON.stringify(employee));
+        this.props.history.push({
+            pathname: '/manage/employee',
+            employee
+        });
     }
 
     fetchEmployees(page) {
@@ -36,7 +45,8 @@ class ManageEmployee extends Component {
                     <h4><b>Employee List</b></h4>
                     <PaginatedTable columns={ columns } data={ this.props.employees }
                                     mapData={ (index, data) => data[map[index]] } currentPage={ 1 }
-                                    total={ this.props.totalEmployees } pageSize={ this.props.pageSize } onPageClick={ this.fetchEmployees }/>
+                                    total={ this.props.totalEmployees } pageSize={ this.props.pageSize }
+                                    onPageClick={ this.fetchEmployees } onRowClick={ this.manageEmployee }/>
                 </Container>
             </div>
         );
@@ -48,7 +58,8 @@ ManageEmployee.propTypes = {
     totalEmployees: PropTypes.number,
     getEmployees: PropTypes.func,
     getTotalEmployees: PropTypes.func,
-    pageSize: PropTypes.number
+    pageSize: PropTypes.number,
+    history: PropTypes.object.isRequired
 };
 
 export default connect(

@@ -22,7 +22,8 @@ class Content extends Component {
                     <Route exact path="/employee" component={ Employee }/>
                     <Route exact path="/manager" component={ Manager }/>
                     <Route exact path="/addemployee" component={ AddEmployee }/>
-                    <Route exact path="/manage" component={ ManageEmployee }/>
+                    <Route exact path="/manage" component={ ManageEmployee } exact/>
+                    <Route exact path="/manage/employee" component={ Employee } exact/>
                     <Route exact path="/manageCustomers" component={ ManageCustomer }/>
 
                     <Route path="/*" component={ HomePage }/>

@@ -37,7 +37,7 @@ export class PaginatedTable extends Component {
 
     renderData() {
         return this.props.data.map((data, rowIndex) => {
-            return ( <tr key={rowIndex} onClick={ this.props.onRowClick }>
+            return ( <tr key={rowIndex} onClick={ () => this.props.onRowClick(data) }>
                 {
                     this.props.columns.map((col, colIndex) => {
                         return ( <td key={ colIndex }>{ this.props.mapData(colIndex, data) }</td> );
