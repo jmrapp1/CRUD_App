@@ -5,12 +5,28 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import 'jquery-match-height';
 import * as $ from 'jquery';
+import * as _ from 'lodash';
+import PrimaryButton from "../../../common/components/buttons/PrimaryButton";
+import TextInput from "../../../common/components/inputs/TextInput";
 
 
-const image = require('../../../common/images/pfp.jpg');
+const image = require('../../../common/images/pfp2.jpg');
 
+var count = 0;
 class Employee extends Component {
+    constructor( props ) {
+        super(props);
 
+        this.state = {
+            firstName: '',
+            lastName: '',
+            email: '',
+            phone: '',
+            rate: 'Salary ($0.00)'
+        };
+
+        this.onChange = this.onChange.bind(this);
+    }
     componentDidMount() {
         $('.content').matchHeight(false);
     }
@@ -32,44 +48,143 @@ class Employee extends Component {
         return working ? 'Working' : 'Off';
     }
 
+    onChange( e ) {
+        this.setState({ [ e.target.name ]: e.target.value })
+    }
+
+    onClick(e){
+        var info = document.getElementById("info");
+        var edit = document.getElementById("edit");
+        if(count == 0){
+            info.style.display = 'none';
+            edit.style.display = 'block';
+            count = 1;
+        }
+        else{
+            info.style.display = 'block';
+            edit.style.display = 'none';
+            count = 0;
+        }
+    }
     render() {
         return (
             <div id="employee-home">
+
+
+                //Info
+                <div className="info" id="info" >
+
+                <div className="row">
+                    <div className="business-container col-md-4 col-md-offset-4">
+                        <Container className="busi-cont">
+                            <h1>{ this.props.user.business.name }</h1>
+                        </Container>
+                    </div>
+                </div>
+
+                <div className="row">
+                    <div className="image-pfp col-md-4 col-md-offset-4">
+                        <img src={ image } className="img-pfp img-responsive text-center"/>
+                    </div>
+                </div>
                 <div className="containers row">
-                    <div className="content col-md-4 col-md-offset-2">
-                        <div className="row">
-                            <Container className="employee-image text-center" shadow={ false } round={ false }>
-                                <img src={ image } className="img-responsive text-center"/>
-                            </Container>
+                        <div className="content col-md-4 col-md-offset-2">
+                            <div className="row">
+                                <Container className="employee-schedule" shadow={ false } round={ false }>
+                                    <h1>Schedule</h1>
+                                    <ul className="schedule">
+                                        <li><b>Monday:</b> { this.renderWorking(this.props.user.profile.daysWorking.monday) }</li>
+                                        <li><b>Tuesday:</b> { this.renderWorking(this.props.user.profile.daysWorking.tuesday) }</li>
+                                        <li><b>Wednesday:</b> { this.renderWorking(this.props.user.profile.daysWorking.wednesday) }</li>
+                                        <li><b>Thursday:</b> { this.renderWorking(this.props.user.profile.daysWorking.thursday) }</li>
+                                        <li><b>Friday:</b> { this.renderWorking(this.props.user.profile.daysWorking.friday) }</li>
+                                        <li><b>Saturday:</b> { this.renderWorking(this.props.user.profile.daysWorking.saturday) }</li>
+                                        <li><b>Sunday:</b> { this.renderWorking(this.props.user.profile.daysWorking.sunday) }</li>
+                                    </ul>
+                                </Container>
+                            </div>
                         </div>
-                        <div className="row">
-                            <Container className="employee-schedule" shadow={ false } round={ false }>
-                                <h1>Schedule</h1>
-                                <ul>
-                                    <li><b>Monday:</b> { this.renderWorking(this.props.user.profile.daysWorking.monday) }</li>
-                                    <li><b>Tuesday:</b> { this.renderWorking(this.props.user.profile.daysWorking.tuesday) }</li>
-                                    <li><b>Wednesday:</b> { this.renderWorking(this.props.user.profile.daysWorking.wednesday) }</li>
-                                    <li><b>Thursday:</b> { this.renderWorking(this.props.user.profile.daysWorking.thursday) }</li>
-                                    <li><b>Friday:</b> { this.renderWorking(this.props.user.profile.daysWorking.friday) }</li>
-                                    <li><b>Saturday:</b> { this.renderWorking(this.props.user.profile.daysWorking.saturday) }</li>
-                                    <li><b>Sunday:</b> { this.renderWorking(this.props.user.profile.daysWorking.sunday) }</li>
-                                </ul>
-                            </Container>
+
+
+                        { this.renderResponseInfo((
+                                <Container className="employee-info" shadow={ false } round={ false }>
+                                    <h1>Employee Information</h1>
+                                    <ul className="employee">
+                                        <li><b>Fist Name:</b> { this.props.user.firstName }</li>
+                                        <li><b>Last Name:</b> { this.props.user.lastName }</li>
+                                        <li><b>Email:</b> { this.props.user.email }</li>
+                                        <li><b>Phone Number:</b> { this.props.user.phone }</li>
+                                        <li><b>Rate:</b> { this.props.user.profile.payRate }</li>
+                                        <li><b>Business:</b> { this.props.user.business.name }</li>
+                                    </ul>
+                                </Container>
+                            )
+                        ) }
+                    </div>
+                </div>
+
+                <div className="row">
+                    <div className="edit col-sm-4 col-md-4 col-md-offset-4 text-center" id="edit" style={{display: 'none'}}>
+                        <Container className="edit-container">
+                            <form className="edit-form" onSubmit={ this.onSubmit }>
+                                <h1 className="edit-title">Edit Employee</h1>
+
+
+                                <div className="form-group">
+                                    <TextInput
+                                        value={ this.state.firstName }
+                                        onChange={ this.onChange }
+                                        name="firstName"
+                                        placeholder="First Name"
+                                    />
+
+                                    <TextInput
+                                        value={ this.state.lastName }
+                                        onChange={ this.onChange }
+                                        name="lastName"
+                                        placeholder="Last Name"
+                                    />
+
+                                    <TextInput
+                                        value={ this.state.email }
+                                        onChange={ this.onChange }
+                                        name="email"
+                                        placeholder="Email"
+                                    />
+
+                                    <TextInput
+                                        value={ this.state.phone }
+                                        onChange={ this.onChange }
+                                        type="number"
+                                        name="phone"
+                                        placeholder="Phone Number"
+                                    />
+
+                                    <TextInput
+                                        value={ this.state.rate }
+                                        onChange={ this.onChange }
+                                        type="number"
+                                        name="rate"
+                                        placeholder="Salary ($0.00)"
+                                    />
+                                </div>
+
+                                <div className="btn-group" id="button">
+                                    <PrimaryButton text="Confirm Change"/>
+                                </div>
+
+                            </form>
+                        </Container>
+                    </div>
+                </div>
+
+
+                <div className="row">
+                    <div className="col-md-4 col-md-offset-4 text-center">
+                        <div className="btn-group" id="button" onClick={this.onClick}>
+                            <PrimaryButton text="Edit Information"/>
                         </div>
                     </div>
-                    { this.renderResponseInfo((
-                            <Container className="employee-info" shadow={ false } round={ false }>
-                                <h1>Employee Information</h1>
-                                <ul className="employee">
-                                    <li>Fist Name: { this.props.user.firstName }</li>
-                                    <li>Last Name: { this.props.user.lastName }</li>
-                                    <li>Email: { this.props.user.email }</li>
-                                    <li>Phone Number: { this.props.user.phone }</li>
-                                    <li>Rate: { this.props.user.profile.payRate }</li>
-                                </ul>
-                            </Container>
-                        )
-                    ) }
                 </div>
             </div>
         );
@@ -78,10 +193,14 @@ class Employee extends Component {
 
 Employee.propTypes = {
     user: PropTypes.object,
+    alert: PropTypes.object
+
 };
 
 export default connect(
     store => ( {
-        user: store.user.user
+        user: store.user.user,
+        alert: store.alert
+
     } )
 )(Employee);
