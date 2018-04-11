@@ -1,0 +1,82 @@
+@import '../../../common/styles/colors.scss';
+
+#manager-home {
+  min-height: calc(100vh - 52px);
+  background: $color-background;
+
+  img {
+    max-height: 300px;
+  }
+
+  .edit{
+    padding: 10px;
+  }
+
+  .business-container{
+    padding: 25px;
+    margin-top: 10px;
+    margin-left: 75px;
+  }
+  .busi-cont{
+    width: 70%;
+
+  }
+
+  .business{
+    padding: 10px;
+  }
+
+  .sales{
+    padding: 10px;
+
+  }
+  .image-pfp{
+    padding: 10px;
+  }
+
+  .img-pfp{
+    padding: 10px;
+    width: 500px;
+    border-radius: 30%;
+  }
+
+  .manager-schedule {
+    padding: 10px;
+  }
+
+  .schedule{
+    padding: 7px;
+  }
+  .manager-info{
+    width: 100%;
+  }
+  .content {
+    height: 100%;
+  }
+
+  .Container {
+    height: 100%;
+  }
+
+  .img-responsive {
+    margin: 0 auto;
+  }
+
+  @media only screen and (max-width: 768px) {
+    .manager-info {
+      margin-top: 15px;
+    }
+  }
+
+  .containers {
+    height: 100%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+
+  h1{
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+}

@@ -132,7 +132,6 @@ class Employee extends Component {
                                         <li><b>Email:</b> { this.employee.email }</li>
                                         <li><b>Phone Number:</b> { this.employee.phone }</li>
                                         <li><b>Rate:</b> { this.employee.profile.payRate }</li>
-                                        <li><b>Business:</b> { this.employee.business.name }</li>
                                     </ul>
                                 </Container>
                             )
