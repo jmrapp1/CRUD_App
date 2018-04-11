@@ -25,7 +25,7 @@ class App extends Component {
 
 App.propTypes = {
     history: PropTypes.object.isRequired,
-    dispatch: PropTypes.object.isRequired
+    dispatch: PropTypes.func.isRequired
 };
 
 export default connect()(App);
