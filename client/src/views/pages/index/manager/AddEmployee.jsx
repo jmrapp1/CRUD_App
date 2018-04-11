@@ -7,8 +7,8 @@ import { Actions as EmployeeActions } from '../../../../redux/modules/employee/'
 import './AddEmployee.css';
 import PrimaryButton from '../../../common/components/buttons/PrimaryButton';
 import TextInput from '../../../common/components/inputs/TextInput';
-import { Actions as AlertActions } from '../../../../redux/modules/alert';
 import Container from '../../../common/components/containers/Container';
+import { toast } from 'react-toastify';
 
 
 class AddEmployee extends Component {
@@ -31,12 +31,13 @@ class AddEmployee extends Component {
             fri: true,
             sat: true,
             sun: true,
-
         };
 
         this.onChange = this.onChange.bind(this);
         this.onChangeSchedule = this.onChangeSchedule.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.onRegisterSuccess = this.onRegisterSuccess.bind(this);
+        this.onRegisterError = this.onRegisterError.bind(this);
     }
 
     onChange(e) {
@@ -51,17 +52,21 @@ class AddEmployee extends Component {
     onSubmit(e) {
         e.preventDefault();
         this.props.register(this.state.email, this.state.password, this.state.confirmPassword, this.state.firstName, this.state.lastName, this.state.phone,
-            parseFloat(this.state.rate), this.state.mon, this.state.tue, this.state.wed, this.state.thur, this.state.fri, this.state.sat, this.state.sun);
+            parseFloat(this.state.rate), this.state.mon, this.state.tue, this.state.wed, this.state.thur, this.state.fri, this.state.sat, this.state.sun,
+            this.onRegisterSuccess, this.onRegisterError);
     }
 
-    renderError() {
-        return (
-            <p className={ "message " + this.props.alert.type }>{ this.props.alert.message }</p>
-        )
+    onRegisterSuccess(message) {
+        toast.success(message, {
+            position: toast.POSITION.TOP_CENTER
+        });
+        this.props.history.push('/manage');
     }
 
-    componentWillUnmount() {
-        this.props.clearAlert();
+    onRegisterError(error) {
+        toast.error(error, {
+            position: toast.POSITION.TOP_CENTER
+        });
     }
 
     render() {
@@ -72,10 +77,6 @@ class AddEmployee extends Component {
                         <Container className="addemp-container">
                             <form className="addemp" onSubmit={ this.onSubmit }>
                                 <h1 className="addemp-title">Add Employee</h1>
-
-                                {
-                                    !_.isEmpty(this.props.alert) && this.renderError()
-                                }
 
                                 <div className="form-group">
                                     <TextInput
@@ -210,16 +211,13 @@ class AddEmployee extends Component {
 
 AddEmployee.propTypes = {
     register: PropTypes.func,
-    clearAlert: PropTypes.func,
-    alert: PropTypes.object
+    history: PropTypes.any.isRequired
 };
 
 export default connect(
     state => ( {
-        alert: state.alert
     } ),
     dispatch => ( {
-        register: bindActionCreators(EmployeeActions.register, dispatch),
-        clearAlert: bindActionCreators(AlertActions.clear, dispatch)
+        register: bindActionCreators(EmployeeActions.register, dispatch)
     } )
 )(AddEmployee);

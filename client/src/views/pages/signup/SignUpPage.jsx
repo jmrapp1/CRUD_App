@@ -7,8 +7,8 @@ import { Actions as BusinessActions } from '../../../redux/modules/business/';
 import './SignUpPage.css';
 import PrimaryButton from '../../common/components/buttons/PrimaryButton';
 import TextInput from '../../common/components/inputs/TextInput';
-import { Actions as AlertActions } from '../../../redux/modules/alert';
 import Container from '../../common/components/containers/Container';
+import { toast } from 'react-toastify';
 
 
 class SignUpPage extends Component {
@@ -41,6 +41,21 @@ class SignUpPage extends Component {
         this.onChange = this.onChange.bind(this);
         this.onChangeSchedule = this.onChangeSchedule.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.onRegisterSuccess = this.onRegisterSuccess.bind(this);
+        this.onRegisterError = this.onRegisterError.bind(this);
+    }
+
+    onRegisterSuccess(message) {
+        toast.success(message, {
+            position: toast.POSITION.TOP_CENTER
+        });
+        this.props.history.push('/');
+    }
+
+    onRegisterError(error) {
+        toast.error(error, {
+            position: toast.POSITION.TOP_CENTER
+        });
     }
 
     onChange( e ) {
@@ -56,17 +71,7 @@ class SignUpPage extends Component {
         e.preventDefault();
         this.props.register(this.state.email, this.state.password, this.state.confirmPassword, this.state.firstName, this.state.lastName, this.state.phone,
             parseFloat(this.state.rate), this.state.mon, this.state.tue, this.state.wed, this.state.thur, this.state.fri, this.state.sat, this.state.sun,
-            this.state.name, this.state.street, this.state.city, this.state.state, this.state.zipcode);
-    }
-
-    renderError() {
-        return (
-            <p className={ "message " + this.props.alert.type }>{ this.props.alert.message }</p>
-        )
-    }
-
-    componentWillUnmount() {
-        this.props.clearAlert();
+            this.state.name, this.state.street, this.state.city, this.state.state, this.state.zipcode, this.onRegisterSuccess, this.onRegisterError);
     }
 
     render() {
@@ -121,10 +126,6 @@ class SignUpPage extends Component {
                         <Container className="signup-container">
                             <form className="signup" onSubmit={ this.onSubmit }>
                                 <h1 className="signup-title">Manager Register</h1>
-
-                                {
-                                    !_.isEmpty(this.props.alert) && this.renderError()
-                                }
 
                                 <div className="form-group">
                                     <TextInput
@@ -257,17 +258,14 @@ class SignUpPage extends Component {
 
 SignUpPage.propTypes = {
     register: PropTypes.func,
-    clearAlert: PropTypes.func,
-    alert: PropTypes.object
+    history: PropTypes.any.isRequired
 };
 
 export default connect(
     state => ( {
-        userData: state.user.data,
-        alert: state.alert
+        userData: state.user.data
     } ),
     dispatch => ( {
-        register: bindActionCreators(BusinessActions.register, dispatch),
-        clearAlert: bindActionCreators(AlertActions.clear, dispatch)
+        register: bindActionCreators(BusinessActions.register, dispatch)
     } )
 )(SignUpPage);

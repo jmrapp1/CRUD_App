@@ -1,9 +1,8 @@
 import { dispatchRequest, stringifyObject } from '../../utils/fetchUtils';
 import * as Reducer from './reducer';
-import { Reducers as AlertReducer } from '../alert/index';
 
 export function register(email, password, confirmPassword, firstName, lastName, phone, payRate, monday, tuesday, wednesday,
-                         thursday, friday, saturday, sunday, name, street, city, state, zipcode ) {
+                         thursday, friday, saturday, sunday, name, street, city, state, zipcode, successCallback, errorCallback) {
     return dispatch =>{
         dispatchRequest('api/business/register', 'POST', {
             email,
@@ -20,12 +19,12 @@ export function register(email, password, confirmPassword, firstName, lastName, 
             state,
             zipcode
         }, data => {
-            dispatch(AlertReducer.success('You have registered the business and its manager sucessfully.'));
+            dispatch(successCallback('You have registered the business and its manager sucessfully.'));
             dispatch(Reducer.register(data));
-        },err => {
-            console.error(JSON.stringify(err));
+        }, err => {
+            console.error('Error: ' + JSON.stringify(err));
             if (err['errors'][0]) {
-                dispatch(AlertReducer.error(err['errors'][0]));
+                dispatch(errorCallback(err['errors'][0]));
             }
         });
     }

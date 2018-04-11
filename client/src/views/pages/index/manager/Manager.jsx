@@ -6,9 +6,9 @@ import PropTypes from 'prop-types';
 import 'jquery-match-height';
 import * as $ from 'jquery';
 
-
 const image = require('../../../common/images/pfp2.jpg');
 const sales = require('../../../common/images/sales_temp.png');
+
 class Manager extends Component {
     constructor( props ) {
         super(props);
@@ -126,8 +126,6 @@ Manager.propTypes = {
 
 export default connect(
     store => ( {
-        user: store.user.user,
-        alert: store.alert
-
+        user: store.user.user
     } )
 )(Manager);

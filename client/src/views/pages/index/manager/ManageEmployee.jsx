@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Container from '../../../common/components/containers/Container';
 import './ManageEmployee.css';
 import PropTypes from 'prop-types';
-import { Actions as AlertActions } from '../../../../redux/modules/alert';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Actions as EmployeeActions } from '../../../../redux/modules/employee';

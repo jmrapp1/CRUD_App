@@ -1,9 +1,8 @@
 import { dispatchRequest, stringifyObject } from '../../utils/fetchUtils';
 import * as Reducer from './reducer';
-import { Reducers as AlertReducer } from '../alert';
 
 export function register(email, password, confirmPassword, firstName, lastName, phone, payRate, monday, tuesday, wednesday,
-                         thursday, friday, saturday, sunday) {
+                         thursday, friday, saturday, sunday, successCallback, errorCallback) {
     return dispatch => {
         dispatchRequest('api/employee/register', 'POST', {
             email,
@@ -15,11 +14,11 @@ export function register(email, password, confirmPassword, firstName, lastName, 
             payRate,
             monday, tuesday, wednesday, thursday, friday, saturday, sunday
         }, data => {
-            dispatch(AlertReducer.success('You have registered the employee successfully.'));
             dispatch(Reducer.register(data));
+            dispatch(successCallback('You have registered the employee successfully.'));
         }, err => {
             if (err['errors'][0]) {
-                dispatch(AlertReducer.error(err['errors'][0]));
+                dispatch(errorCallback(err['errors'][0]));
             }
         });
     }

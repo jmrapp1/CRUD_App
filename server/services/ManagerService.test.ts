@@ -45,7 +45,7 @@ describe('ManagerService', () => {
     describe('Register Manager', () => {
         it('should not register a new manager with an undefined work schedule', done => {
             managerService.register('testmanager123@test.com', 'Bob', 'Joe', '1112223333',
-                'test123', 'test123', false, false, false,
+                'test123', 'test123', 5, false, false, false,
                 false, false, undefined, false).then(res => {
                 expect(res.isFailed()).to.equal(true);
                 expect(res.errors[ 0 ]).to.equal('Please enter the days the manager works.');
@@ -54,7 +54,7 @@ describe('ManagerService', () => {
         });
         it('should register a new manager', done => {
             managerService.register('testmanager123@test.com', 'Bob', 'Joe', '1112223333',
-                'test123', 'test123', false, false, false,
+                'test123', 'test123', 5, false, false, false,
                 false, false, false, false).then(res => {
                 expect(res.isSuccess()).to.equal(true);
                 managerService.find({ email: 'testmanager123@test.com' }).then(findRes => {
@@ -70,11 +70,11 @@ describe('ManagerService', () => {
     describe('Find', () => {
         it('should only find managers', done => {
             managerService.register('testmanager1234@test.com', 'Bob', 'Joe', '1112223333',
-                'test123', 'test123', false, false, false,
+                'test123', 'test123', 5, false, false, false,
                 false, false, false, false).then(res1 => {
                 expect(res1.isSuccess()).to.equal(true);
                 managerService.register('testmanager1235@test.com', 'Bob', 'Joe', '1112223333',
-                    'test123', 'test123', false, false, false,
+                    'test123', 'test123', 5, false, false, false,
                     false, false, false, false).then(res2 => {
                     expect(res2.isSuccess()).to.equal(true);
                     managerService.findAll().then(allRes => {

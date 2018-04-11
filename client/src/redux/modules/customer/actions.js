@@ -1,6 +1,5 @@
 import { dispatchRequest, stringifyObject } from '../../utils/fetchUtils';
 import * as Reducer from './reducer';
-import { Reducers as AlertReducer } from '../alert';
 
 export function getCustomers(size, offset) {
     return dispatch => {

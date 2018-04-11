@@ -1,10 +1,9 @@
 import { dispatchRequest } from '../../utils/fetchUtils';
 import * as Reducer from './reducer';
-import { Reducers as AlertReducer } from '../alert';
 import { UserRoles } from '../../UserRoles';
 const jwtDecode = require('jwt-decode');
 
-export function register(email, password, confirmPassword, firstName, lastName, phone) {
+export function register(email, password, confirmPassword, firstName, lastName, phone, successCallback, errorCallback) {
     return dispatch => {
         dispatchRequest('api/user/register', 'POST', {
             email,
@@ -14,10 +13,10 @@ export function register(email, password, confirmPassword, firstName, lastName, 
             lastName,
             phone
         }, data => {
-            dispatch(AlertReducer.success('You have registered successfully.'));
+            dispatch(successCallback('You have registered successfully.'));
             dispatch(Reducer.register(data));
         }, err => {
-            dispatch(AlertReducer.error(err['errors'][0]));
+            dispatch(errorCallback(err['errors'][0]));
         });
     }
 }
@@ -28,12 +27,10 @@ export function login(email, password, successCallback = () => {}, failCallback 
             email,
             password
         }, data => {
-            dispatch(AlertReducer.success('You have logged in successfully.'));
             localStorage.setItem('id_token', data.token);
             const user = decodeUserDataToStoreFromLocal(dispatch);
             successCallback(user);
         }, err => {
-            dispatch(AlertReducer.error(err['errors'][0]));
             failCallback(err['errors'][0]);
         });
     }

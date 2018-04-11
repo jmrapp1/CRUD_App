@@ -5,6 +5,7 @@ import Content from "./layout/Content";
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Actions as UserActions } from '../redux/modules/user';
+import { ToastContainer } from 'react-toastify';
 
 class App extends Component {
 
@@ -16,7 +17,8 @@ class App extends Component {
     render() {
         return (
             <div id="app" className="container-fluid">
-                <Header history={this.props.history} />
+                <ToastContainer autoClose={ 3000 }/>
+                <Header history={ this.props.history }/>
                 <Content/>
             </div>
         );

@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 import PrimaryButton from '../../common/components/buttons/PrimaryButton';
 import TextInput from '../../common/components/inputs/TextInput';
 import { Actions as UserActions } from '../../../redux/modules/user';
-import { Actions as AlertActions } from '../../../redux/modules/alert';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as _ from 'lodash';
 import Container from '../../common/components/containers/Container';
+import { toast } from 'react-toastify';
 
 class LoginPage extends Component {
     constructor( props ) {
@@ -19,7 +19,6 @@ class LoginPage extends Component {
             email: '',
             password: ''
         };
-        this.props.clearAlert();
 
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -37,16 +36,9 @@ class LoginPage extends Component {
 
     onSuccess(data) {
         UserActions.navigateToRoleIndex(data.role, this.props.history);
-    }
-
-    renderError() {
-        return (
-            <p className={ "alert " + this.props.alert.type }>{ this.props.alert.message }</p>
-        )
-    }
-
-    componentWillUnmount() {
-        this.props.clearAlert();
+        toast.success('You have logged in.', {
+            position: toast.POSITION.TOP_CENTER
+        });
     }
 
     render() {
@@ -58,9 +50,6 @@ class LoginPage extends Component {
                         <form className="login" onSubmit={ this.onSubmit }>
                             <h1 className="login-title">Log in</h1>
 
-                            {
-                                !_.isEmpty(this.props.alert) && this.renderError()
-                            }
                             <div id="login-form" className="form-group">
                                 <TextInput
                                     value={ this.state.email }
@@ -95,17 +84,13 @@ class LoginPage extends Component {
 
 LoginPage.propTypes = {
     login: PropTypes.func,
-    clearAlert: PropTypes.func,
-    alert: PropTypes.object,
     history: PropTypes.any
 };
 
 export default connect(
     store => ( {
-        alert: store.alert
     } ),
     dispatch => ( {
-        login: bindActionCreators(UserActions.login, dispatch),
-        clearAlert: bindActionCreators(AlertActions.clear, dispatch)
+        login: bindActionCreators(UserActions.login, dispatch)
     } )
 )(LoginPage);

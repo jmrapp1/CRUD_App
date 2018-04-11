@@ -9,6 +9,7 @@ import LinkNavItem from '../common/components/nav/LinkNavItem';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Actions as UserActions } from '../../redux/modules/user';
+import { toast } from 'react-toastify';
 
 const image = require('../common/images/icon.png');
 
@@ -23,6 +24,9 @@ class Header extends Component {
     doLogout() {
         this.props.logout();
         this.props.history.push('/');
+        toast.info('You have logged out.', {
+            position: toast.POSITION.TOP_CENTER
+        });
     }
 
     render() {
