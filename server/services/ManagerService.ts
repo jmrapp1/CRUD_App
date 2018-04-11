@@ -17,12 +17,13 @@ export default class ManagerService extends DatabaseService {
     populate = ['business'];
 
     validateManagerRegister(email: string, firstName: string, lastName: string, phone: string, password: string, confirmPassword: string,
-                            monday: boolean, tuesday: boolean, wednesday: boolean, thursday: boolean, friday: boolean,
+                            payRate: number, monday: boolean, tuesday: boolean, wednesday: boolean, thursday: boolean, friday: boolean,
                             saturday: boolean, sunday: boolean): Promise<ServiceResponse> {
         return new Promise<ServiceResponse>(resolve => {
             if (!_.isUndefined(monday) && !_.isUndefined(tuesday) && !_.isUndefined(wednesday) && !_.isUndefined(thursday) &&
-                !_.isUndefined(friday) && !_.isUndefined(saturday) && !_.isUndefined(sunday)) {
+                !_.isUndefined(friday) && !_.isUndefined(saturday) && !_.isUndefined(sunday) && payRate) {
                 const profile = {
+                    payRate,
                     daysWorking: {
                         monday,
                         tuesday,
@@ -41,12 +42,13 @@ export default class ManagerService extends DatabaseService {
     }
 
     register(email: string, firstName: string, lastName: string, phone: string, password: string, confirmPassword: string,
-             monday: boolean, tuesday: boolean, wednesday: boolean, thursday: boolean, friday: boolean,
+             payRate: number, monday: boolean, tuesday: boolean, wednesday: boolean, thursday: boolean, friday: boolean,
              saturday: boolean, sunday: boolean): Promise<ServiceResponse> {
         return new Promise<ServiceResponse>(resolve => {
-            this.validateManagerRegister(email, firstName, lastName, phone, password, confirmPassword, monday, tuesday, wednesday, thursday, friday, saturday, sunday).then(valRes => {
+            this.validateManagerRegister(email, firstName, lastName, phone, password, confirmPassword, payRate, monday, tuesday, wednesday, thursday, friday, saturday, sunday).then(valRes => {
                 if (valRes.isSuccess()) {
                     const profile = {
+                        payRate,
                         daysWorking: {
                             monday,
                             tuesday,

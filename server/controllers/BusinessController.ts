@@ -15,7 +15,8 @@ export default class BusinessController {
     @Inject()
     businessService: BusinessService;
 
-    @Inject() managerService: ManagerService;
+    @Inject()
+    managerService: ManagerService;
 
     constructor() {
     }
@@ -31,14 +32,14 @@ export default class BusinessController {
         return new Promise(resolve => {
             this.businessService.validateRegister(name, street, city, state, zipcode).then(busValRes => {
                 if (busValRes.isSuccess()) {
-                    this.managerService.validateManagerRegister(email, firstName, lastName, phone, password, confirmPassword, monday, tuesday,
+                    this.managerService.validateManagerRegister(email, firstName, lastName, phone, password, confirmPassword, payRate, monday, tuesday,
                         wednesday, thursday, friday, saturday, sunday).then(managerValRes => {
                         if (managerValRes.isSuccess()) {
                             // If here it means we've passed all validation and can register successfully
                             this.businessService.register(name, street, city, state, zipcode).then(busRes => {
                                 if (busRes.isSuccess()) {
                                     const business = busRes.data;
-                                    this.managerService.register(email, firstName, lastName, phone, password, confirmPassword, monday, tuesday,
+                                    this.managerService.register(email, firstName, lastName, phone, password, confirmPassword, payRate, monday, tuesday,
                                         wednesday, thursday, friday, saturday, sunday).then(managerRes => {
                                         if (managerRes.isSuccess()) {
                                             const manager = managerRes.data;
