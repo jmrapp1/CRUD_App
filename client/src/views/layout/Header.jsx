@@ -91,9 +91,6 @@ class Header extends Component {
                             </LinkNavItem>
                             { this.renderManagerView() }
                             { this.renderEmployeeView() }
-                            <LinkNavItem href="#">
-                                Store
-                            </LinkNavItem>
                         </Nav>
                         { this.renderLoggedInView() }
                     </Navbar.Collapse>
