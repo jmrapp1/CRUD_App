@@ -55,6 +55,14 @@ export function navigateToRoleIndex(userRole, history) {
     if (userRole === UserRoles.MANAGER) history.push('/manager');
 }
 
+export function validateUserRole(user, desiredRole, history) {
+    if (Array.isArray(desiredRole)) {
+        if (!desiredRole[user.role]) history.push('/');
+    } else {
+        if (user.role !== desiredRole) history.push('/');
+    }
+}
+
 function destroyLocalSession() {
     const subdomain = localStorage.subdomain;
     localStorage.clear();

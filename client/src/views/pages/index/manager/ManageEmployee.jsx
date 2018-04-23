@@ -6,6 +6,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Actions as EmployeeActions } from '../../../../redux/modules/employee';
 import { PaginatedTable } from '../../../common/components/table/PaginatedTable';
+import { Actions as UserActions } from '../../../../redux/modules/user';
+import { UserRoles } from '../../../../redux/UserRoles';
 
 const columns = ['First Name', 'Last Name', 'Email', 'Phone'];
 const map = ['firstName', 'lastName', 'email', 'phone'];
@@ -14,7 +16,9 @@ class ManageEmployee extends Component {
 
     constructor(props) {
         super(props);
-        console.log(this.props.pageSize);
+
+        UserActions.validateUserRole(this.props.user, UserRoles.MANAGER, this.props.history);
+
         this.props.getTotalEmployees();
         this.props.getEmployees(this.props.pageSize, 0);
 
@@ -58,14 +62,16 @@ ManageEmployee.propTypes = {
     getEmployees: PropTypes.func,
     getTotalEmployees: PropTypes.func,
     pageSize: PropTypes.number,
-    history: PropTypes.object.isRequired
+    history: PropTypes.object.isRequired,
+    user: PropTypes.node.isRequired
 };
 
 export default connect(
     state => ( {
         employees: state.employee.employees,
         totalEmployees: state.employee.total,
-        pageSize: 3
+        pageSize: 3,
+        user: state.user.user
     } ),
     dispatch => ( {
         getEmployees: bindActionCreators(EmployeeActions.getEmployees, dispatch),

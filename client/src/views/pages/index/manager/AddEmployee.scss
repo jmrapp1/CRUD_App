@@ -3,19 +3,29 @@
 #addemp-page {
 
   width: 100%;
-  height: calc(100vh - 52px);
+  min-height: calc(100vh - 52px);
   background: $color-background;
-  p{
+
+  .content {
+    min-height: calc(100vh - 52px);
+    width: 100%;
+  }
+
+  .vertical-center {
+    min-height: calc(100vh - 52px);
+  }
+
+  p {
     text-align: center;
   }
+
   .addemp-container {
     text-align: center;
     width: 100%;
   }
 
-  .schedule-container{
+  .schedule-container {
     text-align: center;
-    width: 70%;
   }
   .message {
     margin-top: 10px;
@@ -49,5 +59,9 @@
     -khtml-border-radius: 2px; /* for old Konqueror browsers */
   }
 
+  .schedule-container, .addemp-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
 
 }

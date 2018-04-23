@@ -3,31 +3,37 @@
 #signup-page {
 
   width: 100%;
-  height: calc(100vh - 52px);
+  min-height: calc(100vh - 52px);
   background: $color-background;
 
-  .business-container{
-    margin-left: 30%;
+  .content {
+    min-height: calc(100vh - 52px);
+    width: 100%;
+  }
+
+  .vertical-center {
+    min-height: calc(100vh - 52px);
+  }
+
+  .business-container {
     text-align: center;
     padding: 10px;
-    width: 70%;
-    height: calc(90vh - 30px);
-
+    height: 100%;
   }
+
+  .business {
+    height: 100%;
+  }
+
   .signup-container {
     text-align: center;
-    width: 100%;
-    height: calc(90vh - 30px);
-
   }
 
-  .schedule-container{
+  .schedule-container {
     text-align: center;
-    width: 50%;
-    height: calc(90vh - 30px);
 
   }
-  .business-title{
+  .business-title {
     padding: 10px;
 
   }
@@ -35,7 +41,7 @@
     margin-top: 10px;
   }
 
-  .address{
+  .address {
     padding: 20px;
   }
   input {
@@ -51,11 +57,11 @@
     padding: 5px;
   }
 
-  .business-form{
+  .business-form {
     padding: 3px;
   }
 
-  .signup{
+  .signup {
     padding: 3px;
   }
 
@@ -74,4 +80,10 @@
     border-radius: 2px; /* future proofing */
     -khtml-border-radius: 2px; /* for old Konqueror browsers */
   }
+
+  .business-container, .signup-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
 }

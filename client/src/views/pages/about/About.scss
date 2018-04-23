@@ -3,11 +3,19 @@
 
 #about-home{
   width: 100%;
-  height: calc(100vh - 52px);
+  min-height: calc(100vh - 52px);
   background: $color-background;
 
+  .content {
+    min-height: calc(100vh - 52px);
+    width: 100%;
+  }
+
+  .vertical-center {
+    min-height: calc(100vh - 52px);
+  }
+
   .container{
-    height: calc(55vh - 30px);
   }
   .about-title {
     text-align: center;

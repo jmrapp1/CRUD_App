@@ -23,6 +23,7 @@ class LoginPage extends Component {
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.onSuccess = this.onSuccess.bind(this);
+        this.onFailed = this.onFailed.bind(this);
     }
 
     onChange( e ) {
@@ -31,7 +32,13 @@ class LoginPage extends Component {
 
     onSubmit( e ) {
         e.preventDefault();
-        this.props.login(this.state.email, this.state.password, this.onSuccess);
+        this.props.login(this.state.email, this.state.password, this.onSuccess, this.onFailed);
+    }
+
+    onFailed() {
+        toast.error('The username or password you entered was incorrect.', {
+            position: toast.POSITION.TOP_CENTER
+        });
     }
 
     onSuccess(data) {
@@ -65,7 +72,7 @@ class LoginPage extends Component {
                                     placeholder="Password"
                                 />
 
-                                <p>Don't have an account? <Link to="/signup">Register.</Link></p>
+                                <p>Don't have an account? <Link to="/signup">Register Your Business.</Link></p>
 
                             </div>
 

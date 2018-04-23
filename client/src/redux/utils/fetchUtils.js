@@ -18,7 +18,7 @@ export function dispatchRequest(route, method, body, successCallback, errorCallb
             console.error('Dispatch Error: ' + e);
             if (e['response'] && e['response'].json) {
                 if (e.response.status === 401) {
-                    e['errors'][0] = 'You are not authorized to access this page.';
+                    e['errors'] = ['You are not authorized to access this page.'];
                     if (errorCallback) {
                         errorCallback(e);
                     }
