@@ -114,7 +114,7 @@ class AddEmployee extends Component {
                                         type="number"
                                         name="rate"
                                         className="rate"
-                                        placeholder="Rate"
+                                        placeholder="Salary ($0.00)"
                                     />
 
                                     <TextInput

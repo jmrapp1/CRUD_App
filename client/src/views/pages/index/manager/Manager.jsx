@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import 'jquery-match-height';
 import * as $ from 'jquery';
 
-const image = require('../../../common/images/pfp2.jpg');
+const image = require('../../../common/images/pfp.jpg');
 const sales = require('../../../common/images/sales_temp.png');
 
 class Manager extends Component {
@@ -74,7 +74,7 @@ class Manager extends Component {
                     <div className="containers row">
                         <div className="content col-md-4 col-md-offset-2">
                             <div className="row">
-                                <Container className="manager-schedule" shadow={ false } round={ false }>
+                                <Container className="manager-schedule" shadow={ true } round={ true }>
                                     <h1>Schedule</h1>
                                     <ul className="schedule">
                                         <li><b>Monday:</b> { this.renderWorking(this.props.user.profile.daysWorking.monday) }</li>
@@ -91,14 +91,13 @@ class Manager extends Component {
 
 
                         { this.renderResponseInfo((
-                                <Container className="manager-info" shadow={ false } round={ false }>
+                                <Container className="manager-info" shadow={ true } round={ true }>
                                     <h1>Employee Information</h1>
                                     <ul className="manager">
                                         <li><b>Fist Name:</b> { this.props.user.firstName }</li>
                                         <li><b>Last Name:</b> { this.props.user.lastName }</li>
                                         <li><b>Email:</b> { this.props.user.email }</li>
                                         <li><b>Phone Number:</b> { this.props.user.phone }</li>
-                                        <li><b>Rate:</b> { this.props.user.profile.payRate }</li>
                                     </ul>
                                 </Container>
                             )

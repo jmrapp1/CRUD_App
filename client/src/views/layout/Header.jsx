@@ -42,7 +42,7 @@ class Header extends Component {
                     </Navbar.Header>
                     <Navbar.Collapse>
                         <Nav>
-                            <LinkNavItem href="#">
+                            <LinkNavItem href="/about">
                                 About
                             </LinkNavItem>
                             <NavDropdown title="Employee" id="basic-nav-dropdown">

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Content.css';
 import { Route, Switch } from 'react-router-dom';
+import About from '../pages/about/About';
 import LoginPage from '../pages/login/LoginPage';
 import HomePage from '../pages/home/HomePage';
 import SignUpPage from "../pages/signup/SignUpPage";
@@ -22,6 +23,7 @@ class Content extends Component {
                     <Route exact path="/employee" component={ Employee }/>
                     <Route exact path="/manager" component={ Manager }/>
                     <Route exact path="/addemployee" component={ AddEmployee }/>
+                    <Route exact path="/about" component={ About }/>
                     <Route exact path="/manage" component={ ManageEmployee } exact/>
                     <Route exact path="/manage/employee" component={ Employee } exact/>
                     <Route exact path="/manageCustomers" component={ ManageCustomer }/>

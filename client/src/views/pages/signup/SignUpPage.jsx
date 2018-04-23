@@ -26,7 +26,7 @@ class SignUpPage extends Component {
             lastName: '',
             email: '',
             phone: '',
-            rate: '0.00',
+            rate: '',
             password: '',
             confirmPassword: '',
             mon: true,
@@ -162,7 +162,7 @@ class SignUpPage extends Component {
                                         onChange={ this.onChange }
                                         type="number"
                                         name="rate"
-                                        placeholder="Rate"
+                                        placeholder="Salary ($0.00)"
                                     />
 
                                     <TextInput
