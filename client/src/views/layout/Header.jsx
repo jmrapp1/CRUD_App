@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Actions as UserActions } from '../../redux/modules/user';
 import { toast } from 'react-toastify';
+import { UserRoles } from '../../redux/UserRoles';
 
 const image = require('../common/images/icon.png');
 
@@ -29,13 +30,56 @@ class Header extends Component {
         });
     }
 
+    renderManagerView() {
+        if (this.props.user.role === UserRoles.MANAGER) {
+            return (
+                <NavDropdown title="Employee" id="basic-nav-dropdown">
+                    <MenuItem href="#/manage">Manage</MenuItem>
+                    <MenuItem href="#/addemployee">New</MenuItem>
+                </NavDropdown>
+            );
+        }
+    }
+
+    renderEmployeeView() {
+        console.log(this.props.user);
+        if (this.props.user.role === UserRoles.MANAGER || this.props.user.role === UserRoles.EMPLOYEE) {
+            return (
+                <NavDropdown title="Customer" id="basic-nav-dropdown">
+                    <MenuItem href="#/manageCustomers">Manage</MenuItem>
+                </NavDropdown>
+            );
+        }
+    }
+
+    renderLoggedInView() {
+        if (this.props.loggedIn) {
+            return (
+                <Nav pullRight>
+                    <NavItem onClick={ this.doLogout }>
+                        Logout
+                    </NavItem>
+                </Nav>
+            );
+        }
+        return (
+            <Nav pullRight>
+                <LinkNavItem href="/login">
+                    Login
+                </LinkNavItem>
+                < LinkNavItem href="/signup">
+                    Register
+                </LinkNavItem>
+            </Nav>
+        );
+    }
+
     render() {
         return (
             <div id="header" className="row">
                 <Navbar collapseOnSelect>
                     <Navbar.Header>
                         <Navbar.Brand>
-
                             <Link to="/"><img className="img" src={ image }/></Link>
                         </Navbar.Brand>
                         <Navbar.Toggle/>
@@ -45,37 +89,13 @@ class Header extends Component {
                             <LinkNavItem href="/about">
                                 About
                             </LinkNavItem>
-                            <NavDropdown title="Employee" id="basic-nav-dropdown">
-                                <MenuItem href="#/manage">Manage</MenuItem>
-                                <MenuItem href="#/addemployee">New</MenuItem>
-                            </NavDropdown>
-                            <NavDropdown title="Customer" id="basic-nav-dropdown">
-                                <MenuItem href="#/manageCustomers">Manage</MenuItem>
-                            </NavDropdown>
+                            { this.renderManagerView() }
+                            { this.renderEmployeeView() }
                             <LinkNavItem href="#">
                                 Store
                             </LinkNavItem>
                         </Nav>
-
-                            { this.props.loggedIn ? (
-                                    <Nav pullRight>
-                                        <NavItem onClick={ this.doLogout }>
-                                            Logout
-                                        </NavItem>
-                                    </Nav>
-                                )
-                                :
-                                (
-                                    <Nav pullRight>
-                                        <LinkNavItem href="/login">
-                                            Login
-                                        </LinkNavItem>
-                                        < LinkNavItem href="/signup">
-                                            Register
-                                        </LinkNavItem>
-                                    </Nav>
-                                )
-                            }
+                        { this.renderLoggedInView() }
                     </Navbar.Collapse>
                 </Navbar>
             </div>
@@ -86,11 +106,13 @@ class Header extends Component {
 Header.propTypes = {
     loggedIn: PropTypes.bool,
     logout: PropTypes.func,
-    history: PropTypes.any
+    history: PropTypes.any,
+    user: PropTypes.node
 };
 
 export default connect(
     store => ( {
+        user: store.user.user,
         loggedIn: store.user.loggedIn
     } ),
     dispatch => ( {
