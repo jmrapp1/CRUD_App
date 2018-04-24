@@ -80,9 +80,15 @@ export default abstract class DatabaseService {
 
     // Update by id
     updateById(id, body): Promise<ServiceResponse> {
-        return new Promise<ServiceResponse>(resolve =>
-            this.model.findOneAndUpdate({ _id: id }, body).exec((err, model) => resolve(this.handleStandardResponse(err, model)))
-        );
+        return new Promise<ServiceResponse>(resolve => {
+            this.findById(id).then(modelRes => {
+                if (modelRes.isSuccess() && !modelRes.isEmpty()) {
+                    modelRes.data.update(body, err => resolve(this.handleStandardResponse(err)));
+                } else {
+                    return resolve(modelRes);
+                }
+            });
+        });
     }
 
     // Delete by id
@@ -92,7 +98,7 @@ export default abstract class DatabaseService {
         );
     }
 
-    handleStandardResponse(err, model): ServiceResponse {
+    handleStandardResponse(err, model = null): ServiceResponse {
         if (err && !_.isEmpty(err)) {
             return new ServiceResponse(true, err);
         }

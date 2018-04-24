@@ -77,6 +77,35 @@ describe('EmployeeService', () => {
         });
     });
 
+    describe.only('Edit Employee', () => {
+        it('should edit an employee', done => {
+            employeeService.register('editemptest123@test.com', 'Bob', 'Joe', '1112223333',
+                'test123', 'test123', 12.50, false, false, false,
+                false, false, false, false).then(res => {
+                expect(res.isSuccess()).to.equal(true);
+                employeeService.find({ email: 'editemptest123@test.com' }).then(findRes => {
+                    expect(findRes.isSuccess() && !findRes.isEmpty()).to.equal(true);
+                    const employee = findRes.data[ 0 ];
+                    employeeService.edit(employee._id, 'editemptest123@test.com', 'Joe', 'Bob',
+                        '4443332222', 10).then(editRes => {
+                        expect(editRes.isSuccess()).to.equal(true);
+                        employeeService.find({ email: 'editemptest123@test.com' }).then(find2Res => {
+                            expect(find2Res.isSuccess() && !find2Res.isEmpty()).to.equal(true);
+                            const employee2 = findRes.data[ 0 ];
+                            console.log('Employee2: ' + JSON.stringify(employee2));
+                            expect(employee2.email).to.equal('editemptest123@test.com');
+                            expect(employee2.firstName).to.equal('Joe');
+                            expect(employee2.lastName).to.equal('Bob');
+                            expect(employee2.phone).to.equal('4443332222');
+                            expect(employee2.profile.payRate).to.equal(10);
+                            done();
+                        });
+                    });
+                });
+            });
+        });
+    });
+
     describe('Find', () => {
         it('should only find employees', done => {
             employeeService.register('test1234@test.com', 'Bob', 'Joe', '1112223333',

@@ -7,6 +7,7 @@ import User, { UserRoles } from '../models/User';
 import Config from '../config/config';
 import { encode } from 'jwt-simple';
 import UserService from './UserService';
+import { validate } from 'email-validator';
 
 const userService = Container.get(UserService);
 
@@ -14,7 +15,7 @@ const userService = Container.get(UserService);
 export default class EmployeeService extends DatabaseService {
 
     model = User;
-    populate = ['business'];
+    populate = [ 'business' ];
 
     register(email: string, firstName: string, lastName: string, phone: string, password: string, confirmPassword: string,
              payRate: number, monday: boolean, tuesday: boolean, wednesday: boolean, thursday: boolean, friday: boolean,
@@ -41,6 +42,68 @@ export default class EmployeeService extends DatabaseService {
                 }
             } else {
                 return resolve(new ServiceResponse(true, 'Please enter a pay rate.'));
+            }
+        });
+    }
+
+    edit(employeeId: string, email: string, firstName: string, lastName: string, phone: string, payRate: number) {
+        return new Promise<ServiceResponse>(resolve => {
+            this.validateEdit(employeeId, email, firstName, lastName, phone, payRate).then(valRes => {
+                if (valRes.isSuccess()) {
+                    const employee = valRes.data;
+                    employee.email = email;
+                    employee.firstName = firstName;
+                    employee.lastName = lastName;
+                    employee.phone = phone;
+                    employee.profile.payRate = payRate;
+                    this.updateById(employee._id.toString(), { email, firstName, lastName, phone }).then(updateRes => {
+                        return resolve(updateRes);
+                    });
+                } else {
+                    return resolve(valRes);
+                }
+            });
+        });
+    }
+
+    validateEdit(employeeId: string, email: string, firstName: string, lastName: string, phone: string, payRate: number) {
+        return new Promise<ServiceResponse>(resolve => {
+            if (email && firstName && lastName && phone && payRate && phone) {
+                this.findById(employeeId).then(employeeRes => {
+                    if (employeeRes.isSuccess()) {
+                        if (payRate >= 0.00) {
+                            if (phone.length === 10) {
+                                if (phone.match(/^[0-9]+$/)) {
+                                    if (employeeRes.data.email !== email) {
+                                        if (EmailValidator.validate(email)) {
+                                            userService.find({ email }).then(res => {
+                                                if (res.isSuccess() && res.isEmpty()) {
+                                                    return resolve(new ServiceResponse(false, employeeRes.data));
+                                                } else {
+                                                    return resolve(new ServiceResponse(true, 'That email has already been used.'));
+                                                }
+                                            });
+                                        } else {
+                                            return resolve(new ServiceResponse(true, 'Please enter a valid email.'));
+                                        }
+                                    } else {
+                                        return resolve(new ServiceResponse(false, employeeRes.data));
+                                    }
+                                } else {
+                                    return resolve(new ServiceResponse(true, 'Please enter a valid phone number.'));
+                                }
+                            } else {
+                                return resolve(new ServiceResponse(true, 'Please enter a valid phone number.'));
+                            }
+                        } else {
+                            return resolve(new ServiceResponse(true, 'Please enter a pay rate.'));
+                        }
+                    } else {
+                        return resolve(new ServiceResponse(true, 'Could not find an employee with that ID.'));
+                    }
+                });
+            } else {
+                return resolve(new ServiceResponse(true, 'Please enter all information.'));
             }
         });
     }
