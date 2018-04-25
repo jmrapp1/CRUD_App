@@ -7,13 +7,23 @@ import PropTypes from 'prop-types';
 import { Actions as UserActions } from '../redux/modules/user';
 import { ToastContainer } from 'react-toastify';
 
+/**
+ * Creates the App
+ */
 class App extends Component {
-
+    /**
+     *
+     * @param Returns local data
+     */
     constructor(props) {
         super(props);
         UserActions.decodeUserDataToStoreFromLocal(props.dispatch);
     }
 
+    /**
+     *
+     * @returns the header history
+     */
     render() {
         return (
             <div id="app" className="container-fluid">
@@ -25,8 +35,19 @@ class App extends Component {
     }
 }
 
+/**
+ *
+ * @type {{history, dispatch}}
+ *
+ */
 App.propTypes = {
+    /**
+     * Keeps the history of the page
+     */
     history: PropTypes.object.isRequired,
+    /**
+     * Talks to redux
+     */
     dispatch: PropTypes.func.isRequired
 };
 

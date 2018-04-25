@@ -5,13 +5,15 @@ Components
 
 ### 1. App
 
+Creates the App   
+
 
 
 
 Property | Type | Required | Default value | Description
 :--- | :--- | :--- | :--- | :---
-history|object|yes||
-dispatch|func|yes||
+history|object|yes||Keeps the history of the page
+dispatch|func|yes||Talks to redux
 -----
 **..\..\client\src\views\common\components\buttons\AlertButton.jsx**
 
