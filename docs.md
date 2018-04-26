@@ -19,31 +19,52 @@ dispatch|func|yes||Talks to redux
 
 ### 1. AlertButton
 
+Creates the alert button
+@param text
+@param onClick
+@param className
+@returns {*}
+@constructor   
+
 
 
 
 Property | Type | Required | Default value | Description
 :--- | :--- | :--- | :--- | :---
-text|node|no||
-onClick|func|no||
-className|string|no||
+text|node|no||Alert message
+onClick|func|no||Function called when clilcked
+className|string|no||Class Name
 -----
 **..\..\client\src\views\common\components\buttons\PrimaryButton.jsx**
 
 ### 1. PrimaryButton
 
+Creates the primary button
+@param text
+@param onClick
+@param className
+@returns {*}
+@constructor   
+
 
 
 
 Property | Type | Required | Default value | Description
 :--- | :--- | :--- | :--- | :---
-text|node|no||
-onClick|func|no||
-className|string|no||
+text|node|no||Primary Text
+onClick|func|no||Function called when clicked
+className|string|no||Class Name
 -----
 **..\..\client\src\views\common\components\buttons\SecondaryButton.jsx**
 
 ### 1. SecondaryButton
+
+Creates the secondary button
+@param text
+@param onClick
+@param className
+@returns {*}
+@constructor   
 
 
 
