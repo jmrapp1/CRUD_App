@@ -71,39 +71,57 @@ Creates the secondary button
 
 Property | Type | Required | Default value | Description
 :--- | :--- | :--- | :--- | :---
-text|node|no||
-onClick|func|no||
-className|string|no||
+text|node|no||Secondary Button&#x27;s Text
+onClick|func|no||Function called when clicked
+className|string|no||Secondary Button&#x27;s class Name
 -----
 **..\..\client\src\views\common\components\containers\Container.jsx**
 
 ### 1. Container
 
+Creates Container Components
+@param children
+@param padding
+@param className
+@param shadow
+@param round
+@returns {*}
+@constructor   
+
 
 
 
 Property | Type | Required | Default value | Description
 :--- | :--- | :--- | :--- | :---
-children|node|no||
-padding|number|no|30|
-className|string|no|&lt;See the source code&gt;|
-shadow|bool|no|true|
-round|bool|no|true|
+children|node|no||Child Node
+padding|number|no|30|Container&#x27;s Padding
+className|string|no|&lt;See the source code&gt;|Container&#x27;s Class Name
+shadow|bool|no|true|Container&#x27;s Shadow
+round|bool|no|true|Is the Container&#x27;s edge rounded or not
 -----
 **..\..\client\src\views\common\components\inputs\TextInput.jsx**
 
 ### 1. TextInput
 
+Creates Text Input Component
+@param name
+@param placeholder
+@param value
+@param type
+@param onChange
+@returns {*}
+@constructor   
+
 
 
 
 Property | Type | Required | Default value | Description
 :--- | :--- | :--- | :--- | :---
-name|string|no||
-placeholder|string|no|&lt;See the source code&gt;|
-value|string|no|&lt;See the source code&gt;|
-onChange|func|no|&lt;See the source code&gt;|
-type|string|no|&lt;See the source code&gt;|
+name|string|no||Text Input name
+placeholder|string|no|&lt;See the source code&gt;|Text Input place holder text
+value|string|no|&lt;See the source code&gt;|Text Input value
+onChange|func|no|&lt;See the source code&gt;|onChange function
+type|string|no|&lt;See the source code&gt;|Text Input type
 -----
 **..\..\client\src\views\common\components\nav\LinkNavItem.jsx**
 

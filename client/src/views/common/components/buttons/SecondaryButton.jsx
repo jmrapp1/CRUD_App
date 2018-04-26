@@ -20,10 +20,16 @@ const SecondaryButton = ({ text, onClick, className }) => (
  */
 SecondaryButton.propTypes = {
     /**
-     * 
+     * Secondary Button's Text
      */
     text: PropTypes.node,
+    /**
+     * Function called when clicked
+     */
     onClick: PropTypes.func,
+    /**
+     * Secondary Button's class Name
+     */
     className: PropTypes.string
 };
 
