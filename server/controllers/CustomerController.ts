@@ -19,6 +19,15 @@ export default class CustomerController {
     constructor() {
     }
 
+    /**
+     * GET. Authorized Endpoint. Must be Manager or Employee. Paginates all customers from the database.
+     *
+     * @param req The HTTP Request object
+     * @param {number} size The amount of customers to return
+     * @param {number} offset The number of customers to offset
+     * @param response The HTTP Response object
+     * @returns {Promise<ServiceResponse>}
+     */
     @UseBefore(AuthMiddleware, ManagerOrEmployeeRoleMiddleware)
     @Get('/')
     getCustomers(@Req() req, @QueryParam('size') size: number, @QueryParam('offset') offset: number, @Res() response: any) {
@@ -32,6 +41,14 @@ export default class CustomerController {
         });
     }
 
+    /**
+     * GET. Authorized Endpoint. Must be a Manager or Employee. Gets the total number of customers of the
+     * business that the requesting user works for
+     *
+     * @param req The HTTP request object
+     * @param response The HTTP response object
+     * @returns {Promise<ServiceResponse>}
+     */
     @UseBefore(AuthMiddleware, ManagerOrEmployeeRoleMiddleware)
     @Get('/count')
     getTotalCustomers(@Req() req, @Res() response: any) {

@@ -7,7 +7,6 @@ import 'reflect-metadata'; // required
 import { createExpressServer, useContainer } from 'routing-controllers';
 import { Container } from 'typedi';
 
-import TestController from './controllers/TestController';
 import registerPassport from './config/passport';
 import DatabaseSetup from './util/DatabaseSetup';
 import UserController from './controllers/UserController';
@@ -22,7 +21,7 @@ const express = require('express');
 const app = createExpressServer({
     cors: true,
     routePrefix: '/api',
-    controllers: [ TestController, UserController, EmployeeController, CustomerController, BusinessController ]
+    controllers: [ UserController, EmployeeController, CustomerController, BusinessController ]
 });
 
 if (process.env.NODE_ENV === 'production') {

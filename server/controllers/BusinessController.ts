@@ -21,6 +21,32 @@ export default class BusinessController {
     constructor() {
     }
 
+    /**
+     * Register endpoint that registers a new business and manager.
+     * It pulls the query parameters, validates them, and returns a response based on whether the business was registered
+     *
+     * @param request The HTTP request object
+     * @param email The email address. Must be unique
+     * @param firstName The first name
+     * @param lastName The last name
+     * @param phone The phone number
+     * @param password The password
+     * @param confirmPassword The password confirmation. Must match
+     * @param payRate The employees rate
+     * @param monday Whether the manager works on monday
+     * @param tuesday Whether the manager works on tuesday
+     * @param wednesday Whether the manager works on wednesday
+     * @param thursday Whether the manager works on thursday
+     * @param friday Whether the manager works on friday
+     * @param saturday Whether the manager works on saturday
+     * @param sunday Whether the manager works on sunday
+     * @param name The business name. Must be unique
+     * @param street The street the business is located
+     * @param city The city the business is located
+     * @param state The state the business is located
+     * @param zipcode The zipcode where the business is located
+     * @param response The HTTP response object
+     */
     @Post('/register')
     register(@Req() request, @BodyParam('email') email: string, @BodyParam('firstName') firstName: string, @BodyParam('lastName') lastName: string,
              @BodyParam('phone') phone: string, @BodyParam('password') password: string, @BodyParam('confirmPassword') confirmPassword: string,
@@ -28,7 +54,7 @@ export default class BusinessController {
              @BodyParam('wednesday') wednesday: boolean, @BodyParam('thursday') thursday: boolean, @BodyParam('friday') friday: boolean,
              @BodyParam('saturday') saturday: boolean, @BodyParam('sunday') sunday: boolean, @BodyParam('name') name: string,
              @BodyParam('street') street: string, @BodyParam('city') city: string, @BodyParam('state') state: string,
-             @BodyParam('zipcode') zipcode: string, @Res() response: any) {
+             @BodyParam('zipcode') zipcode: string, @Res() response: any) : Promise<ServiceResponse> {
         return new Promise(resolve => {
             this.businessService.validateRegister(name, street, city, state, zipcode).then(busValRes => {
                 if (busValRes.isSuccess()) {
@@ -70,6 +96,12 @@ export default class BusinessController {
         });
     }
 
+    /**
+     * Authorized endpoint. Must be an admin. Returns all businesses that are in the database.
+     *
+     * @param response The HTTP response object
+     * @returns {Promise<ServiceResponse>}
+     */
     @UseBefore(AuthMiddleware, AdminRoleMiddleware)
     @Get('/')
     getAllUsers(@Res() response: any) {
