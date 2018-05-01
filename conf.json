@@ -1,0 +1,6 @@
+{
+    "source": {
+        "include": ["server"],
+        "includePattern": ".+\\.ts(doc|x)?$"
+    }
+}
