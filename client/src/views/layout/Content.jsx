@@ -12,6 +12,10 @@ import AddEmployee from '../pages/index/manager/AddEmployee';
 import ManageEmployee from "../pages/index/manager/ManageEmployee";
 import ManageCustomer from '../pages/index/employee/ManageCustomer';
 
+/**
+ * Create the main content of the website dynamically
+ *
+ */
 class Content extends Component {
     render() {
         return (
