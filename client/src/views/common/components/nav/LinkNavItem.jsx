@@ -3,6 +3,12 @@ import { Route } from "react-router-dom";
 import { NavItem } from "react-bootstrap";
 import PropTypes from 'prop-types';
 
+/**
+ *
+ * @param props
+ * @returns {*}
+ * @constructor
+ */
 const LinkNavItem = props => (
 
     <Route
