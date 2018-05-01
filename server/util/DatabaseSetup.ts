@@ -1,6 +1,5 @@
 import * as mongoose from 'mongoose';
 import * as dotenv from 'dotenv';
-import ServiceMapping from '../services/ServiceMapping';
 import Appointment from '../models/Appointment';
 import Business from '../models/Business';
 import Product from '../models/Product';
@@ -13,11 +12,19 @@ export default class DatabaseSetup {
 
     db;
 
+    /**
+     * Setups the database and connects to the MongoDB Database
+     * @param callback Function to call when finished
+     */
     setupDb(callback) {
         dotenv.load({ path: '.env' });
         this.connectToDb(callback, process.env.MONGODB_URI);
     }
 
+    /**
+     * Setups the test database and connects to the MongoDB Test Database
+     * @param callback Function to call when finished
+     */
     setupTestDb(callback) {
         dotenv.load({ path: '.env' });
         this.connectToDb(() => {
@@ -25,6 +32,10 @@ export default class DatabaseSetup {
         }, process.env.MONGODB_TEST_URI);
     }
 
+    /**
+     * Deletes all test data from the database
+     * @param callback Function to call when finished
+     */
     removeTestData(callback) {
         Appointment.remove({}).exec(() =>
             Business.remove({}).exec(() =>
@@ -43,6 +54,11 @@ export default class DatabaseSetup {
         );
     }
 
+    /**
+     * Connects to a db with some url
+     * @param callback The function to call when connected
+     * @param uri The url to connect to
+     */
     connectToDb(callback, uri) {
         mongoose.connect(uri);
         const db = mongoose.connection;
@@ -51,12 +67,15 @@ export default class DatabaseSetup {
         db.on('error', console.error.bind(console, 'connection error:'));
         db.once('open', () => {
             this.db = db;
-            ServiceMapping.createMapping();
             console.log('Connected to MongoDB');
             callback(db);
         });
     }
 
+    /**
+     * Closes the existing connection
+     * @param done The function to call when finished
+     */
     close(done) {
         mongoose.connection.close(() => {
             if (done) {
@@ -65,12 +84,20 @@ export default class DatabaseSetup {
         });
     }
 
+    /**
+     * Used in tests to setup the database before they run
+     * @param done Function to call when done
+     */
     before(done) {
         this.setupDb(db => {
             done();
         });
     }
 
+    /**
+     * Used in tests to close the database after they run
+     * @param done Function to call when done
+     */
     after(done = null) {
         this.db.close().then(() => {
             this.close(done);

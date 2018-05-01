@@ -15,40 +15,41 @@ export default class CustomerService extends DatabaseService {
 
     model = User;
 
-    register(email: string, firstName: string, lastName: string, phone: string, password: string, confirmPassword: string): Promise<ServiceResponse> {
-        return userService.register(email, firstName, lastName, phone, password, confirmPassword, UserRoles.CUSTOMER, {});
-    }
-
-    /** Override */
+    /** Override to set customer role */
     insert(body): Promise<ServiceResponse> {
         return super.insert(this.checkBodyForRole(body));
     }
 
-    /** Override */
+    /** Override to set customer role */
     delete(body): Promise<ServiceResponse> {
         return super.delete(this.checkBodyForRole(body));
     }
 
-    /** Override */
+    /** Override to set customer role */
     findAll(): Promise<ServiceResponse> {
         return super.find(this.checkBodyForRole({}));
     }
 
-    /** Override */
+    /** Override to set customer role */
     count(query = {}): Promise<ServiceResponse> {
         return super.count(this.checkBodyForRole(query));
     }
 
-    /** Override */
+    /** Override to set customer role */
     findWithLimit(findParams, limit, offset = 0): Promise<ServiceResponse> {
         return super.findWithLimit(this.checkBodyForRole(findParams), limit, offset);
     }
 
-    /** Override */
+    /** Override to set customer role */
     find(findParams): Promise<ServiceResponse> {
         return super.find(this.checkBodyForRole(findParams));
     }
 
+    /**
+     * Check if the role in the body is set to the customer role. Set it if not.
+     * @param body The body
+     * @returns {any} The updated body
+     */
     checkBodyForRole(body) {
         if (!body.role || !( body.role === UserRoles.CUSTOMER )) body.role = UserRoles.CUSTOMER;
         return body;

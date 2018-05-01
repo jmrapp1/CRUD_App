@@ -16,6 +16,24 @@ export default class ManagerService extends DatabaseService {
     model = User;
     populate = ['business'];
 
+    /**
+     * Validates the data used to register a manager. Does not perform an insertion operations.
+     * @param {string} email The email
+     * @param {string} firstName The first name
+     * @param {string} lastName The last name
+     * @param {string} phone The phone number
+     * @param {string} password The password
+     * @param {string} confirmPassword The password confirmation
+     * @param {number} payRate The payrate
+     * @param {boolean} monday Whether they work on monday
+     * @param {boolean} tuesday Whether they work on tuesday
+     * @param {boolean} wednesday Whether they work on wednesday
+     * @param {boolean} thursday Whether they work on thursday
+     * @param {boolean} friday Whether they work on friday
+     * @param {boolean} saturday Whether they work on saturday
+     * @param {boolean} sunday Whether they work on sunday
+     * @returns {Promise<ServiceResponse>} If the data passes or not
+     */
     validateManagerRegister(email: string, firstName: string, lastName: string, phone: string, password: string, confirmPassword: string,
                             payRate: number, monday: boolean, tuesday: boolean, wednesday: boolean, thursday: boolean, friday: boolean,
                             saturday: boolean, sunday: boolean): Promise<ServiceResponse> {
@@ -41,6 +59,24 @@ export default class ManagerService extends DatabaseService {
         });
     }
 
+    /**
+     * Registers a manager
+     * @param {string} email The email
+     * @param {string} firstName The first name
+     * @param {string} lastName The last name
+     * @param {string} phone The phone number
+     * @param {string} password The password
+     * @param {string} confirmPassword The password confirmation
+     * @param {number} payRate The payrate
+     * @param {boolean} monday Whether they work on monday
+     * @param {boolean} tuesday Whether they work on tuesday
+     * @param {boolean} wednesday Whether they work on wednesday
+     * @param {boolean} thursday Whether they work on thursday
+     * @param {boolean} friday Whether they work on friday
+     * @param {boolean} saturday Whether they work on saturday
+     * @param {boolean} sunday Whether they work on sunday
+     * @returns {Promise<ServiceResponse>} If they were registered or not
+     */
     register(email: string, firstName: string, lastName: string, phone: string, password: string, confirmPassword: string,
              payRate: number, monday: boolean, tuesday: boolean, wednesday: boolean, thursday: boolean, friday: boolean,
              saturday: boolean, sunday: boolean): Promise<ServiceResponse> {

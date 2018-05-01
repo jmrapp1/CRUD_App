@@ -3,6 +3,41 @@ import * as mongoose from 'mongoose';
 
 export const UserRoles = { CUSTOMER: 'CUSTOMER', EMPLOYEE: 'EMPLOYEE', MANAGER: 'MANAGER', ADMIN: 'ADMIN' };
 
+/**
+ * Defines the user schema for the MongoDB database entries
+ * Additional data will be appended to user schema based on role
+ *
+ * ROLE: CUSTOMER
+ *      profile: {
+ *      }
+ *
+ * ROLE: EMPLOYEE
+ *      profile: {
+ *          payRate: Number,
+ *          daysWorking: {
+ *              monday: Boolean,
+ *              tuesday: Boolean,
+ *              wednesday: Boolean,
+ *              thursday: Boolean,
+ *              friday: Boolean,
+ *              saturday: Boolean,
+ *              sunday: Boolean
+ *          }
+ *      }
+ * ROLE: MANAGER
+ *      profile: {
+ *          daysWorking: {
+ *              monday: Boolean,
+ *              tuesday: Boolean,
+ *              wednesday: Boolean,
+ *              thursday: Boolean,
+ *              friday: Boolean,
+ *              saturday: Boolean,
+ *              sunday: Boolean
+ *          }
+ *      }
+ * @type {mongoose.Schema}
+ */
 export const userSchema = new mongoose.Schema({
     email: { type: String, unique: true, lowercase: true, trim: true },
     firstName: String,
@@ -17,39 +52,6 @@ export const userSchema = new mongoose.Schema({
     business: { type: mongoose.Schema.Types.ObjectId, ref: 'Business' },
     profile: {}
 });
-
-/** Additional data will be appended to user schema based on role **/
-/**
- * ROLE: CUSTOMER
- *      profile: {
- *      }
- *
- * ROLE: EMPLOYEE
- *      profile: {
- *          payRate: Number,
-            daysWorking: {
-                monday: Boolean,
-                tuesday: Boolean,
-                wednesday: Boolean,
-                thursday: Boolean,
-                friday: Boolean,
-                saturday: Boolean,
-                sunday: Boolean
-            }
- *      }
- * ROLE: MANAGER
- *      profile: {
-            daysWorking: {
-                monday: Boolean,
-                tuesday: Boolean,
-                wednesday: Boolean,
-                thursday: Boolean,
-                friday: Boolean,
-                saturday: Boolean,
-                sunday: Boolean
-            }
- *      }
- */
 
 userSchema.pre('save', function (next) {
     const user = this;

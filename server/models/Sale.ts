@@ -1,5 +1,10 @@
 import * as mongoose from 'mongoose';
 
+/**
+ * Defines the sale schema for the MongoDB database entries
+ *
+ * @type {mongoose.Schema}
+ */
 export const saleSchema = new mongoose.Schema({
     date: String,
     quantity: Number,

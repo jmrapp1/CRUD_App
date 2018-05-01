@@ -34,7 +34,7 @@ export default class UserController {
     @Post('/register')
     register(@Req() request, @BodyParam('email') email: string, @BodyParam('firstName') firstName: string, @BodyParam('lastName') lastName: string,
              @BodyParam('phone') phone: string, @BodyParam('password') password: string, @BodyParam('confirmPassword') confirmPassword: string, @Res() response: any) {
-        return this.customerService.register(email, firstName, lastName, phone, password, confirmPassword).then(res => {
+        return this.userService.register(email, firstName, lastName, phone, password, confirmPassword).then(res => {
             if (res.isSuccess()) {
                 return response.status(201).json({});
             }
