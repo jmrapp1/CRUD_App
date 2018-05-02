@@ -4,7 +4,7 @@ import { NavItem } from "react-bootstrap";
 import PropTypes from 'prop-types';
 
 /**
- *
+ * Creates a LinkNavItem when clicked brings you to the employee page
  * @param props
  * @returns {*}
  * @constructor
@@ -26,8 +26,18 @@ const LinkNavItem = props => (
     />
 );
 
+/**
+ *
+ * @type {{children: shim, href: shim}}
+ */
 LinkNavItem.propTypes = {
+    /**
+     * The employee root
+     */
     children: PropTypes.node,
+    /**
+     * Link to the employee page
+     */
     href: PropTypes.string
 };
 

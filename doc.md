@@ -127,6 +127,7 @@ type|string|no|&lt;See the source code&gt;|Text Input type
 
 ### 1. LinkNavItem
 
+Creates a LinkNavItem when clicked brings you to the employee page
 @param props
 @returns {*}
 @constructor   
@@ -136,8 +137,8 @@ type|string|no|&lt;See the source code&gt;|Text Input type
 
 Property | Type | Required | Default value | Description
 :--- | :--- | :--- | :--- | :---
-children|node|no||
-href|string|no||
+children|node|no||The employee root
+href|string|no||Link to the employee page
 -----
 **..\..\client\src\views\common\components\table\PageButton.jsx**
 
