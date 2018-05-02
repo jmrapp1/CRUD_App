@@ -5,6 +5,9 @@ import * as $ from 'jquery';
 import './BrandView.css';
 import Cloud from '../../common/images/cloud.png';
 
+/**
+ * Creates Clouds and UManage text
+ */
 class BrandView extends Component {
 
     componentDidMount() {

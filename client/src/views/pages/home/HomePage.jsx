@@ -4,6 +4,9 @@ import Container from '../../common/components/containers/Container';
 import { Link } from 'react-router-dom';
 import BrandView from './BrandView';
 
+/**
+ * Calls BrandView
+ */
 class HomePage extends Component {
     render() {
         return (

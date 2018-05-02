@@ -14,7 +14,9 @@ import { UserRoles } from '../../redux/UserRoles';
 
 const image = require('../common/images/icon.png');
 
-
+/**
+ * Create the main header
+ */
 class Header extends Component {
 
     constructor( props ) {
@@ -100,10 +102,26 @@ class Header extends Component {
     }
 }
 
+/**
+ * Declare prop types
+ * @type {{loggedIn: shim, logout: shim, history: shim, user: shim}}
+ */
 Header.propTypes = {
+    /**
+     * See's if the user is logged in
+     */
     loggedIn: PropTypes.bool,
+    /**
+     * Loggin out function
+     */
     logout: PropTypes.func,
+    /**
+     * Previous history
+     */
     history: PropTypes.any,
+    /**
+     * User date
+     */
     user: PropTypes.node
 };
 

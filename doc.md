@@ -164,19 +164,21 @@ className|string|no||Page Button class name
 
 ### 1. PaginatedTable
 
+Create Paginated Table component   
+
 
 
 
 Property | Type | Required | Default value | Description
 :--- | :--- | :--- | :--- | :---
-columns|array|no||
-data|array|no||
-currentPage|number|no||
-total|number|no||
-pageSize|number|no||
-mapData|func|no||
-onPageClick|func|no||
-onRowClick|func|no||
+columns|array|no||Column Array
+data|array|no||Data Array
+currentPage|number|no||Current Page Value
+total|number|no||Total Page Value
+pageSize|number|no||Page Size
+mapData|func|no||Function to map data
+onPageClick|func|no||Function to change page
+onRowClick|func|no||Function when row is clicked
 -----
 **..\..\client\src\views\layout\Content.jsx**
 
@@ -200,19 +202,23 @@ Create the main content of the website dynamically
 
 ### 1. Header
 
+Create the main header   
+
 
 
 
 Property | Type | Required | Default value | Description
 :--- | :--- | :--- | :--- | :---
-loggedIn|bool|no||
-logout|func|no||
-history|any|no||
-user|node|no||
+loggedIn|bool|no||See&#x27;s if the user is logged in
+logout|func|no||Loggin out function
+history|any|no||Previous history
+user|node|no||User date
 -----
 **..\..\client\src\views\pages\about\About.jsx**
 
 ### 1. About
+
+Creates About Page   
 
 
 
@@ -222,6 +228,8 @@ user|node|no||
 
 ### 1. BrandView
 
+Creates Clouds and UManage text   
+
 
 
 
@@ -229,6 +237,8 @@ user|node|no||
 **..\..\client\src\views\pages\home\HomePage.jsx**
 
 ### 1. HomePage
+
+Calls BrandView   
 
 
 

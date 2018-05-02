@@ -3,7 +3,9 @@ import './About.css';
 import Container from '../../common/components/containers/Container';
 import { connect } from 'react-redux';
 
-
+/**
+ * Creates About Page
+ */
 class About extends Component {
     render() {
         return (

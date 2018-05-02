@@ -5,8 +5,14 @@ import PageButton from './PageButton';
 
 const maxButtons = 2;
 
+/**
+ * Create Paginated Table component
+ */
 export class PaginatedTable extends Component {
-
+    /**
+     * Constructor
+     * @param props
+     */
     constructor(props) {
         super(props);
         this.state = {
@@ -15,6 +21,10 @@ export class PaginatedTable extends Component {
         this.onChangePage = this.onChangePage.bind(this);
     }
 
+    /**
+     * Renders the Page
+     * @returns {Array}
+     */
     renderPageButtons() {
         const buttons = [];
         let totalButtons = Math.ceil(this.props.total / this.props.pageSize);
@@ -35,6 +45,9 @@ export class PaginatedTable extends Component {
         return buttons;
     }
 
+    /**
+     * Renders the data
+     */
     renderData() {
         return this.props.data.map((data, rowIndex) => {
             return ( <tr key={rowIndex} onClick={ () => this.props.onRowClick(data) }>
@@ -47,12 +60,19 @@ export class PaginatedTable extends Component {
         });
     }
 
+    /**
+     * Render the columns
+     */
     renderColumns() {
         return this.props.columns.map((name, index) => {
             return ( <th scope="col" key={ index }>{ name }</th> )
         });
     }
 
+    /**
+     * Change pages function
+     * @param e
+     */
     onChangePage(e) {
         const page = parseInt(e.target.textContent);
         this.state.currentPage = page;
@@ -81,12 +101,36 @@ export class PaginatedTable extends Component {
 }
 
 PaginatedTable.propTypes = {
+    /**
+     * Column Array
+     */
     columns: PropTypes.array,
+    /**
+     * Data Array
+     */
     data: PropTypes.array,
+    /**
+     * Current Page Value
+     */
     currentPage: PropTypes.number,
+    /**
+     * Total Page Value
+     */
     total: PropTypes.number,
+    /**
+     * Page Size
+     */
     pageSize: PropTypes.number,
+    /**
+     * Function to map data
+     */
     mapData: PropTypes.func,
+    /**
+     * Function to change page
+     */
     onPageClick: PropTypes.func,
+    /**
+     * Function when row is clicked
+     */
     onRowClick: PropTypes.func
 };
