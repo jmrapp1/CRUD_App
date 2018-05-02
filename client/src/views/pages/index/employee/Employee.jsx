@@ -14,7 +14,11 @@ const image = require('../../../common/images/pfp2.jpg');
 
 var count = 0;
 
+/**
+ * Creates Employee Landing Page
+ */
 class Employee extends Component {
+
     constructor(props) {
         super(props);
         this.employee = this.props.employee;
@@ -208,7 +212,13 @@ class Employee extends Component {
 }
 
 Employee.propTypes = {
+    /**
+     * Employee Data
+     */
     employee: PropTypes.object.isRequired,
+    /**
+     * Location Object
+     */
     location: PropTypes.object
 };
 

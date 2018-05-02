@@ -4,7 +4,9 @@ import Container from '../../../common/components/containers/Container';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-
+/**
+ * Customer landing page (Not Used)
+ */
 class Customer extends Component {
     render() {
         return (
@@ -21,6 +23,9 @@ class Customer extends Component {
 }
 
 Customer.propTypes = {
+    /**
+     * User info
+     */
     user: PropTypes.object,
 };
 

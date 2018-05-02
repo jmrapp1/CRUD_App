@@ -10,6 +10,9 @@ import { PaginatedTable } from '../../../common/components/table/PaginatedTable'
 const columns = ['First Name', 'Last Name', 'Email', 'Phone'];
 const map = ['firstName', 'lastName', 'email', 'phone'];
 
+/**
+ * Creates Manage Employee Page
+ */
 class ManageCustomer extends Component {
 
     constructor(props) {
@@ -48,10 +51,25 @@ class ManageCustomer extends Component {
 }
 
 ManageCustomer.propTypes = {
+    /**
+     * Customer List
+     */
     customers: PropTypes.array,
+    /**
+     * Total Customer Number
+     */
     totalCustomers: PropTypes.number,
+    /**
+     * Function to get customers
+     */
     getCustomers: PropTypes.func,
+    /**
+     * Function to get total customer number
+     */
     getTotalCustomers: PropTypes.func,
+    /**
+     * Page Size Number
+     */
     pageSize: PropTypes.number
 };
 

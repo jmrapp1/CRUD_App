@@ -12,6 +12,9 @@ import { UserRoles } from '../../../../redux/UserRoles';
 const columns = ['First Name', 'Last Name', 'Email', 'Phone'];
 const map = ['firstName', 'lastName', 'email', 'phone'];
 
+/**
+ * Creates Manage Employee Page
+ */
 class ManageEmployee extends Component {
 
     constructor(props) {
@@ -57,12 +60,33 @@ class ManageEmployee extends Component {
 }
 
 ManageEmployee.propTypes = {
+    /**
+     * Employee List
+     */
     employees: PropTypes.array,
+    /**
+     * Total Employee Number
+     */
     totalEmployees: PropTypes.number,
+    /**
+     * Function to get employee
+     */
     getEmployees: PropTypes.func,
+    /**
+     * Function to get total employee number
+     */
     getTotalEmployees: PropTypes.func,
+    /**
+     * Page Size
+     */
     pageSize: PropTypes.number,
+    /**
+     * User history
+     */
     history: PropTypes.object.isRequired,
+    /**
+     * User data
+     */
     user: PropTypes.node.isRequired
 };
 

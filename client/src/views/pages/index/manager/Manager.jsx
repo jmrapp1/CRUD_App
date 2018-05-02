@@ -11,6 +11,9 @@ import { UserRoles } from '../../../../redux/UserRoles';
 const image = require('../../../common/images/pfp.jpg');
 const sales = require('../../../common/images/sales_temp.png');
 
+/**
+ * Creates Manager Landing Page
+ */
 class Manager extends Component {
     constructor( props ) {
         super(props);
@@ -137,8 +140,17 @@ class Manager extends Component {
 }
 
 Manager.propTypes = {
+    /**
+     * USer Data
+     */
     user: PropTypes.object,
+    /**
+     * Checks if logged in
+     */
     loggedIn: PropTypes.bool,
+    /**
+     * History data
+     */
     history: PropTypes.object.isRequired
 };
 

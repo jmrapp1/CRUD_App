@@ -11,7 +11,9 @@ import Container from '../../../common/components/containers/Container';
 import { toast } from 'react-toastify';
 import { UserRoles } from '../../../../redux/UserRoles';
 
-
+/**
+ * Creates Add Employee Page
+ */
 class AddEmployee extends Component {
 
     constructor(props) {
@@ -216,8 +218,17 @@ class AddEmployee extends Component {
 }
 
 AddEmployee.propTypes = {
+    /**
+     * Register function
+     */
     register: PropTypes.func,
+    /**
+     * User Data
+     */
     user: PropTypes.node.isRequired,
+    /**
+     * User History
+     */
     history: PropTypes.any.isRequired
 };
 

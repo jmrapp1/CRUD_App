@@ -11,6 +11,9 @@ import * as _ from 'lodash';
 import Container from '../../common/components/containers/Container';
 import { toast } from 'react-toastify';
 
+/**
+ * Creates Login Page
+ */
 class LoginPage extends Component {
     constructor( props ) {
         super(props);
@@ -90,7 +93,13 @@ class LoginPage extends Component {
 }
 
 LoginPage.propTypes = {
+    /**
+     * Login function
+     */
     login: PropTypes.func,
+    /**
+     * History data
+     */
     history: PropTypes.any
 };
 

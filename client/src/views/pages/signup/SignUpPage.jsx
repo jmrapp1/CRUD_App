@@ -10,7 +10,9 @@ import TextInput from '../../common/components/inputs/TextInput';
 import Container from '../../common/components/containers/Container';
 import { toast } from 'react-toastify';
 
-
+/**
+ * Creates Sign Up Page
+ */
 class SignUpPage extends Component {
 
     constructor(props) {
@@ -269,7 +271,13 @@ class SignUpPage extends Component {
 }
 
 SignUpPage.propTypes = {
+    /**
+     * Register function
+     */
     register: PropTypes.func,
+    /**
+     * History data
+     */
     history: PropTypes.any.isRequired
 };
 
